@@ -67,13 +67,16 @@ A pasta ```dist```vai ser criada, e é onde estão os arquivos finais que vão p
    ```
 
 4. Crie um Pull Request para `development`
+   ```bash
+   gh pr create --base development --head feature --title "Titulo" --body "Descricao"
+   ```
 
 5. Após testes, merge para `main` e faça deploy
 
 ## Estrutura do Projeto
 
 ```
-src/
+apps/web/src/
 ├── components/     # Componentes React
 ├── pages/          # Páginas da aplicação
 ├── assets/         # Imagens, estilos, etc.
