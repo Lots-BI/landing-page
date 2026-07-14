@@ -1,21 +1,17 @@
-# Landing Page React para Hostinger
-
-Este projeto é uma landing page criada com React que pode ser implantada no Hostinger usando SSH.
+# Landing Page - Lots-BI
 
 ## Pré-requisitos
 
-- Node.js e npm instalados localmente
-- Conta Hostinger com plano Premium
-- Acesso SSH ao servidor (porta 65002)
-- Chave SSH configurada (opcional mas recomendado)
+- Node.js e npm instalados
+- Chave SSH do github
 
 ## Configuração do Ambiente
 
 ### 1. Clonar o Repositório
 
 ```bash
-git clone <URL_DO_SEU_REPOSITORIO>
-cd <NOME_DO_PROJETO>
+git clone https://<CHAVE_DO_REPO>@github.com/Lots-BI/landing-page.git
+cd landing-page
 ```
 
 ### 2. Instalar Dependências
@@ -24,45 +20,25 @@ cd <NOME_DO_PROJETO>
 npm install
 ```
 
-### 3. Build da Aplicação
+### 3. Rodar a aplicação local e fazer alterações
+
+```bash
+npm run dev
+```
+Edite os arquivos da pasta ```apps\web```> A aplicação irá rodar em http://localhost:3000
+
+### 4. Build da Aplicação
 
 ```bash
 npm run build
 ```
+A pasta ```dist```vai ser criada, e é onde estão os arquivos finais que vão para o deploy.
 
 ## Deploy para Hostinger
 
-### Conexão SSH
-
-Conecte-se ao servidor usando:
-
-```bash
-ssh -p 65002 u643820755@195.35.41.167
-```
-
-> Substitua a senha quando solicitado.
-
-### Estrutura de Pastas
-
-A aplicação será implantada em:
-```
-~/public_html/
-```
-
-### Passos de Deploy
-
-1. **Conectar via SSH**
-2. **Navegar até o diretório público:**
+**Enviar os arquivos da build:**
    ```bash
-   cd ~/public_html
-   ```
-3. **Enviar arquivos construídos:**
-   ```bash
-   # Usando scp (recomendado)
-   scp -P 65002 -r build/* u643820755@195.35.41.167:~/public_html/
-   
-   # Ou usando rsync
-   rsync -avz --delete build/ u643820755@195.35.41.167:~/public_html/
+   scp -P 65002 -r dist/apps/web/* u643820755@195.35.41.167:~/domains/leandromajr.com/public_html/
    ```
 
 ## Branching Strategy
@@ -70,7 +46,7 @@ A aplicação será implantada em:
 ### Branches Principais
 
 - **`development`**: Branch de desenvolvimento com alterações em andamento
-- **`production`**: Branch de produção com código estável
+- **`main`**: Branch de produção com código estável
 
 ### Fluxo de Trabalho
 
@@ -92,13 +68,7 @@ A aplicação será implantada em:
 
 4. Crie um Pull Request para `development`
 
-5. Após testes, merge para `production` e faça deploy
-
-## Scripts Disponíveis
-
-- `npm install`: Instala as dependências do projeto
-- `npm run dev`: Inicia o site local
-- `npm run build`: Constrói a aplicação para produção
+5. Após testes, merge para `main` e faça deploy
 
 ## Estrutura do Projeto
 
@@ -109,19 +79,4 @@ src/
 ├── assets/         # Imagens, estilos, etc.
 ├── App.js          # Componente principal
 └── index.js        # Ponto de entrada
-```
-
-## Considerações Finais
-
-- Certifique-se de que o servidor tem Node.js instalado para rodar a aplicação
-- Configure corretamente os arquivos de ambiente (`.env`)
-- Faça backup antes de realizar deploy em produção
-
-## Suporte
-
-Para problemas com o deploy, verifique:
-1. Permissões de arquivo no servidor
-2. Conexão SSH
-3. Estrutura de pastas do Hostinger
-4. Configurações de proxy ou firewall
 ```
