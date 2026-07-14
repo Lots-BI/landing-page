@@ -54,12 +54,13 @@ export default function ResultadosDiretosSection() {
           <div 
             ref={containerRef}
             className="flex flex-row overflow-x-auto gap-6 pt-12 pb-16 -mx-4 px-4 sm:px-8 snap-x snap-mandatory scroll-smooth hide-scrollbar bg-transparent relative z-10 items-stretch"
+            {...handlers}
           >
             {testimonials.map((item, index) => (
               <AnimatedSection 
                 key={index} 
                 delay={index * 0.15} 
-                className="h-full flex-shrink-0 min-w-[280px] w-[85vw] max-w-[360px] snap-center rounded-2xl transition-all duration-300"
+                className="h-full flex-shrink-0 w-full max-w-[360px] snap-center rounded-2xl transition-all duration-300"
               >
                 <div 
                   className={cn(
