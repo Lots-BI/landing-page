@@ -146,7 +146,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-gray-800">
+    <div className="min-h-screen">
       <HealthHeroSection {...heroSectionData} />
       <HealthSocialProof {...socialProofData} />
       <HealthPainPoints {...painPointsData} />

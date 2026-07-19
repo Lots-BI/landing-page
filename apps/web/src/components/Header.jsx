@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, Sparkles } from 'lucide-react';
+import { Menu, Sparkles, Sun, Moon } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
 import { WhatsAppButton } from './WhatsAppButton.jsx';
 import { cn } from '@/lib/utils';
 import { useEditableContent } from '@/contexts/EditableContent.jsx';
+import { useTheme } from 'next-themes';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const { content } = useEditableContent();
+  const { theme, setTheme, resolvedTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -30,6 +32,10 @@ export default function Header() {
     { name: content.navigation.nav4, id: 'planos' },
     { name: content.navigation.nav3, id: 'equipe' },
   ];
+
+  const toggleTheme = () => {
+    setTheme(resolvedTheme === 'light' ? 'dark' : 'light');
+  };
 
   return (
     <header className={cn(
@@ -62,7 +68,15 @@ export default function Header() {
             </button>
           ))}
           
-          <div className="flex items-center gap-4 border-l border-white/10 pl-6 ml-2">
+           <div className="flex items-center gap-4 border-l border-white/10 pl-6 ml-2">
+             <button 
+               aria-label="Alternar modo claro/escuro"
+               className="p-2 rounded-full glass-interactive touch-target flex items-center justify-center"
+               onClick={toggleTheme}
+             >
+               {theme === 'light' ? <Moon className="w-5 h-5 text-blue-300" /> : <Sun className="w-5 h-5 text-yellow-400" />}
+             </button>
+            
             <a 
               href="https://leandromajr.lovable.app" 
               target="_blank" 
@@ -106,6 +120,14 @@ export default function Header() {
                 ))}
               </nav>
               <div className="mt-auto pt-6 border-t border-white/10 flex flex-col gap-4">
+                <button 
+                  aria-label="Alternar modo claro/escuro"
+                  className="p-3 rounded-full glass-interactive touch-target flex items-center justify-center"
+                  onClick={toggleTheme}
+                >
+                  {theme === 'light' ? <Moon className="w-5 h-5 text-blue-300" /> : <Sun className="w-5 h-5 text-yellow-400" />}
+                </button>
+                
                 <a 
                   href="https://leandromajr.lovable.app" 
                   target="_blank" 

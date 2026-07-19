@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import { ThemeProvider } from 'next-themes';
 import { EditableContentProvider } from './contexts/EditableContent.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
 import FloatingWhatsAppButton from './components/FloatingWhatsAppButton.jsx';
@@ -23,41 +24,43 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage.jsx'));
 
 function App() {
   return (
-    <HelmetProvider>
-      <EditableContentProvider>
-        <Router>
-          <ScrollToTop />
-          
-          {/* Fixed Background Layers */}
-          <StarfieldBackground />
-          <AnimatedParticles />
-          
-          {/* Main App Content */}
-          <div className="relative z-0 flex flex-col min-h-screen">
-            <Header />
-            <main className="flex-1">
-              <Suspense fallback={<LoadingFallback />}>
-                <Routes>
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/servicos" element={<ServicesPage />} />
-                  <Route path="/portfolio" element={<PortfolioPage />} />
-                  <Route path="/contato" element={<ContactPage />} />
-                  <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                  <Route path="/terms-of-service" element={<TermsOfService />} />
-                  <Route path="*" element={<NotFoundPage />} />
-                </Routes>
-              </Suspense>
-            </main>
-            <Footer />
-          </div>
+    <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} themes={['light', 'dark']}>
+      <HelmetProvider>
+        <EditableContentProvider>
+          <Router>
+            <ScrollToTop />
+            
+            {/* Fixed Background Layers */}
+            <StarfieldBackground />
+            <AnimatedParticles />
+            
+            {/* Main App Content */}
+            <div className="relative z-0 flex flex-col min-h-screen">
+              <Header />
+              <main className="flex-1">
+                <Suspense fallback={<LoadingFallback />}>
+                  <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/servicos" element={<ServicesPage />} />
+                    <Route path="/portfolio" element={<PortfolioPage />} />
+                    <Route path="/contato" element={<ContactPage />} />
+                    <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                    <Route path="/terms-of-service" element={<TermsOfService />} />
+                    <Route path="*" element={<NotFoundPage />} />
+                  </Routes>
+                </Suspense>
+              </main>
+              <Footer />
+            </div>
 
-          {/* Overlays & Utilities */}
-          <FloatingWhatsAppButton />
-          <CookieBanner />
-          <EditContentPanel />
-        </Router>
-      </EditableContentProvider>
-    </HelmetProvider>
+            {/* Overlays & Utilities */}
+            <FloatingWhatsAppButton />
+            <CookieBanner />
+            <EditContentPanel />
+          </Router>
+        </EditableContentProvider>
+      </HelmetProvider>
+    </ThemeProvider>
   );
 }
 

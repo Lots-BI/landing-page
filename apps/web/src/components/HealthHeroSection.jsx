@@ -11,15 +11,15 @@ export function HealthHeroSection({
 }) {
   return (
     <section className={cn("py-16 md:py-24", className)}>
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 pt-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
-          <div className="order-2 lg:order-1">
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+          <div className="order-1 lg:order-1">
+            <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
               {headline}
             </h1>
             
-            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+            <p className="text-xl mb-8 leading-relaxed">
               {subheadline}
             </p>
             
@@ -31,7 +31,7 @@ export function HealthHeroSection({
           </div>
           
           {/* Right Visual */}
-          <div className="order-1 lg:order-2 flex justify-center">
+          <div className="order-2 lg:order-2 flex justify-center">
             <GlassBar className="p-8 backdrop-blur-xl w-full max-w-md">
               <div className="bg-gradient-to-br from-[#f1f1f1] to-[#fdfdfd] rounded-lg p-6 h-64 flex items-center justify-center">
                 <div className="text-center">
