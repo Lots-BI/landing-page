@@ -11,48 +11,48 @@ export function HealthLeadForm({
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto">
           <GlassBar className="p-8 md:p-12 backdrop-blur-xl">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-8 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
               {headline}
             </h2>
             
             <form className="space-y-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-gray-300 mb-2">Nome Completo</label>
+                  <label htmlFor="name" className="block mb-2">Nome Completo</label>
                   <input 
                     type="text" 
                     id="name"
-                    className="w-full px-4 py-3 bg-black/30 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-white placeholder-gray-500"
+                    className="w-full px-4 py-3 bg-black/30 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent placeholder-gray-300"
                     placeholder="Seu nome completo"
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="whatsapp" className="block text-gray-300 mb-2">WhatsApp</label>
+                  <label htmlFor="whatsapp" className="block mb-2">WhatsApp</label>
                   <input 
                     type="tel" 
                     id="whatsapp"
-                    className="w-full px-4 py-3 bg-black/30 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-white placeholder-gray-500"
+                    className="w-full px-4 py-3 bg-black/30 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent placeholder-gray-300"
                     placeholder="(00) 00000-0000"
                   />
                 </div>
               </div>
               
               <div>
-                <label htmlFor="specialty" className="block text-gray-300 mb-2">Especialidade / Ramo de Atuação</label>
+                <label htmlFor="specialty" className="block mb-2">Especialidade / Ramo de Atuação</label>
                 <input 
                   type="text" 
                   id="specialty"
-                  className="w-full px-4 py-3 bg-black/30 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-white placeholder-gray-500"
+                  className="w-full px-4 py-3 bg-black/30 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent placeholder-gray-300"
                   placeholder="Sua especialidade ou ramo de atuação"
                 />
               </div>
               
               <div>
-                <label htmlFor="investment" className="block text-gray-300 mb-2">Qual seu investimento atual em anúncios?</label>
+                <label htmlFor="investment" className="block mb-2">Qual seu investimento atual em anúncios?</label>
                 <select 
                   id="investment"
-                  className="w-full px-4 py-3 bg-black/30 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-white placeholder-gray-500"
+                  className="w-full px-4 py-3 bg-black/30 border border-white/10 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent placeholder-gray-300"
                 >
                   <option value="">Selecione uma opção</option>
                   <option value="none">Não invisto ainda</option>
@@ -64,21 +64,21 @@ export function HealthLeadForm({
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="instagram" className="block text-gray-300 mb-2">Link do Instagram</label>
+                  <label htmlFor="instagram" className="block mb-2">Link do Instagram</label>
                   <input 
                     type="url" 
                     id="instagram"
-                    className="w-full px-4 py-3 bg-black/30 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-white placeholder-gray-500"
+                    className="w-full px-4 py-3 bg-black/30 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent placeholder-gray-300"
                     placeholder="https://instagram.com/seu-perfil"
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="website" className="block text-gray-300 mb-2">Link do Site atual</label>
+                  <label htmlFor="website" className="block mb-2">Link do Site atual</label>
                   <input 
                     type="url" 
                     id="website"
-                    className="w-full px-4 py-3 bg-black/30 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-white placeholder-gray-500"
+                    className="w-full px-4 py-3 bg-black/30 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent placeholder-gray-300"
                     placeholder="https://seusite.com.br"
                   />
                 </div>

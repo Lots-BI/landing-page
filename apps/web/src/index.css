@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,8 +6,58 @@
 
 @layer base {
   :root {
-    /* Medical/Health Theme */
-    --medical-dark: 265 33% 24%;
+    /* Medical/Health Theme — LIGHT (default) */
+    --medical-dark: 265 33% 12%;
+    --medical-blue: 281 70% 52%;
+    --medical-teal: 301 55% 48%;
+    --medical-purple: 260 65% 48%;
+    --medical-light: 250 20% 92%;
+    --medical-overlay-opacity: 0.12;
+
+    --background: 250 30% 98%;
+    --foreground: 265 33% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 265 33% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 265 33% 12%;
+
+    --primary: var(--medical-blue);
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: var(--medical-teal);
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 250 20% 93%;
+    --muted-foreground: 265 15% 38%;
+
+    --accent: var(--medical-purple);
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 250 20% 87%;
+    --input: 250 20% 87%;
+    --ring: var(--medical-blue);
+
+    --radius: 1rem;
+
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+
+    --azul: var(--medical-blue);
+    --teal: var(--medical-teal);
+    --roxo: var(--medical-purple);
+  }
+
+  .dark {
+    /* Medical/Health Theme — DARK */
+    --medical-dark: 265 33% 12%;
     --medical-blue: 281 89% 72%;
     --medical-teal: 301 75% 72%;
     --medical-purple: 260 75% 64%;
@@ -16,64 +66,28 @@
 
     --background: var(--medical-dark);
     --foreground: 0 0% 98%;
-    
+
     --card: 0 0% 10%;
     --card-foreground: 0 0% 98%;
-    
+
     --popover: 0 0% 10%;
     --popover-foreground: 0 0% 98%;
-    
+
     --primary: var(--medical-blue);
     --primary-foreground: 0 0% 98%;
-    
+
     --secondary: var(--medical-teal);
     --secondary-foreground: 0 0% 10%;
-    
+
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 65%;
-    
+
     --accent: var(--medical-purple);
     --accent-foreground: 0 0% 98%;
-    
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: var(--medical-blue);
-    
-    --radius: 1rem;
 
-    /* Responsive Spacing Variables (Mobile First) */
-    --spacing-xs: 0.5rem;
-    --spacing-sm: 1rem;
-    --spacing-md: 1.5rem;
-    --spacing-lg: 2rem;
-    --spacing-xl: 3rem;
-
-    /* Semantic interactive colors mapping to medical palette */
-    --azul: var(--medical-blue);
-    --teal: var(--medical-teal);
-    --roxo: var(--medical-purple);
-  }
-
-  .dark {
-    --background: var(--medical-dark);
-    --foreground: 0 0% 98%;
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 98%;
-    --primary: var(--medical-blue);
-    --primary-foreground: 0 0% 98%;
-    --secondary: var(--medical-teal);
-    --secondary-foreground: 0 0% 10%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
-    --accent: var(--medical-purple);
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
     --border: 0 0% 15%;
     --input: 0 0% 15%;
     --ring: var(--medical-blue);
@@ -103,7 +117,7 @@
   }
 
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     line-height: 1.5;
@@ -121,16 +135,16 @@
     inset: -50%;
     z-index: -1;
     background: 
-      radial-gradient(circle at 20% 30%, hsla(var(--medical-blue) / var(--medical-overlay-opacity)) 0%, transparent 40%),
-      radial-gradient(circle at 80% 70%, hsla(var(--medical-teal) / var(--medical-overlay-opacity)) 0%, transparent 40%);
-    mix-blend-mode: soft-light;
-    animation: fluidDrift 30s ease-in-out infinite alternate;
+      radial-gradient(circle at 30% 30%, hsla(var(--medical-blue) / var(--medical-overlay-opacity)) 0%, transparent 60%),
+      radial-gradient(circle at 70% 70%, hsla(var(--medical-teal) / var(--medical-overlay-opacity)) 0%, transparent 50%);
+    mix-blend-mode: screen;
+    animation: fluidDrift 25s ease-in-out infinite alternate;
     pointer-events: none;
   }
 
   h1, h2, h3, h4, h5, h6 {
     text-wrap: balance;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
     line-height: 1.3;
   }
 
@@ -164,33 +178,33 @@
   }
 
   .glass {
-    @apply bg-white/[0.03] backdrop-blur-xl border border-white/[0.1];
+    @apply bg-white/[0.02] backdrop-blur-xl border border-white/[0.05];
   }
   
   .glass-heavy {
-    @apply bg-black/30 backdrop-blur-2xl border border-white/10;
+    @apply bg-black/40 backdrop-blur-2xl border border-primary/20;
   }
 
   .glass-panel {
     background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255,255,255,0.08);
-    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.2);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.3);
   }
 
   .glass-interactive {
-    @apply bg-white/[0.04] backdrop-blur-md border border-white/10 transition-all duration-300 cursor-pointer;
+    @apply bg-white/[0.03] backdrop-blur-md border border-white/10 transition-all duration-300 cursor-pointer;
     will-change: transform, box-shadow;
   }
 
   @media (hover: hover) {
     .glass-interactive:hover {
-      @apply bg-white/[0.08] border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.3)] -translate-y-1;
+      @apply bg-white/[0.06] border-white/20 shadow-[0_8px_30px_rgba(0,0,0,0.4)] -translate-y-2;
     }
   }
   .glass-interactive:active {
-    @apply scale-[0.98] bg-white/[0.06];
+    @apply scale-[0.98] bg-white/[0.08];
   }
 
   .glass-selected {
@@ -198,26 +212,26 @@
   }
 
   .neon-text {
-    text-shadow: 0 0 15px hsla(var(--primary) / 0.6), 0 0 30px hsla(var(--secondary) / 0.4);
+    text-shadow: 0 0 20px hsla(var(--primary) / 0.5), 0 0 40px hsla(var(--secondary) / 0.3);
   }
 
   .neon-text-blue {
-    text-shadow: 0 0 15px hsla(var(--accent) / 0.6), 0 0 30px hsla(var(--accent) / 0.4);
+    text-shadow: 0 0 20px hsla(var(--accent) / 0.6), 0 0 40px hsla(var(--accent) / 0.4);
   }
 
   @media (hover: hover) {
     .hover-lift {
-      @apply transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_15px_30px_-10px_rgba(0,0,0,0.4)];
+      @apply transition-all duration-500 hover:-translate-y-3 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.5)];
       will-change: transform, box-shadow;
     }
     .hover-glow {
-      @apply transition-all duration-500 hover:shadow-[0_0_25px_hsla(var(--primary)/0.4)] hover:border-primary/50;
+      @apply transition-all duration-500 hover:shadow-[0_0_30px_hsla(var(--primary)/0.3)] hover:border-primary/50;
       will-change: box-shadow, border-color;
     }
   }
 
   .rgb-gradient-text {
-    animation: rgbGradientCycle 6s linear infinite;
+    animation: rgbGradientCycle 5s linear infinite;
   }
 
   .portfolio-btn {
@@ -226,7 +240,7 @@
 
   @media (hover: hover) {
     .portfolio-btn:hover {
-      @apply text-white bg-white/[0.05] scale-[1.03] brightness-105 shadow-sm;
+      @apply text-white bg-white/[0.03] scale-[1.05] brightness-110 shadow-sm;
     }
   }
 
@@ -241,15 +255,13 @@
 
 @keyframes fluidDrift {
   0% { transform: translate(0, 0) scale(1); }
-  25% { transform: translate(-1%, 2%) scale(1.02); }
-  50% { transform: translate(2%, -1%) scale(0.98); }
-  75% { transform: translate(-1%, 1%) scale(1.01); }
-  100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-2%, 3%) scale(1.05); }
+  100% { transform: translate(2%, -2%) scale(1); }
 }
 
 @keyframes rgbGradientCycle {
   0% { color: hsl(var(--medical-blue)); }
   33% { color: hsl(var(--medical-teal)); }
-  66% { color: hsl(var(--medical-purple)); }
+  66% { color: hsl(200 70% 50%); }
   100% { color: hsl(var(--medical-blue)); }
 }

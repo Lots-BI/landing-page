@@ -12,7 +12,7 @@ export function HealthSocialProof({
       <div className="container mx-auto px-4">
         <GlassBar className="p-6 backdrop-blur-xl max-w-5xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <p className="text-gray-300 text-lg font-medium text-center md:text-left">
+            <p className="text-lg font-medium text-center md:text-left">
               {text}
             </p>
             

@@ -11,7 +11,7 @@ export function HealthPainPoints({
     <section className={cn("py-16 md:py-24", className)}>
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
             {headline}
           </h2>
         </div>
@@ -25,10 +25,10 @@ export function HealthPainPoints({
               <div className="w-20 h-20 mb-6 flex items-center justify-center bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full backdrop-blur-sm border border-white/10">
                 {item.icon}
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">
+              <h3 className="text-xl font-bold mb-4">
                 {item.title}
               </h3>
-              <p className="text-gray-300 leading-relaxed">
+              <p className="leading-relaxed">
                 {item.description}
               </p>
             </GlassBar>
