@@ -10,7 +10,7 @@ export function HealthHeroSection({
   className
 }) {
   return (
-    <section className={cn("py-16 md:py-24", className)}>
+    <section className={cn("py-16 md:py-24", className)} id='solucao'>
       <div className="container mx-auto px-4 pt-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}

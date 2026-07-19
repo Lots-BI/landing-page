@@ -8,7 +8,7 @@ export function HealthPainPoints({
   className
 }) {
   return (
-    <section className={cn("py-16 md:py-24", className)}>
+    <section className={cn("py-16 md:py-24", className)} id='metodologia'>
       <div className="container mx-auto px-4">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
@@ -22,8 +22,10 @@ export function HealthPainPoints({
               key={index} 
               className="p-8 backdrop-blur-xl h-full flex flex-col items-center text-center"
             >
-              <div className="w-20 h-20 mb-6 flex items-center justify-center bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full backdrop-blur-sm border border-white/10">
-                {item.icon}
+              <div className="w-100 h-20 flex items-center justify-center">
+                <div className="w-20 h-20 mb-6 flex items-center justify-center bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full backdrop-blur-sm border border-white/10">
+                  {item.icon}
+                </div>
               </div>
               <h3 className="text-xl font-bold mb-4">
                 {item.title}

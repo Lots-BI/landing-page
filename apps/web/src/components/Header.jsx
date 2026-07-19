@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, Sparkles, Sun, Moon } from 'lucide-react';
+import { Menu, User, Sun, Moon } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
 import { WhatsAppButton } from './WhatsAppButton.jsx';
 import { cn } from '@/lib/utils';
@@ -27,10 +27,10 @@ export default function Header() {
   };
 
   const navLinks = [
-    { name: content.navigation.nav1, id: 'solucao-section' },
-    { name: content.navigation.nav2, id: 'metodologia-section' },
-    { name: content.navigation.nav4, id: 'planos' },
-    { name: content.navigation.nav3, id: 'equipe' },
+    { name: 'Início', id: 'solucao' },
+    { name: 'Motivação', id: 'metodologia' },
+    { name: 'Ecossistema', id: 'equipe' },
+    { name: 'Audiência', id: 'planos' }
   ];
 
   const toggleTheme = () => {
@@ -84,7 +84,7 @@ export default function Header() {
               aria-label="Ver Portfólio de Leandro MAJR"
               className="portfolio-btn touch-target text-muted-foreground hover:text-foreground"
             >
-              <Sparkles className="w-4 h-4 text-primary" />
+              <User className="w-4 h-4 text-primary" />
               <span>Área do Cliente</span>
             </a>
             
@@ -135,7 +135,7 @@ export default function Header() {
                   aria-label="Ver Portfólio de Leandro MAJR"
                   className="portfolio-btn justify-center py-3 border border-white/5 text-foreground touch-target"
                 >
-                  <Sparkles className="w-4 h-4 text-primary" />
+                  <User className="w-4 h-4 text-primary" />
                   <span>Área do Cliente</span>
                 </a>
                 

@@ -46,15 +46,15 @@ export default function Footer() {
             <h4 className="text-foreground font-bold mb-4 md:mb-6">{content.footer.navTitle}</h4>
             <ul className="flex flex-col gap-2">
               {[
-                { name: content.navigation.nav1, id: 'solucao' },
-                { name: content.navigation.nav2, id: 'metodologia' },
-                { name: content.navigation.nav3, id: 'equipe' },
-                { name: content.navigation.nav4, id: 'planos' }
+                { name: 'Início', id: 'solucao' },
+                { name: 'Motivação', id: 'metodologia' },
+                { name: 'Ecossistema', id: 'equipe' },
+                { name: 'Audiência', id: 'planos' }
               ].map((item) => (
                 <li key={item.id}>
                   <button 
                     onClick={() => scrollTo(item.id)}
-                    className="text-sm md:text-base text-muted-foreground hover:text-secondary transition-colors flex items-center gap-1 group py-2 touch-target justify-start min-w-0 w-full"
+                    className="text-sm md:text-base text-muted-foreground hover:text-secondary transition-colors touch-target"
                   >
                     {item.name}
                     <ArrowUpRight className="w-3 h-3 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all text-secondary" />
@@ -68,12 +68,12 @@ export default function Footer() {
             <h4 className="text-foreground font-bold mb-4 md:mb-6">{content.footer.contactTitle}</h4>
             <ul className="flex flex-col gap-2 text-sm md:text-base text-muted-foreground">
               <li>
-                <a href="https://wa.me/5511973290438" target="_blank" rel="noreferrer" className="hover:text-foreground transition-colors py-2 touch-target inline-flex items-center w-full">
+                <a href="https://wa.me/5511973290438" target="_blank" rel="noreferrer" className="hover:text-foreground transition-colors py-2">
                   +55 11 97329-0438
                 </a>
               </li>
               <li>
-                <a href="mailto:contato@leandromajr.com" className="hover:text-foreground transition-colors py-2 touch-target inline-flex items-center w-full">
+                <a href="mailto:contato@leandromajr.com" className="hover:text-foreground transition-colors py-2">
                   contato@leandromajr.com
                 </a>
               </li>
