@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { cn } from '@/lib/utils'; // Assuming you have your cn utility
+import { cn } from '@/lib/utils'; 
 
 export function ScrollReveal({ 
   children, 
   className,
-  animateOnce = true // Set to false if you want it to animate EVERY time you scroll up/down
+  animateOnce = true 
 }) {
   const [isVisible, setIsVisible] = useState(false);
   const domRef = useRef(null);
@@ -13,22 +13,22 @@ export function ScrollReveal({
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // When the element enters the screen
           if (entry.isIntersecting) {
             setIsVisible(true);
-            // Stop observing if we only want it to happen once
             if (animateOnce && domRef.current) {
               observer.unobserve(domRef.current);
             }
           } else if (!animateOnce) {
-            // If animateOnce is false, reset it so it animates again next time
             setIsVisible(false);
           }
         });
       },
       {
-        threshold: 0.15, // Triggers when 15% of the element is visible
-        rootMargin: '0px 0px -50px 0px' // Triggers slightly before it fully hits the bottom
+        // 0.05 significa que só 5% do elemento precisa aparecer para ativar
+        threshold: 0.05, 
+        // Margem POSITIVA de 100px faz a animação começar um pouco antes de
+        // aparecer na tela, evitando que o usuário veja um espaço em branco ao rolar rápido
+        rootMargin: '100px 0px 100px 0px' 
       }
     );
 

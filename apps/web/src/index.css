@@ -173,7 +173,9 @@
 @layer utilities {
   .reveal-zoom {
     opacity: 0;
-    transform: scale(0.90); /* Starts slightly smaller */
+    /* translateZ(0) força a aceleração de hardware no mobile */
+    /* Mudei o scale de 0.90 para 0.95 para um efeito mais suave */
+    transform: scale(0.95) translateZ(0); 
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
                 transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
@@ -181,7 +183,7 @@
 
   .reveal-zoom.is-visible {
     opacity: 1;
-    transform: scale(1); /* Zooms into normal size */
+    transform: scale(1) translateZ(0); 
   }
 
   .touch-target {
