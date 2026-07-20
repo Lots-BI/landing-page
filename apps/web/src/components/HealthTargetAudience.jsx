@@ -17,14 +17,16 @@ export function HealthTargetAudience({
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {items.map((item, index) => (
+          {items.map((item, index) => {
+            const Icon = item.icon;
+          return (
             <GlassBar 
               key={index} 
               className="p-8 backdrop-blur-xl h-full flex flex-col items-center text-center"
             >
               <div className="w-100 h-20 flex items-center justify-center">
                 <div className="w-20 h-20 mb-6 flex items-center justify-center bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full backdrop-blur-sm border border-white/10">
-                  {item.icon}
+                  <Icon />
                 </div>
               </div>
               <h3 className="text-xl font- mb-4">
@@ -34,7 +36,8 @@ export function HealthTargetAudience({
                 {item.description}
               </p>
             </GlassBar>
-          ))}
+          );
+          })}
         </div>
       </div>
     </section>

@@ -45,8 +45,6 @@ export function HealthSolutionSection({
               <div className="bg-gradient-to-br from-primary/20 to-secondary/20 rounded-lg p-4 h-48 flex items-center justify-center">
                 <div className="text-center">
                   <div className="text-lg font-bold mb-2">Dashboard</div>
-                  <div className="text-sm">Pacientes Gerados: 142</div>
-                  <div className="text-sm">ROI: 4.2x</div>
                 </div>
               </div>
             </GlassBar>

@@ -9,6 +9,11 @@ export function HealthHeroSection({
   ctaText,
   className
 }) {
+  const scrollTo = (id) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section className={cn("py-16 md:py-24", className)} id='solucao'>
       <div className="container mx-auto px-4 pt-10">
@@ -24,7 +29,11 @@ export function HealthHeroSection({
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-lg hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 backdrop-blur-sm transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-black">
+              <button
+                key={"forms"}
+                onClick={() => scrollTo("forms")}
+                className="px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white font-bold rounded-lg hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 backdrop-blur-sm transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-black"
+              >
                 {ctaText}
               </button>
             </div>

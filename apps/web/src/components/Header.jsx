@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, User, Sun, Moon } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
-import { WhatsAppButton } from './WhatsAppButton.jsx';
 import { cn } from '@/lib/utils';
 import { useEditableContent } from '@/contexts/EditableContent.jsx';
 import { useTheme } from 'next-themes';
@@ -87,14 +86,14 @@ export default function Header() {
               <User className="w-4 h-4 text-primary" />
               <span>Área do Cliente</span>
             </a>
-            
-            <WhatsAppButton 
-              phoneNumber="5511973290438"
-              baseMessage="Olá, estou com interesse nos seus serviços, poderia me passar mais algumas informações?"
-              className="px-6 py-2 text-sm shadow-[0_0_15px_hsla(142,71%,45%,0.3)] hover:shadow-[0_0_20px_hsla(142,71%,45%,0.5)]"
+
+            <button
+              key={"forms"}
+              onClick={() => scrollTo("forms")}
+              className="px-6 py-2 bg-[hsl(142,71%,45%)] rounded-md text-white text-sm shadow-[0_0_15px_hsla(142,71%,45%,0.3)] hover:shadow-[0_0_20px_hsla(142,71%,45%,0.5)]"
             >
               {content.hero.cta}
-            </WhatsAppButton>
+            </button>
           </div>
         </nav>
 
@@ -105,7 +104,7 @@ export default function Header() {
               <Menu className="w-6 h-6" />
             </SheetTrigger>
             <SheetContent side="right" className="glass-heavy border-l-primary/20 w-[300px] p-6 flex flex-col bg-background/95 backdrop-blur-2xl">
-              <SheetTitle className="text-left text-xl font-black mb-8 text-foreground flex items-center gap-2">
+              <SheetTitle className="text-left text-xl mb-8 text-white flex items-center gap-2">
                 Menu
               </SheetTitle>
               <nav className="flex flex-col gap-2 flex-1">
@@ -113,7 +112,7 @@ export default function Header() {
                   <button
                     key={link.id}
                     onClick={() => scrollTo(link.id)}
-                    className="text-left text-lg font-medium text-muted-foreground hover:text-primary transition-colors py-3 touch-target w-full justify-start"
+                    className="text-left text-lg text-white font-medium text-muted-foreground hover:text-primary transition-colors py-3 touch-target w-full justify-start"
                   >
                     {link.name}
                   </button>
@@ -136,16 +135,16 @@ export default function Header() {
                   className="portfolio-btn justify-center py-3 border border-white/5 text-foreground touch-target"
                 >
                   <User className="w-4 h-4 text-primary" />
-                  <span>Área do Cliente</span>
+                  <span className="text-white">Área do Cliente</span>
                 </a>
-                
-                <WhatsAppButton 
-                  phoneNumber="5511973290438"
-                  baseMessage="Olá, estou com interesse nos seus serviços, poderia me passar mais algumas informações?"
-                  className="w-full px-6 py-3 text-sm shadow-[0_0_15px_hsla(142,71%,45%,0.3)] hover:shadow-[0_0_20px_hsla(142,71%,45%,0.5)]"
+
+                <button
+                  key={"forms"}
+                  onClick={() => scrollTo("forms")}
+                  className="px-6 py-2 bg-[hsl(142,71%,45%)] rounded-md text-white text-sm shadow-[0_0_15px_hsla(142,71%,45%,0.3)] hover:shadow-[0_0_20px_hsla(142,71%,45%,0.5)]"
                 >
                   {content.hero.cta}
-                </WhatsAppButton>
+                </button>
               </div>
             </SheetContent>
           </Sheet>

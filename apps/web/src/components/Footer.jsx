@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { WhatsAppButton } from './WhatsAppButton.jsx';
 import { ArrowUpRight, ShieldCheck, Building2, CheckCircle2, Lock } from 'lucide-react';
 import { useEditableContent } from '@/contexts/EditableContent.jsx';
 
@@ -33,13 +32,13 @@ export default function Footer() {
             <p className="text-sm md:text-base text-muted-foreground max-w-sm mb-8 leading-relaxed">
               {content.footer.description}
             </p>
-            <WhatsAppButton 
-              phoneNumber="5511973290438"
-              baseMessage="Olá, estou com interesse nos seus serviços, poderia me passar mais algumas informações?"
-              className="px-6 py-3 text-sm w-full sm:w-auto shadow-[0_0_15px_hsla(142,71%,45%,0.3)] hover:shadow-[0_0_20px_hsla(142,71%,45%,0.5)]"
+            <button
+              key={"forms"}
+              onClick={() => scrollTo("forms")}
+              className="px-6 py-2 bg-[hsl(142,71%,45%)] rounded-md text-white text-sm shadow-[0_0_15px_hsla(142,71%,45%,0.3)] hover:shadow-[0_0_20px_hsla(142,71%,45%,0.5)]"
             >
               {content.hero.cta}
-            </WhatsAppButton>
+            </button>
           </div>
 
           <div>
