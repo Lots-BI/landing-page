@@ -35,17 +35,30 @@ export function HealthSolutionSection({
           
           {/* Right Content */}
           <div className="order-1 lg:order-2">
-            <GlassBar className="p-8 backdrop-blur-xl h-full">
+            <GlassBar className="p-6 sm:p-8 backdrop-blur-xl h-full flex flex-col">
               <h3 className="text-2xl font-bold mb-4 text-center">
                 Transparência Lots BI
               </h3>
-              <div className="text-center">
-                  <img src={dashboardPic} className="rounded-lg" />
-                  <div class="absolute inset-0 flex items-center justify-center">
-                    <p className="leading-relaxed mb-6 text-white font-bold font-sans tracking-wide w-[70%] pt-10">Você no controle. Nossos clientes acompanham cada centavo investido e cada paciente 
-                    gerado através de dashboards exclusivos e atualizados em tempo real.</p>
-                  </div>
+              
+              {/* Added `relative` and `overflow-hidden` to keep the absolute overlay contained */}
+              <div className="relative rounded-lg overflow-hidden flex-1 flex">
+                
+                {/* Ensure image takes full width and maintains aspect ratio */}
+                <img 
+                  src={dashboardPic} 
+                  alt="Dashboard" 
+                  className="w-full h-full object-cover" 
+                />
+                
+                {/* Changed `class` to `className` and added responsive padding/text sizes */}
+                <div className="absolute inset-0 bg-black/50 flex items-center justify-center p-4 sm:p-6">
+                  <p className="text-white font-bold font-sans tracking-wide text-center drop-shadow-md text-xs sm:text-sm lg:text-base w-[95%] sm:w-[85%] leading-relaxed">
+                    Você no controle. Nossos clientes acompanham cada centavo investido e cada paciente 
+                    gerado através de dashboards exclusivos e atualizados em tempo real.
+                  </p>
                 </div>
+
+              </div>
             </GlassBar>
           </div>
         </div>
