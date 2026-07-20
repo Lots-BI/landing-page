@@ -42,11 +42,7 @@ export function HealthHeroSection({
           {/* Right Visual */}
           <div className="order-2 lg:order-2 flex justify-center">
             <GlassBar className="p-8 backdrop-blur-xl w-full max-w-md">
-              <div className="bg-gradient-to-br from-[#f1f1f1] to-[#fdfdfd] rounded-lg p-6 h-64 flex items-center justify-center">
-                <div className="text-center">
-                  <img src={mockup} />
-                </div>
-              </div>
+              <img src={mockup} className='rounded-lg' />
             </GlassBar>
           </div>
         </div>

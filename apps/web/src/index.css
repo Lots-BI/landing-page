@@ -6,7 +6,6 @@
 
 @layer base {
   :root {
-    /* Medical/Health Theme — LIGHT (default) */
     --medical-dark: 265 33% 12%;
     --medical-blue: 281 70% 52%;
     --medical-teal: 301 55% 48%;
@@ -56,7 +55,6 @@
   }
 
   .dark {
-    /* Medical/Health Theme — DARK */
     --medical-dark: 265 33% 12%;
     --medical-blue: 281 89% 72%;
     --medical-teal: 301 75% 72%;

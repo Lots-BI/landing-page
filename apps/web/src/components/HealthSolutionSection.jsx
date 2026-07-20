@@ -1,6 +1,7 @@
 import React from 'react';
 import { GlassBar } from './GlassBar';
 import { cn } from '@/lib/utils';
+import dashboardPic from '../assets/dashboard.png';
 
 export function HealthSolutionSection({ 
   headline,
@@ -35,18 +36,16 @@ export function HealthSolutionSection({
           {/* Right Content */}
           <div className="order-1 lg:order-2">
             <GlassBar className="p-8 backdrop-blur-xl h-full">
-              <h3 className="text-2xl font-bold mb-4">
+              <h3 className="text-2xl font-bold mb-4 text-center">
                 Transparência Lots BI
               </h3>
-              <p className="leading-relaxed mb-6">
-                Você no controle. Nossos clientes acompanham cada centavo investido e cada paciente 
-                gerado através de dashboards exclusivos e atualizados em tempo real.
-              </p>
-              <div className="bg-gradient-to-br from-primary/20 to-secondary/20 rounded-lg p-4 h-48 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-lg font-bold mb-2">Dashboard</div>
+              <div className="text-center">
+                  <img src={dashboardPic} className="rounded-lg" />
+                  <div class="absolute inset-0 flex items-center justify-center">
+                    <p className="leading-relaxed mb-6 text-white font-bold font-sans tracking-wide w-[70%] pt-10">Você no controle. Nossos clientes acompanham cada centavo investido e cada paciente 
+                    gerado através de dashboards exclusivos e atualizados em tempo real.</p>
+                  </div>
                 </div>
-              </div>
             </GlassBar>
           </div>
         </div>
