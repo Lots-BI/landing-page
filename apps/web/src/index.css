@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,76 +6,89 @@
 
 @layer base {
   :root {
-    /* Premium Cosmic Dark Theme */
-    --cosmic-black: 0 0% 1.96%;
-    --cosmic-purple: 280 100% 42.75%;
-    --cosmic-lilac: 280 100% 85.1%;
-    --cosmic-overlay-opacity: 0.2;
+    --medical-dark: 265 33% 12%;
+    --medical-blue: 281 70% 52%;
+    --medical-teal: 301 55% 48%;
+    --medical-purple: 260 65% 48%;
+    --medical-light: 250 20% 92%;
+    --medical-overlay-opacity: 0.12;
 
-    --background: var(--cosmic-black);
-    --foreground: 0 0% 98%;
-    
-    --card: 0 0% 5%;
-    --card-foreground: 0 0% 98%;
-    
-    --popover: 0 0% 5%;
-    --popover-foreground: 0 0% 98%;
-    
-    --primary: var(--cosmic-purple);
-    --primary-foreground: 0 0% 98%;
-    
-    --secondary: var(--cosmic-lilac);
-    --secondary-foreground: 0 0% 10%;
-    
-    --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 65%;
-    
-    --accent: 280 50% 20%;
-    --accent-foreground: 0 0% 98%;
-    
+    --background: 250 30% 98%;
+    --foreground: 265 33% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 265 33% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 265 33% 12%;
+
+    --primary: var(--medical-blue);
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: var(--medical-teal);
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 250 20% 93%;
+    --muted-foreground: 265 15% 38%;
+
+    --accent: var(--medical-purple);
+    --accent-foreground: 0 0% 100%;
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    
-    --border: 0 0% 12%;
-    --input: 0 0% 12%;
-    --ring: var(--cosmic-purple);
-    
+
+    --border: 250 20% 87%;
+    --input: 250 20% 87%;
+    --ring: var(--medical-blue);
+
     --radius: 1rem;
 
-    /* Responsive Spacing Variables (Mobile First) */
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 1.5rem;
     --spacing-lg: 2rem;
     --spacing-xl: 3rem;
 
-    /* Semantic interactive colors mapping to cosmic palette */
-    --lilas: var(--cosmic-lilac);
-    --roxo: var(--cosmic-purple);
-    --rosa: 334 100% 50%;
-    --azul: 200 70% 50%;
+    --azul: var(--medical-blue);
+    --teal: var(--medical-teal);
+    --roxo: var(--medical-purple);
   }
 
   .dark {
-    --background: var(--cosmic-black);
+    --medical-dark: 265 33% 12%;
+    --medical-blue: 281 89% 72%;
+    --medical-teal: 301 75% 72%;
+    --medical-purple: 260 75% 64%;
+    --medical-light: 250 20% 30%;
+    --medical-overlay-opacity: 0.2;
+
+    --background: var(--medical-dark);
     --foreground: 0 0% 98%;
-    --card: 0 0% 5%;
+
+    --card: 0 0% 10%;
     --card-foreground: 0 0% 98%;
-    --popover: 0 0% 5%;
+
+    --popover: 0 0% 10%;
     --popover-foreground: 0 0% 98%;
-    --primary: var(--cosmic-purple);
+
+    --primary: var(--medical-blue);
     --primary-foreground: 0 0% 98%;
-    --secondary: var(--cosmic-lilac);
+
+    --secondary: var(--medical-teal);
     --secondary-foreground: 0 0% 10%;
-    --muted: 0 0% 12%;
+
+    --muted: 0 0% 15%;
     --muted-foreground: 0 0% 65%;
-    --accent: 280 50% 20%;
+
+    --accent: var(--medical-purple);
     --accent-foreground: 0 0% 98%;
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 12%;
-    --input: 0 0% 12%;
-    --ring: var(--cosmic-purple);
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: var(--medical-blue);
   }
 
   * {
@@ -102,7 +115,7 @@
   }
 
   body {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     line-height: 1.5;
@@ -113,17 +126,17 @@
     z-index: 0;
   }
 
-  /* Global Cosmic Nebula Overlay */
+  /* Global Medical Fluid Overlay */
   body::before {
     content: '';
     position: fixed;
     inset: -50%;
     z-index: -1;
     background: 
-      radial-gradient(circle at 30% 30%, hsla(var(--cosmic-purple) / var(--cosmic-overlay-opacity)) 0%, transparent 60%),
-      radial-gradient(circle at 70% 70%, hsla(var(--cosmic-lilac) / var(--cosmic-overlay-opacity)) 0%, transparent 50%);
+      radial-gradient(circle at 30% 30%, hsla(var(--medical-blue) / var(--medical-overlay-opacity)) 0%, transparent 60%),
+      radial-gradient(circle at 70% 70%, hsla(var(--medical-teal) / var(--medical-overlay-opacity)) 0%, transparent 50%);
     mix-blend-mode: screen;
-    animation: cosmicDrift 25s ease-in-out infinite alternate;
+    animation: fluidDrift 25s ease-in-out infinite alternate;
     pointer-events: none;
   }
 
@@ -238,15 +251,15 @@
   }
 }
 
-@keyframes cosmicDrift {
+@keyframes fluidDrift {
   0% { transform: translate(0, 0) scale(1); }
   50% { transform: translate(-2%, 3%) scale(1.05); }
   100% { transform: translate(2%, -2%) scale(1); }
 }
 
 @keyframes rgbGradientCycle {
-  0% { color: hsl(var(--cosmic-purple)); }
-  33% { color: hsl(var(--cosmic-lilac)); }
+  0% { color: hsl(var(--medical-blue)); }
+  33% { color: hsl(var(--medical-teal)); }
   66% { color: hsl(200 70% 50%); }
-  100% { color: hsl(var(--cosmic-purple)); }
+  100% { color: hsl(var(--medical-blue)); }
 }

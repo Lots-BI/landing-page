@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, Sparkles } from 'lucide-react';
+import { Menu, User, Sun, Moon } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
-import { WhatsAppButton } from './WhatsAppButton.jsx';
 import { cn } from '@/lib/utils';
 import { useEditableContent } from '@/contexts/EditableContent.jsx';
+import { useTheme } from 'next-themes';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const { content } = useEditableContent();
+  const { theme, setTheme, resolvedTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -25,11 +26,15 @@ export default function Header() {
   };
 
   const navLinks = [
-    { name: content.navigation.nav1, id: 'solucao-section' },
-    { name: content.navigation.nav2, id: 'metodologia-section' },
-    { name: content.navigation.nav4, id: 'planos' },
-    { name: content.navigation.nav3, id: 'equipe' },
+    { name: 'Início', id: 'solucao' },
+    { name: 'Motivação', id: 'metodologia' },
+    { name: 'Ecossistema', id: 'equipe' },
+    { name: 'Audiência', id: 'planos' }
   ];
+
+  const toggleTheme = () => {
+    setTheme(resolvedTheme === 'light' ? 'dark' : 'light');
+  };
 
   return (
     <header className={cn(
@@ -62,7 +67,15 @@ export default function Header() {
             </button>
           ))}
           
-          <div className="flex items-center gap-4 border-l border-white/10 pl-6 ml-2">
+           <div className="flex items-center gap-4 border-l border-white/10 pl-6 ml-2">
+             <button 
+               aria-label="Alternar modo claro/escuro"
+               className="p-2 rounded-full glass-interactive touch-target flex items-center justify-center"
+               onClick={toggleTheme}
+             >
+               {theme === 'light' ? <Moon className="w-5 h-5 text-blue-300" /> : <Sun className="w-5 h-5 text-yellow-400" />}
+             </button>
+            
             <a 
               href="https://leandromajr.lovable.app" 
               target="_blank" 
@@ -70,17 +83,17 @@ export default function Header() {
               aria-label="Ver Portfólio de Leandro MAJR"
               className="portfolio-btn touch-target text-muted-foreground hover:text-foreground"
             >
-              <Sparkles className="w-4 h-4 text-primary" />
+              <User className="w-4 h-4 text-primary" />
               <span>Área do Cliente</span>
             </a>
-            
-            <WhatsAppButton 
-              phoneNumber="5511973290438"
-              baseMessage="Olá, estou com interesse nos seus serviços, poderia me passar mais algumas informações?"
-              className="px-6 py-2 text-sm shadow-[0_0_15px_hsla(142,71%,45%,0.3)] hover:shadow-[0_0_20px_hsla(142,71%,45%,0.5)]"
+
+            <button
+              key={"forms"}
+              onClick={() => scrollTo("forms")}
+              className="px-6 py-2 bg-[hsl(142,71%,45%)] rounded-md text-white text-sm shadow-[0_0_15px_hsla(142,71%,45%,0.3)] hover:shadow-[0_0_20px_hsla(142,71%,45%,0.5)]"
             >
               {content.hero.cta}
-            </WhatsAppButton>
+            </button>
           </div>
         </nav>
 
@@ -91,7 +104,7 @@ export default function Header() {
               <Menu className="w-6 h-6" />
             </SheetTrigger>
             <SheetContent side="right" className="glass-heavy border-l-primary/20 w-[300px] p-6 flex flex-col bg-background/95 backdrop-blur-2xl">
-              <SheetTitle className="text-left text-xl font-black mb-8 text-foreground flex items-center gap-2">
+              <SheetTitle className="text-left text-xl mb-8 text-white flex items-center gap-2">
                 Menu
               </SheetTitle>
               <nav className="flex flex-col gap-2 flex-1">
@@ -99,13 +112,21 @@ export default function Header() {
                   <button
                     key={link.id}
                     onClick={() => scrollTo(link.id)}
-                    className="text-left text-lg font-medium text-muted-foreground hover:text-primary transition-colors py-3 touch-target w-full justify-start"
+                    className="text-left text-lg text-white font-medium text-muted-foreground hover:text-primary transition-colors py-3 touch-target w-full justify-start"
                   >
                     {link.name}
                   </button>
                 ))}
               </nav>
               <div className="mt-auto pt-6 border-t border-white/10 flex flex-col gap-4">
+                <button 
+                  aria-label="Alternar modo claro/escuro"
+                  className="p-3 rounded-full glass-interactive touch-target flex items-center justify-center"
+                  onClick={toggleTheme}
+                >
+                  {theme === 'light' ? <Moon className="w-5 h-5 text-blue-300" /> : <Sun className="w-5 h-5 text-yellow-400" />}
+                </button>
+                
                 <a 
                   href="https://leandromajr.lovable.app" 
                   target="_blank" 
@@ -113,17 +134,17 @@ export default function Header() {
                   aria-label="Ver Portfólio de Leandro MAJR"
                   className="portfolio-btn justify-center py-3 border border-white/5 text-foreground touch-target"
                 >
-                  <Sparkles className="w-4 h-4 text-primary" />
-                  <span>Área do Cliente</span>
+                  <User className="w-4 h-4 text-primary" />
+                  <span className="text-white">Área do Cliente</span>
                 </a>
-                
-                <WhatsAppButton 
-                  phoneNumber="5511973290438"
-                  baseMessage="Olá, estou com interesse nos seus serviços, poderia me passar mais algumas informações?"
-                  className="w-full px-6 py-3 text-sm shadow-[0_0_15px_hsla(142,71%,45%,0.3)] hover:shadow-[0_0_20px_hsla(142,71%,45%,0.5)]"
+
+                <button
+                  key={"forms"}
+                  onClick={() => scrollTo("forms")}
+                  className="px-6 py-2 bg-[hsl(142,71%,45%)] rounded-md text-white text-sm shadow-[0_0_15px_hsla(142,71%,45%,0.3)] hover:shadow-[0_0_20px_hsla(142,71%,45%,0.5)]"
                 >
                   {content.hero.cta}
-                </WhatsAppButton>
+                </button>
               </div>
             </SheetContent>
           </Sheet>
