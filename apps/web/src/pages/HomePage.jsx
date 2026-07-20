@@ -5,6 +5,7 @@ import { HealthPainPoints } from '@/components/HealthPainPoints';
 import { HealthSolutionSection } from '@/components/HealthSolutionSection';
 import { HealthTargetAudience } from '@/components/HealthTargetAudience';
 import { HealthLeadForm } from '@/components/HealthLeadForm';
+import { ScrollReveal } from '@/components/ScrollReveal';
 import {
   Workflow,
   Stethoscope,
@@ -100,12 +101,24 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
-      <HealthHeroSection {...heroSectionData} />
-      <HealthSocialProof {...socialProofData} />
-      <HealthPainPoints {...painPointsData} />
-      <HealthSolutionSection {...solutionSectionData} />
-      <HealthTargetAudience {...targetAudienceData} />
-      <HealthLeadForm {...leadFormData} />
+      <ScrollReveal>
+        <HealthHeroSection {...heroSectionData} />
+      </ScrollReveal>
+      <ScrollReveal>
+        <HealthSocialProof {...socialProofData} />
+      </ScrollReveal>
+      <ScrollReveal>
+        <HealthPainPoints {...painPointsData} />
+      </ScrollReveal>
+      <ScrollReveal>
+        <HealthSolutionSection {...solutionSectionData} />
+      </ScrollReveal>
+      <ScrollReveal>
+        <HealthTargetAudience {...targetAudienceData} />
+      </ScrollReveal>
+      <ScrollReveal>
+        <HealthLeadForm {...leadFormData} />
+      </ScrollReveal>
     </div>
   );
 }
