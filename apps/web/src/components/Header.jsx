@@ -4,6 +4,8 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/s
 import { cn } from '@/lib/utils';
 import { useEditableContent } from '@/contexts/EditableContent.jsx';
 import { useTheme } from 'next-themes';
+import lotsLogo from '../assets/lotsLogo.png';
+import logotipo from '../assets/logotipo.png';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -48,11 +50,15 @@ export default function Header() {
           onClick={() => scrollTo('hero')}
         >
           <img 
-            src="https://horizons-cdn.hostinger.com/08b0c8e1-5b98-47df-a3f1-7bb9b617c89c/66624de7e895af08958ad9d08e9c0464.png" 
-            alt="Lotus Logo" 
+            src={lotsLogo} 
+            alt="Lotus Logo"
             className="w-8 h-8 rounded-full object-cover shadow-[0_0_15px_hsla(var(--primary)/0.5)]"
           />
-          <span className="inline-block">Leandro MAJR</span>
+          <img 
+            src={logotipo} 
+            alt="Lotus logotipo"
+            className="w-20"
+          />
         </div>
 
         {/* Desktop Nav */}

@@ -29,6 +29,17 @@ export function HealthLeadForm({
       
       const encodedMessage = encodeURIComponent(baseMessage);
       const link = `https://wa.me/5511973290438?text=${encodedMessage}`;
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'lead_form_submit',
+        formId: 'health_lead_form',
+        formName: 'Solicitar Reunião Estratégica',
+        leadData: {
+          especialidade: inputEspecial,
+          investimento: inputInvest
+        }
+      });
       
       window.open(link, '_blank');
     };
@@ -109,7 +120,7 @@ export function HealthLeadForm({
                 <div>
                   <label htmlFor="website" className="block mb-2">Link do Site atual</label>
                   <input 
-                    type="url"
+                    type="text"
                     value={inputSite}
                     onChange={handleSiteChange}
                     id="website"
