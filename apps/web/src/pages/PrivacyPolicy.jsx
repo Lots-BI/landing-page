@@ -8,8 +8,8 @@ const PrivacyPolicy = () => {
   return (
     <>
       <Helmet>
-        <title>Política de Privacidade | Leandro MAJR</title>
-        <meta name="description" content="Política de Privacidade e termos de uso dos dados coletados pela Agência Leandro MAJR, em conformidade com a LGPD." />
+        <title>Política de Privacidade | Agência Lots</title>
+        <meta name="description" content="Política de Privacidade e termos de uso dos dados coletados pela Agência Lots, em conformidade com a LGPD." />
       </Helmet>
 
       <div className="dark min-h-screen bg-background text-foreground py-12 md:py-20">
@@ -33,7 +33,7 @@ const PrivacyPolicy = () => {
             <section className="mb-10">
               <h2 className="text-2xl font-semibold mt-8 mb-4 text-foreground">1. Introdução</h2>
               <p className="text-muted-foreground leading-relaxed mb-4">
-                A Agência Leandro MAJR ("nós", "nosso" ou "agência") está comprometida em proteger a sua privacidade. Esta Política de Privacidade explica como coletamos, usamos, divulgamos e protegemos suas informações quando você visita nosso site e utiliza nossos serviços, em total conformidade com a Lei Geral de Proteção de Dados Pessoais (LGPD - Lei nº 13.709/2018).
+                A Agência Lots ("nós", "nosso" ou "agência") está comprometida em proteger a sua privacidade. Esta Política de Privacidade explica como coletamos, usamos, divulgamos e protegemos suas informações quando você visita nosso site e utiliza nossos serviços, em total conformidade com a Lei Geral de Proteção de Dados Pessoais (LGPD - Lei nº 13.709/2018).
               </p>
             </section>
 
@@ -106,8 +106,8 @@ const PrivacyPolicy = () => {
                 Se você tiver alguma dúvida sobre esta Política de Privacidade ou desejar exercer seus direitos sob a LGPD, entre em contato conosco:
               </p>
               <div className="bg-muted/50 p-6 rounded-xl border border-border/50 mt-4">
-                <p className="text-foreground font-medium mb-2">Agência Leandro MAJR</p>
-                <p className="text-muted-foreground mb-1">Email: leandromajr@gmail.com</p>
+                <p className="text-foreground font-medium mb-2">Agência Lots</p>
+                <p className="text-muted-foreground mb-1">Email: contato@agencia.lots</p>
                 <p className="text-muted-foreground">WhatsApp: +55 (11) 97329-0438</p>
               </div>
             </section>

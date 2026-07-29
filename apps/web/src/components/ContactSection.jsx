@@ -37,9 +37,9 @@ export default function ContactSection() {
                   <Mail className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h4 className="text-lg font-bold text-foreground mb-1">Email</h4>
-                  <a href="mailto:contato@lotusgear.com" className="text-muted-foreground hover:text-primary transition-colors">
-                    contato@lotusgear.com
+                  <h3 className="text-lg font-bold text-foreground mb-1">Email</h3>
+                  <a href="mailto:contato@agencia.lots" className="text-muted-foreground hover:text-primary transition-colors">
+                    contato@agencia.lots
                   </a>
                 </div>
               </div>
@@ -49,7 +49,7 @@ export default function ContactSection() {
                   <Phone className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h4 className="text-lg font-bold text-foreground mb-1">Telefone</h4>
+                  <h3 className="text-lg font-bold text-foreground mb-1">Telefone</h3>
                   <a href="tel:+5511999999999" className="text-muted-foreground hover:text-primary transition-colors">
                     +55 11 99999-9999
                   </a>
@@ -61,7 +61,7 @@ export default function ContactSection() {
                   <MapPin className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h4 className="text-lg font-bold text-foreground mb-1">Localização</h4>
+                  <h3 className="text-lg font-bold text-foreground mb-1">Localização</h3>
                   <p className="text-muted-foreground">
                     São Paulo, SP<br />Brasil
                   </p>

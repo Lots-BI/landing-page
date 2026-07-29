@@ -14,7 +14,7 @@ const ServiceCard = ({ title, description, icon: Icon, delay = 0 }) => {
         <CardTitle className="text-xl font-semibold text-white glass-text-shadow group-hover:text-secondary transition-colors">{title}</CardTitle>
       </CardHeader>
       <CardContent className="flex-1">
-        <CardDescription className="text-sm md:text-base leading-relaxed text-gray-300 glass-text-shadow group-hover:text-gray-100 transition-colors">
+        <CardDescription className="text-sm md:text-base leading-relaxed text-gray-100 glass-text-shadow group-hover:text-white transition-colors">
           {description}
         </CardDescription>
       </CardContent>

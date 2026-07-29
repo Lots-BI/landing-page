@@ -8,7 +8,7 @@ export function BoutiqueSection() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid-asymmetric items-center">
           <AnimatedSection className="col-span-left mb-12 lg:mb-0 relative z-10">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-primary/30 text-primary text-sm font-medium mb-8">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-secondary/40 text-[#e9d5ff] text-sm font-medium mb-8">
               <Shield className="w-4 h-4" />
               Atendimento Exclusivo
             </div>
@@ -28,7 +28,7 @@ export function BoutiqueSection() {
           <AnimatedSection direction="left" className="col-span-right relative">
             <div className="aspect-square rounded-full bg-gradient-to-tr from-primary/20 to-accent/20 blur-3xl absolute inset-0" />
             <div className="glass-panel p-10 rounded-3xl relative z-10 border-t border-l border-white/20 shadow-2xl">
-              <h3 className="text-2xl font-bold text-white mb-6">O Padrão MAJR</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">O Padrão Lots</h3>
               <ul className="space-y-4">
                 {[
                   "Acesso direto aos estrategistas",

@@ -1,56 +1,84 @@
 import React from 'react';
-import { Check, X } from 'lucide-react';
 import { AnimatedSection } from './AnimatedSection.jsx';
 import { useEditableContent } from '@/contexts/EditableContent.jsx';
 
 export function ComparisonSection() {
   const { content } = useEditableContent();
   const c = content.comparison;
+  const brand = content.hero.brand || 'Agência Lots';
 
   const features = [
-    { name: c.f1Name, common: c.f1Common, majr: c.f1Majr },
-    { name: c.f2Name, common: c.f2Common, majr: c.f2Majr },
-    { name: c.f3Name, common: c.f3Common, majr: c.f3Majr },
-    { name: c.f4Name, common: c.f4Common, majr: c.f4Majr },
-    { name: c.f5Name, common: c.f5Common, majr: c.f5Majr }
+    { name: c.f1Name, common: c.f1Common, ours: c.f1Majr },
+    { name: c.f2Name, common: c.f2Common, ours: c.f2Majr },
+    { name: c.f3Name, common: c.f3Common, ours: c.f3Majr },
+    { name: c.f4Name, common: c.f4Common, ours: c.f4Majr },
+    { name: c.f5Name, common: c.f5Common, ours: c.f5Majr },
   ];
 
   return (
-    <section className="py-12 md:py-16 relative bg-transparent">
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <AnimatedSection className="text-center max-w-3xl mx-auto mb-8">
-          <h2 className="text-3xl md:text-5xl font-black text-foreground mb-6">
-            {c.title.split(/(Leandro MAJR)/).map((part, i) => 
-              part === 'Leandro MAJR' ? <span key={i} className="rgb-gradient-text">{part}</span> : part
+    <section className="py-16 md:py-24 relative bg-transparent">
+      <div className="container mx-auto px-3 sm:px-4 md:px-6 relative z-10">
+        <AnimatedSection className="max-w-2xl mx-auto text-center mb-10 md:mb-16">
+          <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground mb-4">
+            A diferença que dói reconhecer
+          </p>
+          <h2 className="text-3xl md:text-5xl font-black text-foreground mb-5 font-display text-balance">
+            {c.title.split(/(Agência Lots)/).map((part, i) =>
+              part === 'Agência Lots' ? (
+                <span key={i} className="text-primary">
+                  {part}
+                </span>
+              ) : (
+                part
+              ),
             )}
           </h2>
-          <p className="text-lg text-muted-foreground">{c.subtitle}</p>
+          <p className="text-base md:text-lg text-muted-foreground text-balance leading-relaxed">
+            {c.subtitle}
+          </p>
         </AnimatedSection>
 
-        <div className="max-w-5xl mx-auto bg-card/60 backdrop-blur-md rounded-3xl overflow-hidden border border-border shadow-xl">
-          <div className="grid grid-cols-3 bg-background/60 p-6 border-b border-border">
-            <div className="col-span-1 font-bold text-muted-foreground">Dimensão</div>
-            <div className="col-span-1 font-bold text-destructive/80 text-center">Agências Comuns</div>
-            <div className="col-span-1 font-bold text-primary text-center neon-text">{content.hero.brand}</div>
+        {/* Mesma grade 3 colunas no mobile e no desktop */}
+        <div className="max-w-4xl mx-auto">
+          <div
+            className="grid grid-cols-3 gap-2 sm:gap-4 px-1 mb-3 text-[9px] sm:text-[11px] uppercase tracking-[0.14em] sm:tracking-[0.18em]"
+            role="row"
+          >
+            <span className="text-muted-foreground/50">Frente</span>
+            <span className="text-muted-foreground/50">Mercado</span>
+            <span className="text-primary/80 truncate">{brand}</span>
           </div>
-          
-          {features.map((feat, idx) => (
-            <AnimatedSection 
-              key={idx} 
-              delay={idx * 0.1}
-              className="grid grid-cols-3 p-6 border-b border-border/50 hover:bg-muted/30 transition-colors items-center"
-            >
-              <div className="col-span-1 font-medium text-foreground">{feat.name}</div>
-              <div className="col-span-1 flex flex-col items-center text-center text-muted-foreground text-sm">
-                <X className="w-5 h-5 text-destructive mb-2" />
-                {feat.common}
-              </div>
-              <div className="col-span-1 flex flex-col items-center text-center text-foreground font-medium text-sm">
-                <Check className="w-5 h-5 text-primary mb-2" />
-                {feat.majr}
-              </div>
-            </AnimatedSection>
-          ))}
+
+          <ul className="border-y border-white/10">
+            {features.map((feat, idx) => (
+              <AnimatedSection
+                key={feat.name || idx}
+                delay={idx * 0.06}
+                className="border-b border-white/10 last:border-b-0"
+              >
+                <li className="grid grid-cols-3 gap-2 sm:gap-4 py-4 sm:py-6 md:py-7 items-start">
+                  <p className="text-[11px] sm:text-sm font-medium text-foreground/90 font-display leading-snug">
+                    {feat.name}
+                  </p>
+
+                  <p className="text-[11px] sm:text-sm text-muted-foreground/65 line-through decoration-white/25 leading-snug pr-1">
+                    {feat.common}
+                  </p>
+
+                  <p className="text-[11px] sm:text-sm md:text-base text-foreground font-medium leading-snug">
+                    {feat.ours}
+                  </p>
+                </li>
+              </AnimatedSection>
+            ))}
+          </ul>
+
+          <AnimatedSection className="mt-10 text-center">
+            <p className="text-sm md:text-base text-muted-foreground italic text-balance max-w-xl mx-auto">
+              Se o que você lê à esquerda parece familiar, o problema não é “falta de esforço” —
+              é falta de sistema.
+            </p>
+          </AnimatedSection>
         </div>
       </div>
     </section>

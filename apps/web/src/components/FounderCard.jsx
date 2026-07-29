@@ -13,6 +13,10 @@ const FounderCard = ({ name, role, description, image, delay = 0 }) => {
             <img
               src={image}
               alt={name}
+              width={400}
+              height={400}
+              loading="lazy"
+              decoding="async"
               className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90 filter grayscale contrast-125 group-hover:grayscale-0"
             />
           ) : (
@@ -27,8 +31,8 @@ const FounderCard = ({ name, role, description, image, delay = 0 }) => {
         </div>
         <CardContent className="p-6 md:p-8 flex flex-col justify-center bg-card">
           <h3 className="text-2xl font-bold mb-2 text-white glass-text-shadow">{name}</h3>
-          <p className="text-sm md:text-lg font-medium text-primary mb-4 glass-text-shadow group-hover:text-secondary transition-colors">{role}</p>
-          <p className="text-sm md:text-base text-gray-300 leading-relaxed glass-text-shadow">{description}</p>
+          <p className="text-sm md:text-lg font-medium text-secondary mb-4 glass-text-shadow">{role}</p>
+          <p className="text-sm md:text-base text-gray-100 leading-relaxed glass-text-shadow">{description}</p>
         </CardContent>
       </div>
     </Card>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 export function AnimatedSection({ 
@@ -7,8 +7,11 @@ export function AnimatedSection({
   className, 
   delay = 0, 
   direction = 'up',
-  once = true 
+  once = true,
+  /** Skip fade/slide so LCP text is visible on first paint */
+  immediate = false,
 }) {
+  const prefersReducedMotion = useReducedMotion();
   const directions = {
     up: { y: 30, x: 0 },
     down: { y: -30, x: 0 },
@@ -16,6 +19,10 @@ export function AnimatedSection({
     right: { x: -30, y: 0 },
     none: { x: 0, y: 0 }
   };
+
+  if (immediate || prefersReducedMotion) {
+    return <div className={cn(className)}>{children}</div>;
+  }
 
   return (
     <motion.div

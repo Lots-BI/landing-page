@@ -33,17 +33,17 @@ export function GamificationLevel({ level, title, description, active = false, i
         >
           {active ? <Check className="w-6 h-6" /> : <span className="font-bold">{level}</span>}
         </motion.div>
-        <h4 className={cn("text-lg font-bold sm:hidden", active ? "text-primary" : "text-foreground")}>
+        <h3 className={cn("text-lg font-bold sm:hidden", active ? "text-secondary" : "text-foreground")}>
           {title}
-        </h4>
+        </h3>
       </div>
 
       {/* Content */}
       <AnimatedSection direction="left" className="pt-0 sm:pt-2">
-        <h4 className={cn("hidden sm:block text-xl font-bold mb-2", active ? "text-primary" : "text-foreground")}>
+        <h3 className={cn("hidden sm:block text-xl font-bold mb-2", active ? "text-secondary" : "text-foreground")}>
           {title}
-        </h4>
-        <p className="text-muted-foreground leading-relaxed text-sm md:text-base">
+        </h3>
+        <p className="text-foreground/80 leading-relaxed text-sm md:text-base">
           {description}
         </p>
       </AnimatedSection>

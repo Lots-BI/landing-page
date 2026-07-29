@@ -1,16 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    /* Premium Cosmic Dark Theme */
+    /* Lots BI brand anchors: #A855F7 → #60A5FA (supabase-magic-portal) */
     --cosmic-black: 0 0% 1.96%;
-    --cosmic-purple: 280 100% 42.75%;
-    --cosmic-lilac: 280 100% 85.1%;
+    --lots-purple: 271 91% 65%; /* #A855F7 */
+    --lots-blue: 213 94% 68%; /* #60A5FA */
+    --lots-lilac: 270 67% 85%; /* soft lilac for secondary wash */
+    --cosmic-purple: var(--lots-purple);
+    --cosmic-lilac: var(--lots-lilac);
     --cosmic-overlay-opacity: 0.2;
+    --lots-wordmark-text: #e4e0ec;
 
     --background: var(--cosmic-black);
     --foreground: 0 0% 98%;
@@ -21,16 +23,17 @@
     --popover: 0 0% 5%;
     --popover-foreground: 0 0% 98%;
     
-    --primary: var(--cosmic-purple);
+    --primary: var(--lots-purple);
     --primary-foreground: 0 0% 98%;
     
-    --secondary: var(--cosmic-lilac);
+    --secondary: var(--lots-blue);
     --secondary-foreground: 0 0% 10%;
     
     --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 65%;
+    /* Raised lightness for WCAG AA contrast on near-black backgrounds */
+    --muted-foreground: 0 0% 78%;
     
-    --accent: 280 50% 20%;
+    --accent: 271 50% 22%;
     --accent-foreground: 0 0% 98%;
     
     --destructive: 0 84.2% 60.2%;
@@ -38,7 +41,7 @@
     
     --border: 0 0% 12%;
     --input: 0 0% 12%;
-    --ring: var(--cosmic-purple);
+    --ring: var(--lots-purple);
     
     --radius: 1rem;
 
@@ -49,11 +52,11 @@
     --spacing-lg: 2rem;
     --spacing-xl: 3rem;
 
-    /* Semantic interactive colors mapping to cosmic palette */
-    --lilas: var(--cosmic-lilac);
-    --roxo: var(--cosmic-purple);
+    /* Semantic interactive colors mapping to Lots palette */
+    --lilas: var(--lots-lilac);
+    --roxo: var(--lots-purple);
     --rosa: 334 100% 50%;
-    --azul: 200 70% 50%;
+    --azul: var(--lots-blue);
   }
 
   .dark {
@@ -63,19 +66,20 @@
     --card-foreground: 0 0% 98%;
     --popover: 0 0% 5%;
     --popover-foreground: 0 0% 98%;
-    --primary: var(--cosmic-purple);
+    --primary: var(--lots-purple);
     --primary-foreground: 0 0% 98%;
-    --secondary: var(--cosmic-lilac);
+    --secondary: var(--lots-blue);
     --secondary-foreground: 0 0% 10%;
     --muted: 0 0% 12%;
-    --muted-foreground: 0 0% 65%;
-    --accent: 280 50% 20%;
+    --muted-foreground: 0 0% 78%;
+    --accent: 271 50% 22%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 12%;
     --input: 0 0% 12%;
-    --ring: var(--cosmic-purple);
+    --ring: var(--lots-purple);
+    --lots-wordmark-text: #e4e0ec;
   }
 
   * {
@@ -102,7 +106,7 @@
   }
 
   body {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Epilogue', ui-sans-serif, system-ui, sans-serif;
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     line-height: 1.5;
@@ -113,17 +117,20 @@
     z-index: 0;
   }
 
-  /* Global Cosmic Nebula Overlay */
+  h1, h2, h3, h4, h5, h6, .font-display {
+    font-family: 'Urbanist', ui-sans-serif, system-ui, sans-serif;
+  }
+
+  /* Soft static wash — motion handled by LightCosmicBackground */
   body::before {
     content: '';
     position: fixed;
-    inset: -50%;
+    inset: 0;
     z-index: -1;
     background: 
-      radial-gradient(circle at 30% 30%, hsla(var(--cosmic-purple) / var(--cosmic-overlay-opacity)) 0%, transparent 60%),
-      radial-gradient(circle at 70% 70%, hsla(var(--cosmic-lilac) / var(--cosmic-overlay-opacity)) 0%, transparent 50%);
+      radial-gradient(circle at 30% 30%, hsla(var(--cosmic-purple) / 0.12) 0%, transparent 55%),
+      radial-gradient(circle at 70% 70%, hsla(var(--cosmic-lilac) / 0.08) 0%, transparent 50%);
     mix-blend-mode: screen;
-    animation: cosmicDrift 25s ease-in-out infinite alternate;
     pointer-events: none;
   }
 
@@ -216,7 +223,19 @@
   }
 
   .rgb-gradient-text {
+    /* Lots BI gradient anchors on dark backgrounds */
+    color: #A855F7;
     animation: rgbGradientCycle 5s linear infinite;
+  }
+
+  .brand-purple,
+  .brand-own {
+    color: #A855F7 !important;
+  }
+
+  .brand-red,
+  .brand-competitor {
+    color: #f87171 !important;
   }
 
   .portfolio-btn {
@@ -245,8 +264,105 @@
 }
 
 @keyframes rgbGradientCycle {
-  0% { color: hsl(var(--cosmic-purple)); }
-  33% { color: hsl(var(--cosmic-lilac)); }
-  66% { color: hsl(200 70% 50%); }
-  100% { color: hsl(var(--cosmic-purple)); }
+  0% { color: #A855F7; }
+  33% { color: #c4b5fd; }
+  66% { color: #60A5FA; }
+  100% { color: #A855F7; }
+}
+
+/* Lightweight cosmic background — GPU transform/opacity only, no canvas */
+.light-cosmic__nebula {
+  position: absolute;
+  border-radius: 50%;
+  mix-blend-mode: screen;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.light-cosmic__nebula--a {
+  top: 5%;
+  left: -18%;
+  width: 55vw;
+  height: 55vw;
+  max-width: 700px;
+  max-height: 700px;
+  opacity: 0.4;
+  /* No filter:blur — Lighthouse flagged non-composited animations */
+  background: radial-gradient(circle, hsla(271, 91%, 70%, 0.45) 0%, hsla(271, 91%, 70%, 0.12) 35%, transparent 70%);
+}
+
+.light-cosmic__nebula--b {
+  top: 40%;
+  right: -22%;
+  width: 60vw;
+  height: 60vw;
+  max-width: 800px;
+  max-height: 800px;
+  opacity: 0.32;
+  background: radial-gradient(circle, hsla(271, 91%, 55%, 0.4) 0%, hsla(213, 94%, 65%, 0.12) 40%, transparent 70%);
+}
+
+.light-cosmic__nebula--c {
+  bottom: -15%;
+  left: 10%;
+  width: 45vw;
+  height: 45vw;
+  max-width: 560px;
+  max-height: 560px;
+  opacity: 0.26;
+  background: radial-gradient(circle, hsla(200, 70%, 50%, 0.35) 0%, transparent 65%);
+}
+
+.light-cosmic__stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: transparent;
+  will-change: opacity, transform;
+}
+
+.light-cosmic__stars--far {
+  opacity: 0.7;
+}
+
+.light-cosmic__stars--near {
+  opacity: 0.95;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .light-cosmic__nebula--a {
+    animation: cosmicDrift 40s ease-in-out infinite alternate;
+  }
+  .light-cosmic__nebula--b {
+    animation: cosmicDrift 55s ease-in-out infinite alternate-reverse;
+  }
+  .light-cosmic__nebula--c {
+    animation: cosmicDrift 48s ease-in-out infinite alternate;
+  }
+  .light-cosmic__stars--far {
+    animation: lightCosmicTwinkle 6s ease-in-out infinite alternate;
+  }
+  .light-cosmic__stars--near {
+    animation: lightCosmicDrift 90s linear infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .light-cosmic__nebula,
+  .light-cosmic__stars {
+    animation: none !important;
+  }
+}
+
+@keyframes lightCosmicTwinkle {
+  0% { opacity: 0.45; }
+  100% { opacity: 0.9; }
+}
+
+@keyframes lightCosmicDrift {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(2vw, -1vh, 0); }
 }

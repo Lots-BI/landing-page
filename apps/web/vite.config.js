@@ -319,13 +319,27 @@ export default defineConfig({
 		},
 	},
 	build: {
+		target: 'es2020',
+		cssCodeSplit: true,
+		minify: 'esbuild',
+		sourcemap: false,
 		rollupOptions: {
 			external: [
 				'@babel/parser',
 				'@babel/traverse',
 				'@babel/generator',
 				'@babel/types'
-			]
+			],
+			output: {
+				// Keep React + router in the same vendor graph.
+				// Aggressive react/router splitting caused TDZ: "Cannot access '$' before initialization"
+				manualChunks(id) {
+					if (!id.includes('node_modules')) return;
+					if (id.includes('framer-motion')) return 'motion';
+					if (id.includes('lucide-react')) return 'icons';
+					return undefined;
+				}
+			}
 		}
 	}
 });

@@ -1,25 +1,61 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { EditableContentProvider } from './contexts/EditableContent.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
-import FloatingWhatsAppButton from './components/FloatingWhatsAppButton.jsx';
-import CookieBanner from './components/CookieBanner.jsx';
 import Header from './components/Header.jsx';
-import Footer from './components/Footer.jsx';
-import EditContentPanel from './components/EditContentPanel.jsx';
-import { StarfieldBackground } from './components/StarfieldBackground.jsx';
-import { AnimatedParticles } from './components/AnimatedParticles.jsx';
-import LoadingFallback from './components/LoadingFallback.jsx';
+import { LightCosmicBackground } from './components/LightCosmicBackground.jsx';
+import HomePage from './pages/HomePage.jsx';
 
-// Lazy loaded pages
-const HomePage = lazy(() => import('./pages/HomePage.jsx'));
 const ServicesPage = lazy(() => import('./pages/ServicesPage.jsx'));
 const PortfolioPage = lazy(() => import('./pages/PortfolioPage.jsx'));
 const ContactPage = lazy(() => import('./pages/ContactPage.jsx'));
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy.jsx'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService.jsx'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage.jsx'));
+const Footer = lazy(() => import('./components/Footer.jsx'));
+const FloatingWhatsAppButton = lazy(() => import('./components/FloatingWhatsAppButton.jsx'));
+const CookieBanner = lazy(() => import('./components/CookieBanner.jsx'));
+
+function DeferredChrome() {
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    let idleId;
+    let timeoutId;
+    const enable = () => setReady(true);
+    const start = () => {
+      if ('requestIdleCallback' in window) {
+        idleId = window.requestIdleCallback(enable, { timeout: 5000 });
+      } else {
+        timeoutId = window.setTimeout(enable, 2500);
+      }
+    };
+
+    if (document.readyState === 'complete') {
+      timeoutId = window.setTimeout(start, 800);
+    } else {
+      window.addEventListener('load', () => {
+        timeoutId = window.setTimeout(start, 800);
+      }, { once: true });
+    }
+
+    return () => {
+      if (idleId != null && 'cancelIdleCallback' in window) window.cancelIdleCallback(idleId);
+      if (timeoutId != null) window.clearTimeout(timeoutId);
+    };
+  }, []);
+
+  if (!ready) return <div className="min-h-[80px]" aria-hidden="true" />;
+
+  return (
+    <Suspense fallback={<div className="min-h-[80px]" aria-hidden="true" />}>
+      <Footer />
+      <FloatingWhatsAppButton />
+      <CookieBanner />
+    </Suspense>
+  );
+}
 
 function App() {
   return (
@@ -27,34 +63,66 @@ function App() {
       <EditableContentProvider>
         <Router>
           <ScrollToTop />
-          
-          {/* Fixed Background Layers */}
-          <StarfieldBackground />
-          <AnimatedParticles />
-          
-          {/* Main App Content */}
+          <LightCosmicBackground />
+
           <div className="relative z-0 flex flex-col min-h-screen">
             <Header />
             <main className="flex-1">
-              <Suspense fallback={<LoadingFallback />}>
-                <Routes>
-                  <Route path="/" element={<HomePage />} />
-                  <Route path="/servicos" element={<ServicesPage />} />
-                  <Route path="/portfolio" element={<PortfolioPage />} />
-                  <Route path="/contato" element={<ContactPage />} />
-                  <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                  <Route path="/terms-of-service" element={<TermsOfService />} />
-                  <Route path="*" element={<NotFoundPage />} />
-                </Routes>
-              </Suspense>
+              <Routes>
+                {/* Home is eager — never wrap it in Suspense (avoids full-page "Carregando...") */}
+                <Route path="/" element={<HomePage />} />
+                <Route
+                  path="/servicos"
+                  element={
+                    <Suspense fallback={null}>
+                      <ServicesPage />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="/portfolio"
+                  element={
+                    <Suspense fallback={null}>
+                      <PortfolioPage />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="/contato"
+                  element={
+                    <Suspense fallback={null}>
+                      <ContactPage />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="/privacy-policy"
+                  element={
+                    <Suspense fallback={null}>
+                      <PrivacyPolicy />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="/terms-of-service"
+                  element={
+                    <Suspense fallback={null}>
+                      <TermsOfService />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="*"
+                  element={
+                    <Suspense fallback={null}>
+                      <NotFoundPage />
+                    </Suspense>
+                  }
+                />
+              </Routes>
             </main>
-            <Footer />
+            <DeferredChrome />
           </div>
-
-          {/* Overlays & Utilities */}
-          <FloatingWhatsAppButton />
-          <CookieBanner />
-          <EditContentPanel />
         </Router>
       </EditableContentProvider>
     </HelmetProvider>

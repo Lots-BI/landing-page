@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, Sparkles } from 'lucide-react';
+import { Menu, User } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
 import { WhatsAppButton } from './WhatsAppButton.jsx';
+import { LotsBIWordmark } from './LotsBIWordmark.jsx';
 import { cn } from '@/lib/utils';
 import { useEditableContent } from '@/contexts/EditableContent.jsx';
+import { BRAND_NAME } from '@/lib/brand';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -36,18 +38,21 @@ export default function Header() {
       "fixed top-0 w-full z-50 transition-all duration-300 border-b",
       scrolled ? "bg-background/80 backdrop-blur-xl border-primary/20 py-2 md:py-4 shadow-2xl" : "bg-transparent border-transparent py-3 md:py-6"
     )}>
-      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between min-h-[48px] md:min-h-[56px]">
-        {/* Logo */}
-        <div 
-          className="text-lg md:text-xl font-black tracking-tighter cursor-pointer text-foreground flex items-center gap-2 touch-target"
+      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between min-h-[56px] md:min-h-[64px]">
+        {/* Logo — lockup Lots BI (portal) */}
+        <div
+          className="cursor-pointer touch-target flex items-center"
           onClick={() => scrollTo('hero')}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              scrollTo('hero');
+            }
+          }}
         >
-          <img 
-            src="https://horizons-cdn.hostinger.com/08b0c8e1-5b98-47df-a3f1-7bb9b617c89c/66624de7e895af08958ad9d08e9c0464.png" 
-            alt="Lotus Logo" 
-            className="w-8 h-8 rounded-full object-cover shadow-[0_0_15px_hsla(var(--primary)/0.5)]"
-          />
-          <span className="inline-block">Leandro MAJR</span>
+          <LotsBIWordmark size="xl" />
         </div>
 
         {/* Desktop Nav */}
@@ -67,10 +72,10 @@ export default function Header() {
               href="https://leandromajr.lovable.app" 
               target="_blank" 
               rel="noopener noreferrer"
-              aria-label="Ver Portfólio de Leandro MAJR"
+              aria-label={`Área do Cliente — ${BRAND_NAME}`}
               className="portfolio-btn touch-target text-muted-foreground hover:text-foreground"
             >
-              <Sparkles className="w-4 h-4 text-primary" />
+              <User className="w-4 h-4 text-primary" />
               <span>Área do Cliente</span>
             </a>
             
@@ -110,10 +115,10 @@ export default function Header() {
                   href="https://leandromajr.lovable.app" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  aria-label="Ver Portfólio de Leandro MAJR"
+                  aria-label={`Área do Cliente — ${BRAND_NAME}`}
                   className="portfolio-btn justify-center py-3 border border-white/5 text-foreground touch-target"
                 >
-                  <Sparkles className="w-4 h-4 text-primary" />
+                  <User className="w-4 h-4 text-primary" />
                   <span>Área do Cliente</span>
                 </a>
                 

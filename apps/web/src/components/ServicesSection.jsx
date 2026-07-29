@@ -108,7 +108,7 @@ export function ServicesSection() {
                 >
                   <GlassCard className="h-full flex flex-col group/card hover-lift bg-card/60 border-border">
                     <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-6 group-hover/card:bg-primary/20 transition-colors group-hover/card:scale-110 duration-300">
-                      <service.icon className="w-6 h-6 text-primary group-hover/card:text-secondary transition-colors" />
+                      <service.icon className="w-6 h-6 text-secondary group-hover/card:text-secondary transition-colors" />
                     </div>
                     <h3 className="text-xl font-bold text-foreground mb-3 group-hover/card:text-transparent group-hover/card:bg-clip-text group-hover/card:bg-gradient-to-r group-hover/card:from-primary group-hover/card:to-secondary transition-all">
                       {service.title}
@@ -120,7 +120,7 @@ export function ServicesSection() {
                     {Array.isArray(service.bullets) && service.bullets.length > 0 && (
                       <ul className="space-y-2 mt-auto pt-4 border-t border-border/50">
                         {service.bullets.map((bullet, i) => (
-                          <li key={i} className="flex items-center gap-2 text-xs text-foreground/70">
+                          <li key={i} className="flex items-center gap-2 text-xs text-foreground/80">
                             <div className="w-1 h-1 rounded-full bg-primary shrink-0" /> 
                             <span>{bullet}</span>
                           </li>
@@ -138,7 +138,7 @@ export function ServicesSection() {
           <WhatsAppButton 
             phoneNumber="5511973290438"
             baseMessage="Olá, estou com interesse nos seus serviços, poderia me passar mais algumas informações?"
-            className="px-10 py-4 text-lg shadow-[0_0_30px_hsla(142,71%,45%,0.3)] hover:shadow-[0_0_40px_hsla(142,71%,45%,0.5)]"
+            className="px-10 py-4 text-lg shadow-[0_0_30px_hsla(142,71%,25%,0.35)] hover:shadow-[0_0_40px_hsla(142,71%,25%,0.5)]"
           >
             {s.cta || 'Quero um Orçamento'}
           </WhatsAppButton>

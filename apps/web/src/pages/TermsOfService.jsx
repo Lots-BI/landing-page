@@ -7,8 +7,8 @@ const TermsOfService = () => {
   return (
     <>
       <Helmet>
-        <title>Termos de Serviço - Agência Leandro MAJR</title>
-        <meta name="description" content="Termos de Serviço e condições de uso da Agência Leandro MAJR." />
+        <title>Termos de Serviço - Agência Lots</title>
+        <meta name="description" content="Termos de Serviço e condições de uso da Agência Lots." />
       </Helmet>
 
       <div className="dark min-h-screen flex flex-col text-foreground main-animated-bg">
@@ -23,7 +23,7 @@ const TermsOfService = () => {
                 Termos de Serviço
               </h1>
               <p className="text-lg text-gray-100 glass-text-shadow leading-relaxed max-w-2xl mx-auto">
-                Bem-vindo à Agência Leandro MAJR. Ao acessar e utilizar nossos serviços, você concorda com os termos e condições descritos abaixo. Leia atentamente antes de prosseguir.
+                Bem-vindo à Agência Lots. Ao acessar e utilizar nossos serviços, você concorda com os termos e condições descritos abaixo. Leia atentamente antes de prosseguir.
               </p>
             </div>
 
@@ -37,7 +37,7 @@ const TermsOfService = () => {
                     Nossos serviços destinam-se a empresas e empreendedores que buscam otimizar suas operações de marketing digital, tráfego pago e estruturação de funis de vendas.
                   </p>
                   <p>
-                    Ao contratar a Agência Leandro MAJR, você concorda em fornecer informações precisas, atualizadas e completas sobre o seu negócio para que possamos executar as estratégias propostas de forma eficaz.
+                    Ao contratar a Agência Lots, você concorda em fornecer informações precisas, atualizadas e completas sobre o seu negócio para que possamos executar as estratégias propostas de forma eficaz.
                   </p>
                 </div>
               </section>
@@ -60,7 +60,7 @@ const TermsOfService = () => {
                 <h2 className="text-2xl font-semibold mb-4 text-white glass-text-shadow">3. Propriedade Intelectual</h2>
                 <div className="space-y-4 text-gray-100 glass-text-shadow leading-relaxed">
                   <p>
-                    Todo o material estratégico, metodologias, relatórios e estruturas de funil desenvolvidos pela Agência Leandro MAJR durante a prestação do serviço são de propriedade intelectual da agência, a menos que especificado o contrário em contrato.
+                    Todo o material estratégico, metodologias, relatórios e estruturas de funil desenvolvidos pela Agência Lots durante a prestação do serviço são de propriedade intelectual da agência, a menos que especificado o contrário em contrato.
                   </p>
                   <p>
                     Os criativos, textos e ativos de marca fornecidos por você continuam sendo de sua propriedade exclusiva.
@@ -75,7 +75,7 @@ const TermsOfService = () => {
                     Embora utilizemos metodologias validadas e baseadas em dados para maximizar o Retorno Sobre o Investimento (ROI), o marketing digital está sujeito a variáveis externas (mudanças de algoritmos, comportamento do mercado, etc.).
                   </p>
                   <p>
-                    A Agência Leandro MAJR não garante resultados financeiros exatos ou lucros específicos, mas compromete-se a aplicar as melhores práticas do mercado para buscar a previsibilidade e a escala do seu negócio.
+                    A Agência Lots não garante resultados financeiros exatos ou lucros específicos, mas compromete-se a aplicar as melhores práticas do mercado para buscar a previsibilidade e a escala do seu negócio.
                   </p>
                 </div>
               </section>
@@ -105,7 +105,7 @@ const TermsOfService = () => {
                     Se você tiver alguma dúvida sobre estes Termos de Serviço, entre em contato conosco:
                   </p>
                   <ul className="space-y-2 mt-4">
-                    <li><strong>Email:</strong> leandromajr@gmail.com</li>
+                    <li><strong>Email:</strong> contato@agencia.lots</li>
                     <li><strong>WhatsApp:</strong> +55 (11) 97329-0438</li>
                   </ul>
                 </div>

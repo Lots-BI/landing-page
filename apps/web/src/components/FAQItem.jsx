@@ -14,7 +14,7 @@ const FAQItem = ({ value, question, answer, icon: Icon }) => {
           <span className="text-sm md:text-base font-semibold text-white glass-text-shadow">{question}</span>
         </div>
       </AccordionTrigger>
-      <AccordionContent className="text-sm md:text-base text-gray-300 glass-text-shadow leading-relaxed pb-4 pl-11 md:pl-12">
+      <AccordionContent className="text-sm md:text-base text-gray-100 glass-text-shadow leading-relaxed pb-4 pl-11 md:pl-12">
         {answer}
       </AccordionContent>
     </AccordionItem>

@@ -1,65 +1,92 @@
 import React from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import {
+  KeyRound,
+  BarChart3,
+  RefreshCw,
+  ShieldCheck,
+} from 'lucide-react';
 import { AnimatedSection } from './AnimatedSection.jsx';
-import { useCarouselControls } from '@/hooks/useCarouselControls.js';
+import { LotsBIIcon } from './LotsBIWordmark.jsx';
+
+const POINTS = [
+  {
+    icon: KeyRound,
+    title: 'Acesso só com login e senha',
+    desc: 'O cliente entra no Lots BI com as credenciais da conta. Sem instalação, sem planilha compartilhada, sem pedir relatório por WhatsApp.',
+  },
+  {
+    icon: RefreshCw,
+    title: 'Dashboard automático',
+    desc: 'Meta Ads, Google Ads, Instagram, GA4 e demais fontes alimentam a Visão geral sozinhas — investimento, conversões, CTR, CPA e evolução por período.',
+  },
+  {
+    icon: BarChart3,
+    title: 'Tudo que a operação usa',
+    desc: 'Além dos números: Plano Estratégico, Aprovações (kanban e calendário), Painel da marca e Brand book — o mesmo ecossistema da agência, na conta do cliente.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Acesso e manutenção gratuitos',
+    desc: 'Para o cliente, o uso da plataforma e a manutenção do ambiente não têm custo extra. A Agência Lots cuida da estrutura; o cliente só acompanha e decide.',
+  },
+];
 
 export default function NossoMetodoSection() {
-  const { containerRef, scrollLeft, scrollRight, handlers } = useCarouselControls({ autoScrollInterval: 4000, scrollAmount: 360 });
-
-  const steps = [
-    {
-      title: '1. Diagnóstico e Setup',
-      description: 'Configuração de rastreamento avançado (Pixel, API e GA4) para blindar seus dados.'
-    },
-    {
-      title: '2. Tráfego de Alta Performance',
-      description: 'Campanhas multicanal focadas em atrair o público com maior poder de compra.'
-    },
-    {
-      title: '3. Otimização e Escala',
-      description: 'Leitura de dados diária para reduzir o custo de aquisição e escalar o lucro.'
-    },
-    {
-      title: '4. Posicionamento de Marca',
-      description: 'Conteúdo estratégico que gera autoridade, retém a atenção e facilitam o fechamento.'
-    }
-  ];
-
   return (
-    <section id="nosso-metodo" className="py-12 md:py-16 relative bg-transparent border-t border-border z-10 overflow-visible">
+    <section
+      id="nosso-metodo"
+      className="py-16 md:py-24 relative bg-transparent border-t border-border z-10 overflow-hidden"
+    >
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <AnimatedSection className="text-center max-w-3xl mx-auto mb-8">
-          <h2 className="text-4xl md:text-5xl font-black text-foreground mb-6 text-balance">
-            Engenharia de Vendas em 4 Etapas
+        <AnimatedSection className="max-w-2xl mx-auto text-center mb-12 md:mb-16">
+          <div className="flex justify-center mb-4">
+            <LotsBIIcon size="lg" className="!h-10 !w-10" aria-hidden="true" />
+          </div>
+          <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground mb-3">
+            Lots BI · Conta do cliente
+          </p>
+          <h2 className="text-3xl md:text-5xl font-black text-foreground mb-5 font-display text-balance">
+            Dashboard automático —{' '}
+            <span className="text-primary">acesso e manutenção gratuitos</span>
           </h2>
+          <p className="text-base md:text-lg text-muted-foreground text-balance leading-relaxed">
+            A área do cliente é a própria plataforma Lots BI. Enquanto a agência opera mídia,
+            conteúdo e dados, o cliente entra com login e senha e vê o montante de recursos
+            consolidado: métricas, estratégia, aprovações e o painel da marca — em tempo real.
+          </p>
         </AnimatedSection>
 
-        <div className="relative group" {...handlers}>
-          <button onClick={scrollLeft} className="carousel-nav-btn carousel-nav-btn-left" aria-label="Anterior">
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          <button onClick={scrollRight} className="carousel-nav-btn carousel-nav-btn-right" aria-label="Próximo">
-            <ChevronRight className="w-6 h-6" />
-          </button>
-
-          <div 
-            ref={containerRef}
-            className="flex flex-row overflow-x-auto gap-4 pt-8 pb-10 -mx-4 px-4 sm:px-8 snap-x snap-mandatory scroll-smooth hide-scrollbar bg-transparent relative z-10 items-stretch"
-          >
-            {steps.map((step, index) => (
-              <AnimatedSection key={index} delay={index * 0.1} className="h-full flex-shrink-0 min-w-[280px] w-[85vw] max-w-[360px] snap-center rounded-2xl transition-all duration-300">
-                <div className="bg-card border border-border rounded-2xl p-8 h-full flex flex-col transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_30px_-10px_hsla(var(--primary)/0.2)] hover:border-primary/50 group/card">
-                  <h3 className="text-xl font-bold text-foreground mb-4 group-hover/card:text-primary transition-colors">
-                    {step.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed text-base flex-grow">
-                    {step.description}
-                  </p>
-                </div>
+        <ul className="max-w-3xl mx-auto divide-y divide-white/10 border-y border-white/10">
+          {POINTS.map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <AnimatedSection key={item.title} delay={idx * 0.06}>
+                <li className="flex gap-4 py-6 first:pt-7 last:pb-7">
+                  <Icon
+                    className="w-5 h-5 text-primary shrink-0 mt-0.5"
+                    strokeWidth={1.75}
+                    aria-hidden="true"
+                  />
+                  <div>
+                    <h3 className="text-base md:text-lg font-semibold text-foreground mb-1.5 font-display">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                </li>
               </AnimatedSection>
-            ))}
-          </div>
-        </div>
+            );
+          })}
+        </ul>
+
+        <AnimatedSection className="max-w-2xl mx-auto mt-10 text-center">
+          <p className="text-sm text-muted-foreground/90 text-balance">
+            Sem custo adicional de plataforma para o cliente. Sem curva de ferramenta complexa:
+            basta autenticar e acompanhar a operação com a mesma clareza da equipe Lots.
+          </p>
+        </AnimatedSection>
       </div>
     </section>
   );
