@@ -13,6 +13,7 @@ import {
   ArrowRight,
 } from 'lucide-react';
 import { AnimatedSection } from '@/components/AnimatedSection.jsx';
+import { ConversionThankYouDialog } from '@/components/ConversionThankYouDialog.jsx';
 import { ServiceSelectionCards } from './ServiceSelectionCards.jsx';
 import { useEditableContent } from '@/contexts/EditableContent.jsx';
 import { useUTMs } from '@/hooks/useUTMs.js';
@@ -160,6 +161,8 @@ const ServicesPricing = () => {
   const [error, setError] = useState('');
   const [animKey, setAnimKey] = useState(0);
   const [isAdvancing, setIsAdvancing] = useState(false);
+  const [conversionOpen, setConversionOpen] = useState(false);
+  const [whatsappUrl, setWhatsappUrl] = useState('');
 
   const servicesList = useMemo(
     () => [
@@ -370,7 +373,8 @@ const ServicesPricing = () => {
   const openWhatsApp = () => {
     const message = appendUtmsToMessage(buildWhatsAppMessage(selectedServices, form));
     const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
+    setWhatsappUrl(url);
+    setConversionOpen(true);
   };
 
   const openWhatsAppSkipForm = () => {
@@ -593,6 +597,14 @@ const ServicesPricing = () => {
           </div>
         )}
       </div>
+
+      <ConversionThankYouDialog
+        open={conversionOpen}
+        onOpenChange={setConversionOpen}
+        formId="planos_quiz"
+        formName="Planos briefing completo"
+        whatsappUrl={whatsappUrl}
+      />
     </section>
   );
 };

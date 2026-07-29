@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { MessageCircle } from 'lucide-react';
 import { AnimatedSection } from './AnimatedSection.jsx';
+import { ConversionThankYouDialog } from './ConversionThankYouDialog.jsx';
 import { Input } from '@/components/ui/input.jsx';
 import { useEditableContent } from '@/contexts/EditableContent.jsx';
 import { useUTMs } from '@/hooks/useUTMs.js';
@@ -33,6 +34,10 @@ function buildLeadMessage(form) {
   ].join('\n');
 }
 
+function buildWhatsAppUrl(message) {
+  return `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
+}
+
 export default function FinalCTASection() {
   const { content } = useEditableContent();
   const { appendUtmsToMessage } = useUTMs();
@@ -40,6 +45,8 @@ export default function FinalCTASection() {
 
   const [form, setForm] = useState(emptyLead);
   const [error, setError] = useState('');
+  const [conversionOpen, setConversionOpen] = useState(false);
+  const [whatsappUrl, setWhatsappUrl] = useState('');
 
   const setField = (key, value) => {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -53,11 +60,12 @@ export default function FinalCTASection() {
     return '';
   };
 
-  const openWhatsApp = (message) => {
-    const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(
-      appendUtmsToMessage(message),
-    )}`;
-    window.open(url, '_blank', 'noopener,noreferrer');
+  const openWhatsAppDirect = (message) => {
+    window.open(
+      buildWhatsAppUrl(appendUtmsToMessage(message)),
+      '_blank',
+      'noopener,noreferrer',
+    );
   };
 
   const handleSubmit = (event) => {
@@ -67,11 +75,13 @@ export default function FinalCTASection() {
       setError(msg);
       return;
     }
-    openWhatsApp(buildLeadMessage(form));
+    const url = buildWhatsAppUrl(appendUtmsToMessage(buildLeadMessage(form)));
+    setWhatsappUrl(url);
+    setConversionOpen(true);
   };
 
   const handleSkip = () => {
-    openWhatsApp(
+    openWhatsAppDirect(
       'Olá! Prefiro falar direto no WhatsApp.\n\n[Fluxo: cta_skip_form]',
     );
   };
@@ -192,6 +202,14 @@ export default function FinalCTASection() {
           </form>
         </AnimatedSection>
       </div>
+
+      <ConversionThankYouDialog
+        open={conversionOpen}
+        onOpenChange={setConversionOpen}
+        formId="cta_lead_form"
+        formName="CTA lead curto"
+        whatsappUrl={whatsappUrl}
+      />
     </section>
   );
 }
