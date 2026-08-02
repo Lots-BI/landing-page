@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { AnimatedSection } from './AnimatedSection.jsx';
 import { LotsBIIcon } from './LotsBIWordmark.jsx';
+import { PlanosCtaButton } from './PlanosCtaButton.jsx';
 
 const POINTS = [
   {
@@ -81,10 +82,13 @@ export default function NossoMetodoSection() {
         </ul>
 
         <AnimatedSection className="max-w-2xl mx-auto mt-10 text-center">
-          <p className="text-sm text-muted-foreground/90 text-balance">
+          <p className="text-sm text-muted-foreground/90 text-balance mb-8">
             Sem custo adicional de plataforma para o cliente. Sem curva de ferramenta complexa:
             basta autenticar e acompanhar a operação com a mesma clareza da equipe Lots.
           </p>
+          <PlanosCtaButton className="text-base md:text-lg px-8 md:px-10 py-4 shadow-[0_0_30px_hsla(142,71%,25%,0.35)] hover:shadow-[0_0_40px_hsla(142,71%,25%,0.5)]">
+            Quero meu painel Lots BI
+          </PlanosCtaButton>
         </AnimatedSection>
       </div>
     </section>

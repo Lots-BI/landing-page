@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { AnimatedSection } from './AnimatedSection.jsx';
 import { LotsBIWordmark } from './LotsBIWordmark.jsx';
+import { PlanosCtaButton } from './PlanosCtaButton.jsx';
 import { useEditableContent } from '@/contexts/EditableContent.jsx';
 
 const PLATFORMS = ['Meta Ads', 'Google Ads', 'Instagram', 'GA4', 'Google Business'];
@@ -230,6 +231,12 @@ export function ClientAreaSection() {
             </p>
           </AnimatedSection>
         </div>
+
+        <AnimatedSection className="flex justify-center mt-12 md:mt-16">
+          <PlanosCtaButton className="text-base md:text-lg px-8 md:px-10 py-4 shadow-[0_0_30px_hsla(142,71%,25%,0.35)] hover:shadow-[0_0_40px_hsla(142,71%,25%,0.5)]">
+            Quero clareza na operação
+          </PlanosCtaButton>
+        </AnimatedSection>
       </div>
     </section>
   );

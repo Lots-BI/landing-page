@@ -1,5 +1,6 @@
 import React from 'react';
 import { AnimatedSection } from './AnimatedSection.jsx';
+import { PlanosCtaButton } from './PlanosCtaButton.jsx';
 import { useEditableContent } from '@/contexts/EditableContent.jsx';
 
 export function ComparisonSection() {
@@ -74,10 +75,13 @@ export function ComparisonSection() {
           </ul>
 
           <AnimatedSection className="mt-10 text-center">
-            <p className="text-sm md:text-base text-muted-foreground italic text-balance max-w-xl mx-auto">
+            <p className="text-sm md:text-base text-muted-foreground italic text-balance max-w-xl mx-auto mb-8">
               Se o que você lê à esquerda parece familiar, o problema não é “falta de esforço” —
               é falta de sistema.
             </p>
+            <PlanosCtaButton className="text-base md:text-lg px-8 md:px-10 py-4 shadow-[0_0_30px_hsla(142,71%,25%,0.35)] hover:shadow-[0_0_40px_hsla(142,71%,25%,0.5)]">
+              Quero a operação Lots
+            </PlanosCtaButton>
           </AnimatedSection>
         </div>
       </div>

@@ -135,12 +135,12 @@ export default function HomePage() {
         <TeamSection />
       </LazyBlock>
 
-      <LazyBlock height={640}>
-        <FAQSection />
-      </LazyBlock>
-
       <LazyBlock height={560}>
         <FinalCTASection />
+      </LazyBlock>
+
+      <LazyBlock height={640}>
+        <FAQSection />
       </LazyBlock>
     </div>
   );

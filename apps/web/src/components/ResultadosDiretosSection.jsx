@@ -1,5 +1,6 @@
 import React from 'react';
 import { AnimatedSection } from './AnimatedSection.jsx';
+import { PlanosCtaButton } from './PlanosCtaButton.jsx';
 
 const FEATURED = {
   name: 'Davi',
@@ -91,6 +92,12 @@ export default function ResultadosDiretosSection() {
             </li>
           ))}
         </ul>
+
+        <AnimatedSection className="flex justify-center mt-12 md:mt-16">
+          <PlanosCtaButton className="text-base md:text-lg px-8 md:px-10 py-4 shadow-[0_0_30px_hsla(142,71%,25%,0.35)] hover:shadow-[0_0_40px_hsla(142,71%,25%,0.5)]">
+            Quero resultados assim
+          </PlanosCtaButton>
+        </AnimatedSection>
       </div>
     </section>
   );
