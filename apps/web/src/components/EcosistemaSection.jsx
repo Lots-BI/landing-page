@@ -21,8 +21,8 @@ export function EcosistemaSection() {
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <AnimatedSection className="max-w-3xl mx-auto mb-14 md:mb-16 text-center">
           <h2 className="text-4xl md:text-5xl font-black text-foreground mb-6 font-display text-balance">
-            {e.title.split(/(Completa|nicho)/).map((part, i) =>
-              ['Completa', 'nicho'].includes(part) ? (
+            {e.title.split(/(completa|operação)/i).map((part, i) =>
+              /^(completa|operação)$/i.test(part) ? (
                 <span key={i} className="rgb-gradient-text">
                   {part}
                 </span>

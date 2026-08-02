@@ -14,7 +14,6 @@ const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy.jsx'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService.jsx'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage.jsx'));
 const Footer = lazy(() => import('./components/Footer.jsx'));
-const FloatingWhatsAppButton = lazy(() => import('./components/FloatingWhatsAppButton.jsx'));
 const CookieBanner = lazy(() => import('./components/CookieBanner.jsx'));
 
 function DeferredChrome() {
@@ -51,7 +50,6 @@ function DeferredChrome() {
   return (
     <Suspense fallback={<div className="min-h-[80px]" aria-hidden="true" />}>
       <Footer />
-      <FloatingWhatsAppButton />
       <CookieBanner />
     </Suspense>
   );

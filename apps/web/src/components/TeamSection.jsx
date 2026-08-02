@@ -8,6 +8,7 @@ const MEMBERS = [
     roleKey: 'founder1Role',
     image: '/team/leandro-majr.png',
     imageAlt: 'Leandro',
+    objectPosition: 'object-[center_40%]',
   },
   {
     name: 'Rafaela',
@@ -15,6 +16,7 @@ const MEMBERS = [
     image:
       'https://horizons-cdn.hostinger.com/08b0c8e1-5b98-47df-a3f1-7bb9b617c89c/cff80b7598ead1aa5119b5da37e5ad16.jpg',
     imageAlt: 'Rafaela',
+    objectPosition: 'object-[center_42%]',
   },
 ];
 
@@ -49,7 +51,7 @@ export default function TeamSection() {
               delay={index * 0.08}
               className="flex flex-col items-center text-center"
             >
-              <div className="w-full aspect-[3/4] max-h-[420px] overflow-hidden bg-black/20">
+              <div className="w-full aspect-[3/4] max-h-[480px] overflow-hidden bg-black/20">
                 <img
                   src={member.image}
                   alt={member.imageAlt}
@@ -57,7 +59,7 @@ export default function TeamSection() {
                   height={640}
                   loading="lazy"
                   decoding="async"
-                  className="h-full w-full object-cover object-top"
+                  className={`h-full w-full object-cover ${member.objectPosition || 'object-center'}`}
                 />
               </div>
               <p className="mt-6 text-xl md:text-2xl font-semibold text-foreground font-display">

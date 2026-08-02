@@ -4,7 +4,7 @@ import { AnimatedSection } from './AnimatedSection.jsx';
 const FEATURED = {
   name: 'Davi',
   subtitle: 'Imobiliária',
-  text: 'O diferencial aqui foi a estruturação digital completa. Não recebi apenas anúncios, recebi um ecossistema de vendas pronto. O impacto no faturamento foi imediato e a previsibilidade que tenho hoje sobre as minhas vendas é o que eu sempre busquei para o meu negócio.',
+  text: 'Não recebi só anúncios — recebi uma operação de vendas pronta. O impacto no faturamento veio rápido, e a previsibilidade que tenho hoje é o que eu buscava.',
   image: '/testimonials/davi.png',
   imageAlt: 'Davi',
 };
@@ -13,7 +13,7 @@ const SUPPORTING = [
   {
     name: 'Rafa Teo Ferreira',
     subtitle: 'Corretor de Imóveis',
-    text: 'Funil e conteúdo mudaram meu patamar. Hoje tenho fluxo constante de leads qualificados e autoridade real na região.',
+    text: 'Funil e conteúdo mudaram o jogo. Fluxo constante de leads qualificados e autoridade real na região.',
     image:
       'https://horizons-cdn.hostinger.com/08b0c8e1-5b98-47df-a3f1-7bb9b617c89c/2df69df40b13ddd43110598a01ec3b8b.png',
     imageAlt: 'Rafa Teo Ferreira',
@@ -21,7 +21,7 @@ const SUPPORTING = [
   {
     name: 'Antena Imobiliária',
     subtitle: 'Imobiliária',
-    text: 'Conteúdo + funil estratégico geraram volume diário de interessados e crescimento orgânico além do esperado.',
+    text: 'Conteúdo + funil geraram volume diário de interessados e crescimento orgânico além do esperado.',
     image: '/testimonials/antena-imobiliaria.png',
     imageAlt: 'Antena Imobiliária',
   },
@@ -36,10 +36,10 @@ export default function ResultadosDiretosSection() {
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <AnimatedSection className="text-center max-w-2xl mx-auto mb-14 md:mb-20">
           <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground mb-4">
-            Prova social
+            Resultados
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-foreground font-display text-balance tracking-tight">
-            Resultados <span className="text-primary">diretos</span>
+            Quem já <span className="text-primary">opera</span> com a Lots
           </h2>
         </AnimatedSection>
 

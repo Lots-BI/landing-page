@@ -11,23 +11,23 @@ import { LotsBIIcon } from './LotsBIWordmark.jsx';
 const POINTS = [
   {
     icon: KeyRound,
-    title: 'Acesso só com login e senha',
-    desc: 'O cliente entra no Lots BI com as credenciais da conta. Sem instalação, sem planilha compartilhada, sem pedir relatório por WhatsApp.',
+    title: 'Acesso com login e senha',
+    desc: 'O cliente entra no Lots BI. Sem instalação. Sem planilha. Sem pedir relatório no WhatsApp.',
   },
   {
     icon: RefreshCw,
     title: 'Dashboard automático',
-    desc: 'Meta Ads, Google Ads, Instagram, GA4 e demais fontes alimentam a Visão geral sozinhas — investimento, conversões, CTR, CPA e evolução por período.',
+    desc: 'Meta, Google, Instagram e GA4 alimentam a visão geral: investimento, conversões, CTR e CPA.',
   },
   {
     icon: BarChart3,
     title: 'Tudo que a operação usa',
-    desc: 'Além dos números: Plano Estratégico, Aprovações (kanban e calendário), Painel da marca e Brand book — o mesmo ecossistema da agência, na conta do cliente.',
+    desc: 'Números, plano estratégico, aprovações e painel da marca — o mesmo ecossistema da agência.',
   },
   {
     icon: ShieldCheck,
-    title: 'Acesso e manutenção gratuitos',
-    desc: 'Para o cliente, o uso da plataforma e a manutenção do ambiente não têm custo extra. A Agência Lots cuida da estrutura; o cliente só acompanha e decide.',
+    title: 'Acesso e manutenção sem custo extra',
+    desc: 'Para o cliente, o uso da plataforma não tem taxa à parte. A Lots cuida da estrutura; você acompanha e decide.',
   },
 ];
 
@@ -47,12 +47,11 @@ export default function NossoMetodoSection() {
           </p>
           <h2 className="text-3xl md:text-5xl font-black text-foreground mb-5 font-display text-balance">
             Dashboard automático —{' '}
-            <span className="text-primary">acesso e manutenção gratuitos</span>
+            <span className="text-primary">claro e sem custo extra</span>
           </h2>
           <p className="text-base md:text-lg text-muted-foreground text-balance leading-relaxed">
-            A área do cliente é a própria plataforma Lots BI. Enquanto a agência opera mídia,
-            conteúdo e dados, o cliente entra com login e senha e vê o montante de recursos
-            consolidado: métricas, estratégia, aprovações e o painel da marca — em tempo real.
+            Enquanto operamos mídia, conteúdo e dados, você entra no Lots BI e vê a operação
+            consolidada: métricas, estratégia e aprovações — em tempo real.
           </p>
         </AnimatedSection>
 

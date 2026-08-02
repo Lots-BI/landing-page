@@ -68,13 +68,13 @@ export function ConversionThankYouDialog({
             <CheckCircle2 className="h-6 w-6" aria-hidden="true" />
           </div>
           <DialogTitle className="font-display text-2xl font-bold text-foreground">
-            Pedido enviado
+            Recebemos seu briefing
           </DialogTitle>
           <DialogDescription
             id="conversion-thank-you-desc"
             className="text-muted-foreground text-base leading-relaxed"
           >
-            Vamos te atender no WhatsApp. Se a conversa não abriu, use o botão abaixo.
+            Em seguida abrimos o WhatsApp. Se não abrir, use o botão abaixo.
           </DialogDescription>
         </DialogHeader>
 

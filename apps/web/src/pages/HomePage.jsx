@@ -2,7 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import SEO from '@/components/SEO.jsx';
 import { useEditableContent } from '@/contexts/EditableContent.jsx';
 import { useUTMs } from '@/hooks/useUTMs.js';
-import { WhatsAppButton } from '@/components/WhatsAppButton.jsx';
+import { PlanosCtaButton } from '@/components/PlanosCtaButton.jsx';
 import { DeferredMount } from '@/components/DeferredMount.jsx';
 
 const EcosistemaSection = lazy(() => import('@/components/EcosistemaSection.jsx').then(module => ({ default: module.EcosistemaSection })));
@@ -39,15 +39,13 @@ export default function HomePage() {
   const { content } = useEditableContent();
   useUTMs();
 
-  const PHONE_NUMBER = "5511973290438";
-  const WHATSAPP_BTN_CLASSES = "text-lg px-10 py-5 shadow-[0_0_30px_hsla(142,71%,25%,0.35)] hover:shadow-[0_0_40px_hsla(142,71%,25%,0.5)]";
-  const GLOBAL_MSG = "Olá, estou com interesse nos seus serviços, poderia me passar mais algumas informações?";
+  const CTA_BTN_CLASSES = "text-lg px-10 py-5 shadow-[0_0_30px_hsla(142,71%,25%,0.35)] hover:shadow-[0_0_40px_hsla(142,71%,25%,0.5)]";
 
   return (
     <div className="min-h-screen relative bg-transparent">
       <SEO 
         title="Home" 
-        description="Agência Lots — estruturação e gestão completa de ecossistemas de vendas digitais" 
+        description="Agência Lots — marketing digital com operação, dados e previsibilidade" 
         url="/" 
       />
 
@@ -69,13 +67,9 @@ export default function HomePage() {
           </div>
           
           <div className="w-full sm:w-auto px-4 sm:px-0 flex justify-center text-center">
-            <WhatsAppButton 
-              phoneNumber={PHONE_NUMBER}
-              baseMessage={GLOBAL_MSG}
-              className={WHATSAPP_BTN_CLASSES}
-            >
+            <PlanosCtaButton id="hero-cta" className={CTA_BTN_CLASSES}>
               {content.hero.cta}
-            </WhatsAppButton>
+            </PlanosCtaButton>
           </div>
         </div>
       </section>
@@ -91,9 +85,9 @@ export default function HomePage() {
 
       <LazyBlock height={160}>
         <CTAContainer id="cta-whatsapp-servicos">
-          <WhatsAppButton phoneNumber={PHONE_NUMBER} baseMessage={GLOBAL_MSG} className={WHATSAPP_BTN_CLASSES}>
-            Falar com um Especialista
-          </WhatsAppButton>
+          <PlanosCtaButton className={CTA_BTN_CLASSES}>
+            Falar com a Lots
+          </PlanosCtaButton>
         </CTAContainer>
       </LazyBlock>
 
@@ -103,9 +97,9 @@ export default function HomePage() {
 
       <LazyBlock height={160}>
         <CTAContainer id="cta-whatsapp-conteudo">
-          <WhatsAppButton phoneNumber={PHONE_NUMBER} baseMessage={GLOBAL_MSG} className={WHATSAPP_BTN_CLASSES}>
-            Quero transformar meu conteúdo
-          </WhatsAppButton>
+          <PlanosCtaButton className={CTA_BTN_CLASSES}>
+            Quero conteúdo que vende
+          </PlanosCtaButton>
         </CTAContainer>
       </LazyBlock>
 
@@ -123,9 +117,9 @@ export default function HomePage() {
 
       <LazyBlock height={160}>
         <CTAContainer id="cta-whatsapp-roadmap">
-          <WhatsAppButton phoneNumber={PHONE_NUMBER} baseMessage={GLOBAL_MSG} className={WHATSAPP_BTN_CLASSES}>
-            Iniciar meu Projeto
-          </WhatsAppButton>
+          <PlanosCtaButton className={CTA_BTN_CLASSES}>
+            Começar meu projeto
+          </PlanosCtaButton>
         </CTAContainer>
       </LazyBlock>
 

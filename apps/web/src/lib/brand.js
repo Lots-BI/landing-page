@@ -4,7 +4,7 @@ export const BRAND_NAME = 'Agência Lots';
 export const BRAND_PRODUCT = 'Lots BI';
 export const BRAND_TAGLINE = 'Business Intelligence para marketing digital';
 export const BRAND_DESCRIPTION =
-  'Agência Lots — estruturação e gestão completa de ecossistemas de vendas digitais.';
+  'Agência Lots — marketing digital com operação, dados e previsibilidade.';
 
 const SUPABASE_MEDIA_BASE =
   'https://ywvhoctcmibjitvwkkhb.supabase.co/storage/v1/object/public/Midias';

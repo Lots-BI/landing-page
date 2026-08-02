@@ -20,7 +20,7 @@ export function ComparisonSection() {
       <div className="container mx-auto px-3 sm:px-4 md:px-6 relative z-10">
         <AnimatedSection className="max-w-2xl mx-auto text-center mb-10 md:mb-16">
           <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground mb-4">
-            A diferença que dói reconhecer
+            Comparativo direto
           </p>
           <h2 className="text-3xl md:text-5xl font-black text-foreground mb-5 font-display text-balance">
             {c.title.split(/(Agência Lots)/).map((part, i) =>

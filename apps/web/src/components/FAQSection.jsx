@@ -6,12 +6,8 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion.jsx';
 import { AnimatedSection } from './AnimatedSection.jsx';
-import { WhatsAppButton } from './WhatsAppButton.jsx';
+import { PlanosCtaButton } from './PlanosCtaButton.jsx';
 import { useEditableContent } from '@/contexts/EditableContent.jsx';
-
-const PHONE_NUMBER = '5511973290438';
-const FAQ_WHATSAPP_MSG =
-  'Olá! Vi as perguntas frequentes e quero conversar sobre um orçamento.';
 
 const FAQ_ITEMS = [
   { q: 'q1', a: 'a1' },
@@ -80,13 +76,11 @@ export default function FAQSection() {
           <p className="text-sm md:text-base text-muted-foreground mb-5 text-balance">
             {faq.ctaText || 'Não achou o que precisava? Fale direto conosco.'}
           </p>
-          <WhatsAppButton
-            phoneNumber={PHONE_NUMBER}
-            baseMessage={FAQ_WHATSAPP_MSG}
+          <PlanosCtaButton
             className="text-base px-8 py-4 shadow-[0_0_30px_hsla(142,71%,25%,0.35)] hover:shadow-[0_0_40px_hsla(142,71%,25%,0.5)]"
           >
-            {faq.ctaLabel || 'Pedir orçamento no WhatsApp'}
-          </WhatsAppButton>
+            {faq.ctaLabel || 'Montar meu orçamento'}
+          </PlanosCtaButton>
         </AnimatedSection>
       </div>
     </section>

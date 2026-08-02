@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, User } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from '@/components/ui/sheet';
-import { WhatsAppButton } from './WhatsAppButton.jsx';
 import { LotsBIWordmark } from './LotsBIWordmark.jsx';
 import { cn } from '@/lib/utils';
 import { useEditableContent } from '@/contexts/EditableContent.jsx';
 import { BRAND_NAME } from '@/lib/brand';
+
+const CLIENT_AREA_URL = 'https://lotsbi.leandromajr.com';
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -39,7 +40,6 @@ export default function Header() {
       scrolled ? "bg-background/80 backdrop-blur-xl border-primary/20 py-2 md:py-4 shadow-2xl" : "bg-transparent border-transparent py-3 md:py-6"
     )}>
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between min-h-[56px] md:min-h-[64px]">
-        {/* Logo — lockup Lots BI (portal) */}
         <div
           className="cursor-pointer touch-target flex items-center"
           onClick={() => scrollTo('hero')}
@@ -55,7 +55,6 @@ export default function Header() {
           <LotsBIWordmark size="xl" />
         </div>
 
-        {/* Desktop Nav */}
         <nav className="hidden lg:flex items-center gap-8">
           {navLinks.map((link) => (
             <button
@@ -66,11 +65,11 @@ export default function Header() {
               {link.name}
             </button>
           ))}
-          
+
           <div className="flex items-center gap-4 border-l border-white/10 pl-6 ml-2">
-            <a 
-              href="https://leandromajr.lovable.app" 
-              target="_blank" 
+            <a
+              href={CLIENT_AREA_URL}
+              target="_blank"
               rel="noopener noreferrer"
               aria-label={`Área do Cliente — ${BRAND_NAME}`}
               className="portfolio-btn touch-target text-muted-foreground hover:text-foreground"
@@ -78,18 +77,9 @@ export default function Header() {
               <User className="w-4 h-4 text-primary" />
               <span>Área do Cliente</span>
             </a>
-            
-            <WhatsAppButton 
-              phoneNumber="5511973290438"
-              baseMessage="Olá, estou com interesse nos seus serviços, poderia me passar mais algumas informações?"
-              className="px-6 py-2 text-sm shadow-[0_0_15px_hsla(142,71%,45%,0.3)] hover:shadow-[0_0_20px_hsla(142,71%,45%,0.5)]"
-            >
-              {content.hero.cta}
-            </WhatsAppButton>
           </div>
         </nav>
 
-        {/* Mobile Nav */}
         <div className="lg:hidden">
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger className="text-foreground p-2 touch-target" aria-label="Abrir menu">
@@ -111,9 +101,9 @@ export default function Header() {
                 ))}
               </nav>
               <div className="mt-auto pt-6 border-t border-white/10 flex flex-col gap-4">
-                <a 
-                  href="https://leandromajr.lovable.app" 
-                  target="_blank" 
+                <a
+                  href={CLIENT_AREA_URL}
+                  target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Área do Cliente — ${BRAND_NAME}`}
                   className="portfolio-btn justify-center py-3 border border-white/5 text-foreground touch-target"
@@ -121,14 +111,6 @@ export default function Header() {
                   <User className="w-4 h-4 text-primary" />
                   <span>Área do Cliente</span>
                 </a>
-                
-                <WhatsAppButton 
-                  phoneNumber="5511973290438"
-                  baseMessage="Olá, estou com interesse nos seus serviços, poderia me passar mais algumas informações?"
-                  className="w-full px-6 py-3 text-sm shadow-[0_0_15px_hsla(142,71%,45%,0.3)] hover:shadow-[0_0_20px_hsla(142,71%,45%,0.5)]"
-                >
-                  {content.hero.cta}
-                </WhatsAppButton>
               </div>
             </SheetContent>
           </Sheet>

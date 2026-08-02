@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { LotsBIWordmark } from './LotsBIWordmark.jsx';
 import { useEditableContent } from '@/contexts/EditableContent.jsx';
 import { BRAND_NAME } from '@/lib/brand';
+import { scrollToPlanos } from './PlanosCtaButton.jsx';
 
 const NAV = [
   { nameKey: 'nav1', id: 'solucao-section' },
@@ -46,14 +47,13 @@ export default function Footer() {
                   {content.navigation[item.nameKey]}
                 </button>
               ))}
-              <a
-                href="https://wa.me/5511973290438"
-                target="_blank"
-                rel="noreferrer"
+              <button
+                type="button"
+                onClick={scrollToPlanos}
                 className="hover:text-foreground transition-colors"
               >
-                WhatsApp
-              </a>
+                Orçamento
+              </button>
             </nav>
           </div>
 

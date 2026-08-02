@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Target, Share2, Users, BarChart, RefreshCw, PenTool, FileText, Lightbulb, ChevronLeft, ChevronRight } from 'lucide-react';
 import { AnimatedSection } from './AnimatedSection.jsx';
 import { GlassCard } from './GlassCard.jsx';
-import { WhatsAppButton } from './WhatsAppButton.jsx';
+import { PlanosCtaButton } from './PlanosCtaButton.jsx';
 import { useEditableContent } from '@/contexts/EditableContent.jsx';
 import { useCarouselControls } from '@/hooks/useCarouselControls.js';
 
@@ -135,13 +135,11 @@ export function ServicesSection() {
         )}
 
         <AnimatedSection className="flex justify-center w-full text-center">
-          <WhatsAppButton 
-            phoneNumber="5511973290438"
-            baseMessage="Olá, estou com interesse nos seus serviços, poderia me passar mais algumas informações?"
+          <PlanosCtaButton 
             className="px-10 py-4 text-lg shadow-[0_0_30px_hsla(142,71%,25%,0.35)] hover:shadow-[0_0_40px_hsla(142,71%,25%,0.5)]"
           >
             {s.cta || 'Quero um Orçamento'}
-          </WhatsAppButton>
+          </PlanosCtaButton>
         </AnimatedSection>
       </div>
     </section>

@@ -413,7 +413,7 @@ const ServicesPricing = () => {
 
   const displayTitle =
     phase === 'services'
-      ? s.title || 'Qual Atividade Está Buscando?'
+      ? s.title || 'Qual atividade você precisa?'
       : currentStep?.title || 'Briefing';
 
   const displaySubtitle =
@@ -422,7 +422,7 @@ const ServicesPricing = () => {
       : currentStep?.hint || '';
 
   return (
-    <section id="planos" className="py-12 md:py-16 relative bg-transparent overflow-hidden">
+    <section id="planos" className="py-12 md:py-16 relative bg-transparent overflow-hidden scroll-mt-24 md:scroll-mt-28">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[400px] bg-primary/10 blur-[120px] rounded-full pointer-events-none z-0" />
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
@@ -446,8 +446,8 @@ const ServicesPricing = () => {
             className="text-3xl md:text-5xl font-black mb-4 text-foreground font-display animate-in fade-in slide-in-from-bottom-2 duration-300"
           >
             {phase === 'services'
-              ? displayTitle.split(/(Atividade)/).map((part, i) =>
-                  part === 'Atividade' ? (
+              ? displayTitle.split(/(atividade)/i).map((part, i) =>
+                  /^atividade$/i.test(part) ? (
                     <span key={i} className="rgb-gradient-text">
                       {part}
                     </span>
