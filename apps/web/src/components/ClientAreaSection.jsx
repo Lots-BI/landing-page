@@ -15,7 +15,7 @@ const PLATFORMS = ['Meta Ads', 'Google Ads', 'Instagram', 'GA4', 'Google Busines
 function LotsBIProductMock() {
   return (
     <div
-      className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#0a0a0c] shadow-[0_0_60px_hsla(271,91%,65%,0.12)]"
+      className="relative overflow-hidden rounded-2xl border border-white/10 bg-[#0a0a0c] shadow-[0_0_28px_hsla(271,91%,65%,0.06)]"
       aria-hidden="true"
     >
       {/* Top bar */}
@@ -179,7 +179,7 @@ export function ClientAreaSection() {
       id="lots-bi"
       className="py-16 md:py-24 relative bg-transparent overflow-hidden"
     >
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <AnimatedSection className="text-center max-w-2xl mx-auto mb-12 md:mb-16">
@@ -235,7 +235,7 @@ export function ClientAreaSection() {
         <AnimatedSection className="flex justify-center mt-12 md:mt-16">
           <PlanosCtaButton
             id="cta-btn-lots-bi"
-            className="text-base md:text-lg px-8 md:px-10 py-4 shadow-[0_0_30px_hsla(142,71%,25%,0.35)] hover:shadow-[0_0_40px_hsla(142,71%,25%,0.5)]"
+            className="text-base md:text-lg px-8 md:px-10 py-4 shadow-[0_0_14px_hsla(142,71%,25%,0.14)] hover:shadow-[0_0_18px_hsla(142,71%,25%,0.22)]"
           >
             Quero clareza na operação
           </PlanosCtaButton>

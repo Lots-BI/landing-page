@@ -1,7 +1,43 @@
 import React from 'react';
+import { Check, X } from 'lucide-react';
 import { AnimatedSection } from './AnimatedSection.jsx';
 import { PlanosCtaButton } from './PlanosCtaButton.jsx';
 import { useEditableContent } from '@/contexts/EditableContent.jsx';
+import { cn } from '@/lib/utils';
+
+function Chip({ tone, icon: Icon, children }) {
+  return (
+    <div
+      className={cn(
+        'flex items-start gap-2 rounded-xl border px-3 py-2.5 sm:px-3.5 sm:py-3 min-h-[3.25rem]',
+        tone === 'ours'
+          ? 'border-primary/35 bg-primary/10'
+          : 'border-white/10 bg-white/[0.03]',
+      )}
+    >
+      <span
+        className={cn(
+          'mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full',
+          tone === 'ours'
+            ? 'bg-primary/25 text-primary'
+            : 'bg-white/5 text-muted-foreground/50',
+        )}
+      >
+        <Icon className="h-3 w-3" aria-hidden="true" strokeWidth={tone === 'ours' ? 2.5 : 2} />
+      </span>
+      <p
+        className={cn(
+          'text-xs sm:text-sm leading-snug',
+          tone === 'ours'
+            ? 'text-foreground font-medium'
+            : 'text-muted-foreground/65 line-through decoration-white/20',
+        )}
+      >
+        {children}
+      </p>
+    </div>
+  );
+}
 
 export function ComparisonSection() {
   const { content } = useEditableContent();
@@ -19,11 +55,11 @@ export function ComparisonSection() {
   return (
     <section className="py-16 md:py-24 relative bg-transparent">
       <div className="container mx-auto px-3 sm:px-4 md:px-6 relative z-10">
-        <AnimatedSection className="max-w-2xl mx-auto text-center mb-10 md:mb-16">
+        <AnimatedSection className="max-w-2xl mx-auto text-center mb-10 md:mb-14">
           <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground mb-4">
             Comparativo direto
           </p>
-          <h2 className="text-3xl md:text-5xl font-black text-foreground mb-5 font-display text-balance">
+          <h2 className="text-3xl md:text-5xl font-black text-foreground mb-4 font-display text-balance">
             {c.title.split(/(Agência Lots)/).map((part, i) =>
               part === 'Agência Lots' ? (
                 <span key={i} className="text-primary">
@@ -39,36 +75,31 @@ export function ComparisonSection() {
           </p>
         </AnimatedSection>
 
-        {/* Mesma grade 3 colunas no mobile e no desktop */}
-        <div className="max-w-4xl mx-auto">
-          <div
-            className="grid grid-cols-3 gap-2 sm:gap-4 px-1 mb-3 text-[9px] sm:text-[11px] uppercase tracking-[0.14em] sm:tracking-[0.18em]"
-            role="row"
-          >
-            <span className="text-muted-foreground/50">Frente</span>
-            <span className="text-muted-foreground/50">Mercado</span>
-            <span className="text-primary/80 truncate">{brand}</span>
+        <div className="max-w-3xl mx-auto">
+          <div className="grid grid-cols-[1fr_1fr] gap-2 sm:gap-3 mb-3 px-0.5">
+            <p className="text-center text-[10px] sm:text-xs uppercase tracking-[0.18em] text-muted-foreground/60 font-medium">
+              Mercado
+            </p>
+            <p className="text-center text-[10px] sm:text-xs uppercase tracking-[0.18em] text-primary font-medium truncate">
+              {brand}
+            </p>
           </div>
 
-          <ul className="border-y border-white/10">
+          <ul className="space-y-4">
             {features.map((feat, idx) => (
-              <AnimatedSection
-                key={feat.name || idx}
-                delay={idx * 0.06}
-                className="border-b border-white/10 last:border-b-0"
-              >
-                <li className="grid grid-cols-3 gap-2 sm:gap-4 py-4 sm:py-6 md:py-7 items-start">
-                  <p className="text-[11px] sm:text-sm font-medium text-foreground/90 font-display leading-snug">
+              <AnimatedSection key={feat.name || idx} delay={idx * 0.05}>
+                <li>
+                  <p className="mb-2 text-[11px] sm:text-xs uppercase tracking-[0.16em] text-muted-foreground text-center">
                     {feat.name}
                   </p>
-
-                  <p className="text-[11px] sm:text-sm text-muted-foreground/65 line-through decoration-white/25 leading-snug pr-1">
-                    {feat.common}
-                  </p>
-
-                  <p className="text-[11px] sm:text-sm md:text-base text-foreground font-medium leading-snug">
-                    {feat.ours}
-                  </p>
+                  <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                    <Chip tone="market" icon={X}>
+                      {feat.common}
+                    </Chip>
+                    <Chip tone="ours" icon={Check}>
+                      {feat.ours}
+                    </Chip>
+                  </div>
                 </li>
               </AnimatedSection>
             ))}
@@ -76,12 +107,11 @@ export function ComparisonSection() {
 
           <AnimatedSection className="mt-10 text-center">
             <p className="text-sm md:text-base text-muted-foreground italic text-balance max-w-xl mx-auto mb-8">
-              Se o que você lê à esquerda parece familiar, o problema não é “falta de esforço” —
-              é falta de sistema.
+              Se o mercado à esquerda parece familiar, o problema não é esforço — é sistema.
             </p>
             <PlanosCtaButton
               id="cta-btn-comparacao"
-              className="text-base md:text-lg px-8 md:px-10 py-4 shadow-[0_0_30px_hsla(142,71%,25%,0.35)] hover:shadow-[0_0_40px_hsla(142,71%,25%,0.5)]"
+              className="text-base md:text-lg px-8 md:px-10 py-4 shadow-[0_0_14px_hsla(142,71%,25%,0.14)] hover:shadow-[0_0_18px_hsla(142,71%,25%,0.22)]"
             >
               Quero a operação Lots
             </PlanosCtaButton>

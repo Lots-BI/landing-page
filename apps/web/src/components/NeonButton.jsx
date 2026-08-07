@@ -8,8 +8,8 @@ export function NeonButton({ children, className, onClick, href, asChild, ...pro
     <Component
       className={cn(
         "gtm-apply-btn pixel-track-lead relative inline-flex items-center justify-center px-6 md:px-8 py-3 md:py-4 text-sm md:text-base font-bold tracking-wide uppercase overflow-hidden rounded-xl group transition-all duration-300 touch-target min-h-[44px] min-w-[44px]",
-        "bg-primary text-primary-foreground border-2 border-primary shadow-[0_0_15px_hsla(var(--primary)/0.4)]",
-        "hover:bg-secondary hover:border-secondary hover:text-secondary-foreground hover:shadow-[0_0_30px_hsl(var(--secondary))]",
+        "bg-primary text-primary-foreground border-2 border-primary shadow-[0_0_8px_hsla(var(--primary)/0.18)]",
+        "hover:bg-secondary hover:border-secondary hover:text-secondary-foreground hover:shadow-[0_0_12px_hsla(var(--secondary)/0.22)]",
         "active:scale-[0.98]",
         className
       )}

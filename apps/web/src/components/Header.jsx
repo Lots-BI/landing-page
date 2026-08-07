@@ -62,7 +62,7 @@ export default function Header() {
             <button
               key={link.id}
               onClick={() => scrollTo(link.id)}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground hover:text-shadow-[0_0_10px_hsla(var(--primary)/0.8)] transition-all touch-target px-2"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors touch-target px-2"
             >
               {link.name}
             </button>

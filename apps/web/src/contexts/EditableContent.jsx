@@ -4,12 +4,12 @@ const defaultContent = {
   hero: {
     brand: "Agência Lots",
     badge: "Marketing digital com operação e dados",
-    title: "Estruturação e Gestão Completa",
-    subtitle: "Montamos e operamos o ecossistema digital do seu negócio: mídia, conteúdo, funil e painel. Menos achismo. Mais previsibilidade.",
+    title: "Agência de Marketing digital",
+    subtitle: "Estruturação e gestão completa",
     cta: "Quero estruturar meu marketing"
   },
   ecosystem: {
-    title: "A operação completa, não serviços soltos",
+    title: "Operação Digital Inteligente",
     subtitle: "Cada peça conversa com a outra. Você vê o todo — e escala o que já funciona.",
     c1Title: "Lots BI",
     c1Desc: "Seu painel ao vivo: métricas, aprovações e plano estratégico em um só lugar.",
@@ -44,7 +44,7 @@ const defaultContent = {
   },
   roadmap: {
     title: "Método Lots",
-    subtitle: "Cinco etapas. Do diagnóstico à escala — com critério e dados.",
+    subtitle: "Do diagnóstico à escala — com critério e dados.",
     s1Title: "Diagnóstico",
     s1Desc: "Onde a operação trava: oferta, funil, mídia e oportunidades.",
     s2Title: "Arquitetura",
@@ -86,8 +86,8 @@ const defaultContent = {
     cta: "Quero estruturar meu marketing"
   },
   serviceSelection: {
-    title: "Qual atividade você precisa?",
-    subtitle: "Selecione o que faz sentido e avance para o briefing",
+    title: "Quais Serviços Procura?",
+    subtitle: "Selecione tudo que procure!",
     whatsappNumber: "5511999999999",
     s1Title: "Gestão de Tráfego Pago",
     s1Desc: "Meta e Google com foco em ROI.",
@@ -110,7 +110,7 @@ const defaultContent = {
   },
   comparison: {
     title: "Por que escolher a Agência Lots",
-    subtitle: "Não é quem cobra menos. É quem assume a operação — e prova resultado no painel.",
+    subtitle: "Menos promessa. Mais operação no painel.",
     f1Name: "Relatórios",
     f1Common: "PDF genérico no fechamento",
     f1Majr: "Lots BI ao vivo — cada real rastreado",
@@ -144,9 +144,9 @@ const defaultContent = {
     subtitle: "Dados e criação no mesmo time — operação com identidade e critério.",
     together:
       "Um estrutura sistemas, dados e produto. O outro traduz a marca em visual e presença. Juntos, a operação escala sem perder clareza nem identidade.",
-    founder1Role: "Especialista em Dados | Dev Web",
+    founder1Role: "Especialista em dados",
     founder1Desc: "",
-    founder2Role: "Social Media | Designer",
+    founder2Role: "Social Media",
     founder2Desc: ""
   },
   faq: {
@@ -244,14 +244,19 @@ export function EditableContentProvider({ children }) {
             ...(parsed.comparison || {}),
             title: defaultContent.comparison.title,
             subtitle: defaultContent.comparison.subtitle,
+            f1Name: defaultContent.comparison.f1Name,
             f1Common: defaultContent.comparison.f1Common,
             f1Majr: defaultContent.comparison.f1Majr,
+            f2Name: defaultContent.comparison.f2Name,
             f2Common: defaultContent.comparison.f2Common,
             f2Majr: defaultContent.comparison.f2Majr,
+            f3Name: defaultContent.comparison.f3Name,
             f3Common: defaultContent.comparison.f3Common,
             f3Majr: defaultContent.comparison.f3Majr,
+            f4Name: defaultContent.comparison.f4Name,
             f4Common: defaultContent.comparison.f4Common,
             f4Majr: defaultContent.comparison.f4Majr,
+            f5Name: defaultContent.comparison.f5Name,
             f5Common: defaultContent.comparison.f5Common,
             f5Majr: defaultContent.comparison.f5Majr,
           },

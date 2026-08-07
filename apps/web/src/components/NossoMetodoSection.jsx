@@ -1,36 +1,8 @@
 import React from 'react';
-import {
-  KeyRound,
-  BarChart3,
-  RefreshCw,
-  ShieldCheck,
-} from 'lucide-react';
 import { AnimatedSection } from './AnimatedSection.jsx';
 import { LotsBIIcon } from './LotsBIWordmark.jsx';
 import { PlanosCtaButton } from './PlanosCtaButton.jsx';
-
-const POINTS = [
-  {
-    icon: KeyRound,
-    title: 'Acesso com login e senha',
-    desc: 'O cliente entra no Lots BI. Sem instalação. Sem planilha. Sem pedir relatório no WhatsApp.',
-  },
-  {
-    icon: RefreshCw,
-    title: 'Dashboard automático',
-    desc: 'Meta, Google, Instagram e GA4 alimentam a visão geral: investimento, conversões, CTR e CPA.',
-  },
-  {
-    icon: BarChart3,
-    title: 'Tudo que a operação usa',
-    desc: 'Números, plano estratégico, aprovações e painel da marca — o mesmo ecossistema da agência.',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Acesso e manutenção sem custo extra',
-    desc: 'Para o cliente, o uso da plataforma não tem taxa à parte. A Lots cuida da estrutura; você acompanha e decide.',
-  },
-];
+import { LotsBIDashboardMock } from './LotsBIDashboardMock.jsx';
 
 export default function NossoMetodoSection() {
   return (
@@ -39,7 +11,7 @@ export default function NossoMetodoSection() {
       className="py-16 md:py-24 relative bg-transparent border-t border-border z-10 overflow-hidden"
     >
       <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <AnimatedSection className="max-w-2xl mx-auto text-center mb-12 md:mb-16">
+        <AnimatedSection className="max-w-2xl mx-auto text-center mb-10 md:mb-14">
           <div className="flex justify-center mb-4">
             <LotsBIIcon size="lg" className="!h-10 !w-10" aria-hidden="true" />
           </div>
@@ -56,30 +28,9 @@ export default function NossoMetodoSection() {
           </p>
         </AnimatedSection>
 
-        <ul className="max-w-3xl mx-auto divide-y divide-white/10 border-y border-white/10">
-          {POINTS.map((item, idx) => {
-            const Icon = item.icon;
-            return (
-              <AnimatedSection key={item.title} delay={idx * 0.06}>
-                <li className="flex gap-4 py-6 first:pt-7 last:pb-7">
-                  <Icon
-                    className="w-5 h-5 text-primary shrink-0 mt-0.5"
-                    strokeWidth={1.75}
-                    aria-hidden="true"
-                  />
-                  <div>
-                    <h3 className="text-base md:text-lg font-semibold text-foreground mb-1.5 font-display">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </div>
-                </li>
-              </AnimatedSection>
-            );
-          })}
-        </ul>
+        <AnimatedSection className="max-w-6xl mx-auto">
+          <LotsBIDashboardMock />
+        </AnimatedSection>
 
         <AnimatedSection className="max-w-2xl mx-auto mt-10 text-center">
           <p className="text-sm text-muted-foreground/90 text-balance mb-8">
@@ -88,7 +39,7 @@ export default function NossoMetodoSection() {
           </p>
           <PlanosCtaButton
             id="cta-btn-metodo"
-            className="text-base md:text-lg px-8 md:px-10 py-4 shadow-[0_0_30px_hsla(142,71%,25%,0.35)] hover:shadow-[0_0_40px_hsla(142,71%,25%,0.5)]"
+            className="text-base md:text-lg px-8 md:px-10 py-4 shadow-[0_0_14px_hsla(142,71%,25%,0.14)] hover:shadow-[0_0_18px_hsla(142,71%,25%,0.22)]"
           >
             Quero meu painel Lots BI
           </PlanosCtaButton>

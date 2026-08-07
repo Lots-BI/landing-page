@@ -141,7 +141,7 @@ function ChoiceGrid({ options, value, onPick, columns = 1 }) {
             className={cn(
               'rounded-2xl border px-5 py-4 text-left text-base font-medium transition-all duration-200 active:scale-[0.98]',
               selected
-                ? 'border-primary bg-primary/20 text-foreground shadow-[0_0_24px_hsla(var(--primary)/0.25)]'
+                ? 'border-primary bg-primary/20 text-foreground shadow-[0_0_10px_hsla(var(--primary)/0.12)]'
                 : 'border-border/80 bg-background/50 text-foreground/90 hover:border-primary/50 hover:bg-primary/10',
             )}
           >
@@ -427,12 +427,12 @@ const ServicesPricing = ({
 
   const displayTitle =
     phase === 'services'
-      ? s.title || 'Qual atividade você precisa?'
+      ? s.title || 'Quais Serviços Procura?'
       : currentStep?.title || 'Briefing';
 
   const displaySubtitle =
     phase === 'services'
-      ? s.subtitle || 'Toque nas atividades de interesse e avance para o briefing'
+      ? s.subtitle || 'Selecione tudo que procure!'
       : currentStep?.hint || '';
 
   return (
@@ -445,7 +445,7 @@ const ServicesPricing = ({
           : 'py-12 md:py-16 scroll-mt-24 md:scroll-mt-28',
       )}
     >
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[400px] bg-primary/10 blur-[120px] rounded-full pointer-events-none z-0" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[400px] bg-primary/5 blur-[120px] rounded-full pointer-events-none z-0" />
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-xl mx-auto mb-8">
@@ -468,8 +468,8 @@ const ServicesPricing = ({
             className="text-3xl md:text-5xl font-black mb-4 text-foreground font-display animate-in fade-in slide-in-from-bottom-2 duration-300"
           >
             {phase === 'services'
-              ? displayTitle.split(/(atividade)/i).map((part, i) =>
-                  /^atividade$/i.test(part) ? (
+              ? displayTitle.split(/(Serviços)/i).map((part, i) =>
+                  /^Serviços$/i.test(part) ? (
                     <span key={i} className="rgb-gradient-text">
                       {part}
                     </span>
@@ -504,19 +504,14 @@ const ServicesPricing = ({
             ) : null}
 
             <div className="flex flex-col justify-center items-center gap-3 text-center w-full relative z-10 mt-4">
-              <div className="flex flex-col sm:flex-row justify-center items-center gap-3">
-                <p className="text-sm text-muted-foreground sm:mr-2">
-                  {selectedServices.length} selecionada{selectedServices.length === 1 ? '' : 's'}
-                </p>
-                <button
-                  type="button"
-                  onClick={goToQuiz}
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-8 py-4 text-base font-bold text-primary-foreground transition-all hover:brightness-110 shadow-[0_0_30px_hsla(var(--primary)/0.35)]"
-                >
-                  Continuar
-                  <ArrowRight className="w-4 h-4" />
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={goToQuiz}
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-8 py-4 text-base font-bold text-primary-foreground transition-all hover:brightness-110 shadow-[0_0_12px_hsla(var(--primary)/0.14)]"
+              >
+                Continuar
+                <ArrowRight className="w-4 h-4" />
+              </button>
               <SkipFormLink className="mt-1" />
             </div>
           </>
@@ -594,8 +589,8 @@ const ServicesPricing = ({
                     className={cn(
                       'inline-flex flex-1 items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-bold transition-colors',
                       quizIndex >= totalQuiz - 1
-                        ? 'bg-green-800 hover:bg-green-700 text-white shadow-[0_0_20px_hsla(142,71%,25%,0.35)]'
-                        : 'bg-primary text-primary-foreground hover:brightness-110 shadow-[0_0_20px_hsla(var(--primary)/0.3)]',
+                        ? 'bg-green-800 hover:bg-green-700 text-white shadow-[0_0_10px_hsla(142,71%,25%,0.15)]'
+                        : 'bg-primary text-primary-foreground hover:brightness-110 shadow-[0_0_10px_hsla(var(--primary)/0.14)]',
                     )}
                   >
                     {quizIndex >= totalQuiz - 1

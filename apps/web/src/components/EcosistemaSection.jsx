@@ -16,13 +16,13 @@ export function EcosistemaSection() {
 
   return (
     <section className="py-12 md:py-16 relative bg-transparent overflow-visible">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <AnimatedSection className="max-w-3xl mx-auto mb-14 md:mb-16 text-center">
           <h2 className="text-4xl md:text-5xl font-black text-foreground mb-6 font-display text-balance">
-            {e.title.split(/(completa|operação)/i).map((part, i) =>
-              /^(completa|operação)$/i.test(part) ? (
+            {e.title.split(/(Digital|Inteligente)/i).map((part, i) =>
+              /^(Digital|Inteligente)$/i.test(part) ? (
                 <span key={i} className="rgb-gradient-text">
                   {part}
                 </span>

@@ -23,7 +23,7 @@ export function WhatsAppServiceButton({ selectedServices, whatsappNumber }) {
       className={cn(
         "zapbutton w-full md:w-auto flex items-center justify-center gap-3 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300",
         hasSelection 
-          ? "bg-gradient-to-r from-primary to-secondary text-white shadow-[0_0_30px_hsla(var(--primary)/0.4)] hover:shadow-[0_0_40px_hsla(var(--primary)/0.6)] hover:-translate-y-1 active:scale-[0.98] cursor-pointer" 
+          ? "bg-gradient-to-r from-primary to-secondary text-white shadow-[0_0_12px_hsla(var(--primary)/0.16)] hover:shadow-[0_0_16px_hsla(var(--primary)/0.24)] hover:-translate-y-1 active:scale-[0.98] cursor-pointer" 
           : "bg-white/5 text-muted-foreground border border-white/10 cursor-not-allowed opacity-70"
       )}
       onClick={handleWhatsAppClick}

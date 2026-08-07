@@ -200,15 +200,15 @@
   }
 
   .glass-selected {
-    @apply bg-primary/10 border-primary shadow-[0_0_20px_hsla(var(--primary)/0.3)] -translate-y-1;
+    @apply bg-primary/10 border-primary shadow-[0_0_12px_hsla(var(--primary)/0.12)] -translate-y-1;
   }
 
   .neon-text {
-    text-shadow: 0 0 20px hsla(var(--primary) / 0.5), 0 0 40px hsla(var(--secondary) / 0.3);
+    text-shadow: 0 0 10px hsla(var(--primary) / 0.2), 0 0 20px hsla(var(--secondary) / 0.1);
   }
 
   .neon-text-blue {
-    text-shadow: 0 0 20px hsla(var(--accent) / 0.6), 0 0 40px hsla(var(--accent) / 0.4);
+    text-shadow: 0 0 10px hsla(var(--accent) / 0.22), 0 0 20px hsla(var(--accent) / 0.12);
   }
 
   @media (hover: hover) {
@@ -217,7 +217,7 @@
       will-change: transform, box-shadow;
     }
     .hover-glow {
-      @apply transition-all duration-500 hover:shadow-[0_0_30px_hsla(var(--primary)/0.3)] hover:border-primary/50;
+      @apply transition-all duration-500 hover:shadow-[0_0_14px_hsla(var(--primary)/0.12)] hover:border-primary/40;
       will-change: box-shadow, border-color;
     }
   }
@@ -286,9 +286,9 @@
   height: 55vw;
   max-width: 700px;
   max-height: 700px;
-  opacity: 0.4;
+  opacity: 0.18;
   /* No filter:blur — Lighthouse flagged non-composited animations */
-  background: radial-gradient(circle, hsla(271, 91%, 70%, 0.45) 0%, hsla(271, 91%, 70%, 0.12) 35%, transparent 70%);
+  background: radial-gradient(circle, hsla(271, 91%, 70%, 0.22) 0%, hsla(271, 91%, 70%, 0.06) 35%, transparent 70%);
 }
 
 .light-cosmic__nebula--b {
@@ -298,8 +298,8 @@
   height: 60vw;
   max-width: 800px;
   max-height: 800px;
-  opacity: 0.32;
-  background: radial-gradient(circle, hsla(271, 91%, 55%, 0.4) 0%, hsla(213, 94%, 65%, 0.12) 40%, transparent 70%);
+  opacity: 0.14;
+  background: radial-gradient(circle, hsla(271, 91%, 55%, 0.18) 0%, hsla(213, 94%, 65%, 0.06) 40%, transparent 70%);
 }
 
 .light-cosmic__nebula--c {
@@ -309,8 +309,8 @@
   height: 45vw;
   max-width: 560px;
   max-height: 560px;
-  opacity: 0.26;
-  background: radial-gradient(circle, hsla(200, 70%, 50%, 0.35) 0%, transparent 65%);
+  opacity: 0.12;
+  background: radial-gradient(circle, hsla(200, 70%, 50%, 0.16) 0%, transparent 65%);
 }
 
 .light-cosmic__stars {

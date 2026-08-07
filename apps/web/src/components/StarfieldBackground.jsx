@@ -30,7 +30,7 @@ export function StarfieldBackground() {
           z: depth,
           radius: (Math.random() * 1.5 + 0.5) / depth,
           speed: prefersReducedMotion ? 0 : (Math.random() * 0.25 + 0.08) / depth,
-          baseAlpha: Math.random() * 0.5 + 0.3,
+          baseAlpha: Math.random() * 0.28 + 0.12,
           twinkleSpeed: Math.random() * 0.002 + 0.001,
           twinkleOffset: Math.random() * Math.PI * 2
         });
@@ -76,8 +76,8 @@ export function StarfieldBackground() {
 
       for (let i = 0; i < stars.length; i++) {
         const star = stars[i];
-        const alpha = star.baseAlpha + Math.sin(time * star.twinkleSpeed + star.twinkleOffset) * 0.25;
-        const clampedAlpha = Math.max(0.1, Math.min(1, alpha));
+        const alpha = star.baseAlpha + Math.sin(time * star.twinkleSpeed + star.twinkleOffset) * 0.12;
+        const clampedAlpha = Math.max(0.06, Math.min(0.55, alpha));
 
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
@@ -125,15 +125,15 @@ export function StarfieldBackground() {
     <div className="fixed inset-0 z-[-10] overflow-hidden pointer-events-none bg-background" aria-hidden="true">
       {/* Fewer / lighter nebula clouds for GPU cost */}
       <div
-        className="absolute top-[10%] left-[-20%] w-[55vw] h-[55vw] rounded-full mix-blend-screen blur-[100px] opacity-30"
+        className="absolute top-[10%] left-[-20%] w-[55vw] h-[55vw] rounded-full mix-blend-screen blur-[100px] opacity-12"
         style={{
-          background: 'radial-gradient(circle, hsla(var(--cosmic-lilac)/0.55) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, hsla(var(--cosmic-lilac)/0.28) 0%, transparent 70%)',
         }}
       />
       <div
-        className="absolute top-[45%] right-[-20%] w-[60vw] h-[60vw] rounded-full mix-blend-screen blur-[110px] opacity-25"
+        className="absolute top-[45%] right-[-20%] w-[60vw] h-[60vw] rounded-full mix-blend-screen blur-[110px] opacity-10"
         style={{
-          background: 'radial-gradient(circle, hsla(var(--cosmic-purple)/0.45) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, hsla(var(--cosmic-purple)/0.22) 0%, transparent 70%)',
         }}
       />
 

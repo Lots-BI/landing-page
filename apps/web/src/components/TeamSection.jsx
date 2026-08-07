@@ -14,8 +14,7 @@ const MEMBERS = [
   {
     name: 'Rafaela',
     roleKey: 'founder2Role',
-    image:
-      'https://horizons-cdn.hostinger.com/08b0c8e1-5b98-47df-a3f1-7bb9b617c89c/cff80b7598ead1aa5119b5da37e5ad16.jpg',
+    image: '/team/rafaela.png',
     imageAlt: 'Rafaela',
     objectPosition: 'object-[center_42%]',
   },
@@ -87,7 +86,7 @@ export default function TeamSection() {
         <AnimatedSection className="flex justify-center mt-12 md:mt-14">
           <PlanosCtaButton
             id="cta-btn-equipe"
-            className="text-base md:text-lg px-8 md:px-10 py-4 shadow-[0_0_30px_hsla(142,71%,25%,0.35)] hover:shadow-[0_0_40px_hsla(142,71%,25%,0.5)]"
+            className="text-base md:text-lg px-8 md:px-10 py-4 shadow-[0_0_14px_hsla(142,71%,25%,0.14)] hover:shadow-[0_0_18px_hsla(142,71%,25%,0.22)]"
           >
             Quero estruturar meu marketing
           </PlanosCtaButton>

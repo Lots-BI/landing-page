@@ -3,21 +3,20 @@ import { AnimatedSection } from './AnimatedSection.jsx';
 import { PlanosCtaButton } from './PlanosCtaButton.jsx';
 
 const FEATURED = {
-  name: 'Davi',
-  subtitle: 'Imobiliária',
-  text: 'Não recebi só anúncios — recebi uma operação de vendas pronta. O impacto no faturamento veio rápido, e a previsibilidade que tenho hoje é o que eu buscava.',
-  image: '/testimonials/davi.png',
-  imageAlt: 'Davi',
+  name: 'Rafa Teo Ferreira',
+  subtitle: 'Corretor',
+  text: 'Funil e conteúdo mudaram o jogo. Fluxo constante de leads qualificados e autoridade real na região.',
+  image: '/testimonials/rafa-teo.png',
+  imageAlt: 'Rafa Teo Ferreira',
 };
 
 const SUPPORTING = [
   {
-    name: 'Rafa Teo Ferreira',
-    subtitle: 'Corretor de Imóveis',
-    text: 'Funil e conteúdo mudaram o jogo. Fluxo constante de leads qualificados e autoridade real na região.',
-    image:
-      'https://horizons-cdn.hostinger.com/08b0c8e1-5b98-47df-a3f1-7bb9b617c89c/2df69df40b13ddd43110598a01ec3b8b.png',
-    imageAlt: 'Rafa Teo Ferreira',
+    name: 'Davi',
+    subtitle: 'Corretor',
+    text: 'Não recebi só anúncios — recebi uma operação de vendas pronta. O impacto no faturamento veio rápido, e a previsibilidade que tenho hoje é o que eu buscava.',
+    image: '/testimonials/davi.png',
+    imageAlt: 'Davi',
   },
   {
     name: 'Antena Imobiliária',
@@ -44,7 +43,6 @@ export default function ResultadosDiretosSection() {
           </h2>
         </AnimatedSection>
 
-        {/* Featured — autoridade máxima, sem card */}
         <AnimatedSection className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
           <blockquote className="text-xl sm:text-2xl md:text-3xl font-display font-medium text-foreground leading-snug md:leading-snug text-balance">
             “{FEATURED.text}”
@@ -66,7 +64,6 @@ export default function ResultadosDiretosSection() {
           </div>
         </AnimatedSection>
 
-        {/* Supporting — lista leve alinhada */}
         <ul className="max-w-3xl mx-auto border-t border-white/10">
           {SUPPORTING.map((item) => (
             <li
@@ -96,7 +93,7 @@ export default function ResultadosDiretosSection() {
         <AnimatedSection className="flex justify-center mt-12 md:mt-16">
           <PlanosCtaButton
             id="cta-btn-resultados"
-            className="text-base md:text-lg px-8 md:px-10 py-4 shadow-[0_0_30px_hsla(142,71%,25%,0.35)] hover:shadow-[0_0_40px_hsla(142,71%,25%,0.5)]"
+            className="text-base md:text-lg px-8 md:px-10 py-4 shadow-[0_0_14px_hsla(142,71%,25%,0.14)] hover:shadow-[0_0_18px_hsla(142,71%,25%,0.22)]"
           >
             Quero resultados assim
           </PlanosCtaButton>
