@@ -136,7 +136,7 @@ export function ServicesSection() {
 
         <AnimatedSection className="flex justify-center w-full text-center">
           <PlanosCtaButton 
-            className="px-10 py-4 text-lg shadow-[0_0_14px_hsla(142,71%,25%,0.14)] hover:shadow-[0_0_18px_hsla(142,71%,25%,0.22)]"
+            className="px-10 py-4 text-lg shadow-md hover:shadow-lg"
           >
             {s.cta || 'Quero um Orçamento'}
           </PlanosCtaButton>

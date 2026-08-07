@@ -46,7 +46,7 @@ export default function HomePage() {
   const navigate = useNavigate();
   useUTMs();
 
-  const CTA_BTN_CLASSES = "text-lg px-10 py-5 shadow-[0_0_14px_hsla(142,71%,25%,0.14)] hover:shadow-[0_0_18px_hsla(142,71%,25%,0.22)]";
+  const CTA_BTN_CLASSES = "text-lg px-10 py-5 shadow-md hover:shadow-lg";
 
   // Restore the CTA viewport after returning from /orcamento
   useEffect(() => {
@@ -111,7 +111,7 @@ export default function HomePage() {
       <section id="hero" className="relative min-h-[100dvh] flex flex-col items-center justify-center pt-20 pb-12 overflow-hidden z-10 bg-transparent">
         <div className="container relative z-10 mx-auto px-4 md:px-6 flex flex-col items-center text-center">
           <div className="max-w-5xl w-full">
-            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-foreground leading-[1.1] tracking-tighter mb-6 md:mb-8 text-balance">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-extrabold text-foreground leading-[1.12] tracking-tight mb-6 md:mb-8 text-balance">
               {(content.hero.title || 'Agência de Marketing digital').split(/(digital)/i).map((part, i) =>
                 /^digital$/i.test(part) ? (
                   <span key={i} className="text-secondary">{part}</span>

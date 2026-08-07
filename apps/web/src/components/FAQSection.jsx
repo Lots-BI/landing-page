@@ -78,7 +78,7 @@ export default function FAQSection() {
           </p>
           <PlanosCtaButton
             id="cta-btn-faq"
-            className="text-base px-8 py-4 shadow-[0_0_14px_hsla(142,71%,25%,0.14)] hover:shadow-[0_0_18px_hsla(142,71%,25%,0.22)]"
+            className="text-base px-8 py-4 shadow-md hover:shadow-lg"
           >
             {faq.ctaLabel || 'Montar meu orçamento'}
           </PlanosCtaButton>

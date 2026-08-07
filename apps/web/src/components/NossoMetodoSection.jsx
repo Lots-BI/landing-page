@@ -39,7 +39,7 @@ export default function NossoMetodoSection() {
           </p>
           <PlanosCtaButton
             id="cta-btn-metodo"
-            className="text-base md:text-lg px-8 md:px-10 py-4 shadow-[0_0_14px_hsla(142,71%,25%,0.14)] hover:shadow-[0_0_18px_hsla(142,71%,25%,0.22)]"
+            className="text-base md:text-lg px-8 md:px-10 py-4 shadow-md hover:shadow-lg"
           >
             Quero meu painel Lots BI
           </PlanosCtaButton>

@@ -6,8 +6,8 @@ export function GlassCard({ children, className, neon = false, hover = true, ...
     <div
       className={cn(
         "relative rounded-2xl glass p-6 md:p-8 transition-all duration-500 will-change-transform",
-        hover && "hover:-translate-y-3 hover:bg-white/10 hover:border-primary/40 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.6)]",
-        neon && "border-primary/40 shadow-[0_0_12px_hsla(var(--primary)/0.1)] hover:shadow-[0_0_16px_hsla(var(--secondary)/0.14)] hover:border-secondary/40",
+        hover && "hover:-translate-y-1 hover:bg-white/[0.06] hover:border-white/20 hover:shadow-lg",
+        neon && "border-primary/30 shadow-md hover:shadow-lg hover:border-primary/50",
         className
       )}
       {...props}

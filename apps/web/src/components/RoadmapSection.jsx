@@ -63,7 +63,7 @@ export function RoadmapSection() {
                       className={cn(
                         'flex h-14 w-14 items-center justify-center rounded-full border text-sm font-semibold tracking-wider font-display transition-all duration-300',
                         isActive
-                          ? 'border-primary bg-primary text-primary-foreground shadow-[0_0_12px_hsla(var(--primary)/0.18)] scale-105'
+                          ? 'border-primary bg-primary text-primary-foreground shadow-md scale-105'
                           : 'border-white/15 bg-background text-primary group-hover:border-primary/50',
                       )}
                     >

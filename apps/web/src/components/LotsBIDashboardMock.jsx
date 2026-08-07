@@ -273,7 +273,7 @@ export function LotsBIDashboardMock({ className }) {
   return (
     <div
       className={cn(
-        'relative overflow-hidden rounded-2xl border border-white/10 bg-[#0a0a0c] text-left shadow-[0_0_28px_hsla(271,91%,65%,0.06)]',
+        'relative overflow-hidden rounded-2xl border border-white/10 bg-[#0a0a0c] text-left shadow-lg',
         className,
       )}
       aria-hidden="true"

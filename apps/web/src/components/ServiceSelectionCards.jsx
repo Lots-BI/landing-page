@@ -30,7 +30,7 @@ export function ServiceSelectionCards({ services = [], selectedIds = [], onToggl
               className={cn(
                 "flex-shrink-0 min-w-[280px] w-[80vw] max-w-[320px] snap-center rounded-2xl p-6 cursor-pointer transition-all duration-300 relative border flex flex-col h-full",
                 isSelected 
-                  ? "bg-primary/10 border-primary shadow-[0_0_10px_hsla(var(--primary)/0.1)] -translate-y-2" 
+                  ? "bg-primary/10 border-primary shadow-md -translate-y-1" 
                   : "bg-card/50 border-border hover:bg-card hover:border-primary/40 hover:-translate-y-1"
               )}
             >

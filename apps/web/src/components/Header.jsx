@@ -39,7 +39,7 @@ export default function Header() {
   return (
     <header className={cn(
       "fixed top-0 w-full z-50 transition-all duration-300 border-b",
-      scrolled ? "bg-background/80 backdrop-blur-xl border-primary/20 py-2 md:py-4 shadow-2xl" : "bg-transparent border-transparent py-3 md:py-6"
+      scrolled ? "bg-background/80 backdrop-blur-xl border-white/10 py-2 md:py-4 shadow-lg" : "bg-transparent border-transparent py-3 md:py-6"
     )}>
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between min-h-[56px] md:min-h-[64px]">
         <div

@@ -141,7 +141,7 @@ function ChoiceGrid({ options, value, onPick, columns = 1 }) {
             className={cn(
               'rounded-2xl border px-5 py-4 text-left text-base font-medium transition-all duration-200 active:scale-[0.98]',
               selected
-                ? 'border-primary bg-primary/20 text-foreground shadow-[0_0_10px_hsla(var(--primary)/0.12)]'
+                ? 'border-primary bg-primary/20 text-foreground shadow-md'
                 : 'border-border/80 bg-background/50 text-foreground/90 hover:border-primary/50 hover:bg-primary/10',
             )}
           >
@@ -432,7 +432,7 @@ const ServicesPricing = ({
 
   const displaySubtitle =
     phase === 'services'
-      ? s.subtitle || 'Selecione tudo que procure!'
+      ? s.subtitle || 'Escolha os serviços que está buscando no momento'
       : currentStep?.hint || '';
 
   return (
@@ -507,7 +507,7 @@ const ServicesPricing = ({
               <button
                 type="button"
                 onClick={goToQuiz}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-8 py-4 text-base font-bold text-primary-foreground transition-all hover:brightness-110 shadow-[0_0_12px_hsla(var(--primary)/0.14)]"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-8 py-4 text-base font-semibold text-primary-foreground transition-all hover:bg-primary/90 shadow-md hover:shadow-lg"
               >
                 Continuar
                 <ArrowRight className="w-4 h-4" />
@@ -589,8 +589,8 @@ const ServicesPricing = ({
                     className={cn(
                       'inline-flex flex-1 items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-bold transition-colors',
                       quizIndex >= totalQuiz - 1
-                        ? 'bg-green-800 hover:bg-green-700 text-white shadow-[0_0_10px_hsla(142,71%,25%,0.15)]'
-                        : 'bg-primary text-primary-foreground hover:brightness-110 shadow-[0_0_10px_hsla(var(--primary)/0.14)]',
+                        ? 'bg-green-800 hover:bg-green-700 text-white shadow-md'
+                        : 'bg-primary text-primary-foreground hover:bg-primary/90 shadow-md',
                     )}
                   >
                     {quizIndex >= totalQuiz - 1

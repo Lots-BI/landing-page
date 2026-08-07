@@ -87,7 +87,7 @@ const defaultContent = {
   },
   serviceSelection: {
     title: "Quais Serviços Procura?",
-    subtitle: "Selecione tudo que procure!",
+    subtitle: "Escolha os serviços que está buscando no momento",
     whatsappNumber: "5511999999999",
     s1Title: "Gestão de Tráfego Pago",
     s1Desc: "Meta e Google com foco em ROI.",

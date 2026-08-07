@@ -93,7 +93,7 @@ export default function ResultadosDiretosSection() {
         <AnimatedSection className="flex justify-center mt-12 md:mt-16">
           <PlanosCtaButton
             id="cta-btn-resultados"
-            className="text-base md:text-lg px-8 md:px-10 py-4 shadow-[0_0_14px_hsla(142,71%,25%,0.14)] hover:shadow-[0_0_18px_hsla(142,71%,25%,0.22)]"
+            className="text-base md:text-lg px-8 md:px-10 py-4 shadow-md hover:shadow-lg"
           >
             Quero resultados assim
           </PlanosCtaButton>

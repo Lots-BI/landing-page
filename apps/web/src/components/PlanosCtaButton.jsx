@@ -66,7 +66,7 @@ export function PlanosCtaButton({
       id={id}
       onClick={handleClick}
       className={cn(
-        'inline-flex items-center justify-center gap-2 bg-green-800 hover:bg-green-700 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-green-800/30 active:scale-[0.98]',
+        'inline-flex items-center justify-center gap-2 bg-green-800 hover:bg-green-700 text-white font-semibold rounded-lg transition-all duration-300 shadow-md hover:shadow-lg active:scale-[0.98]',
         className,
       )}
       {...props}
