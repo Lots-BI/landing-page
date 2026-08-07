@@ -102,10 +102,50 @@ function App() {
                   }
                 />
                 <Route
+                  path="/privacy"
+                  element={
+                    <Suspense fallback={null}>
+                      <PrivacyPolicy />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="/privacypolicy"
+                  element={
+                    <Suspense fallback={null}>
+                      <PrivacyPolicy />
+                    </Suspense>
+                  }
+                />
+                <Route
                   path="/terms-of-service"
                   element={
                     <Suspense fallback={null}>
                       <TermsOfService />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="/terms"
+                  element={
+                    <Suspense fallback={null}>
+                      <TermsOfService />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="/termsofservice"
+                  element={
+                    <Suspense fallback={null}>
+                      <TermsOfService />
+                    </Suspense>
+                  }
+                />
+                <Route
+                  path="/contact"
+                  element={
+                    <Suspense fallback={null}>
+                      <ContactPage />
                     </Suspense>
                   }
                 />

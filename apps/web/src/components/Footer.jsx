@@ -67,13 +67,13 @@ export default function Footer() {
             </p>
 
             <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
-              <Link to="/privacy" className="hover:text-foreground transition-colors">
+              <Link to="/privacy-policy" className="hover:text-foreground transition-colors">
                 Privacidade
               </Link>
-              <Link to="/terms" className="hover:text-foreground transition-colors">
+              <Link to="/terms-of-service" className="hover:text-foreground transition-colors">
                 Termos
               </Link>
-              <Link to="/contact" className="hover:text-foreground transition-colors">
+              <Link to="/contato" className="hover:text-foreground transition-colors">
                 Contato
               </Link>
             </div>

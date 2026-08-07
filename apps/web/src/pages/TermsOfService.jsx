@@ -1,121 +1,111 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
-import Header from '@/components/Header.jsx';
-import Footer from '@/components/Footer.jsx';
+import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const TermsOfService = () => {
   return (
     <>
       <Helmet>
-        <title>Termos de Serviço - Agência Lots</title>
+        <title>Termos de Serviço | Agência Lots</title>
         <meta name="description" content="Termos de Serviço e condições de uso da Agência Lots." />
+        <link rel="canonical" href="https://leandromajr.com/terms-of-service" />
       </Helmet>
 
-      <div className="dark min-h-screen flex flex-col text-foreground main-animated-bg">
-        <Header />
-
-        <main className="flex-1 container mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-24">
-          <div className="max-w-4xl mx-auto space-y-12">
-            
-            {/* Hero Section */}
-            <div className="text-center glass-effect p-8 md:p-12 animate-fade-in-up">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white glass-text-shadow" style={{ letterSpacing: '-0.02em' }}>
-                Termos de Serviço
-              </h1>
-              <p className="text-lg text-gray-100 glass-text-shadow leading-relaxed max-w-2xl mx-auto">
-                Bem-vindo à Agência Lots. Ao acessar e utilizar nossos serviços, você concorda com os termos e condições descritos abaixo. Leia atentamente antes de prosseguir.
-              </p>
-            </div>
-
-            {/* Content Sections */}
-            <div className="space-y-8 animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-              
-              <section className="glass-effect p-8 md:p-10">
-                <h2 className="text-2xl font-semibold mb-4 text-white glass-text-shadow">1. Uso do Serviço</h2>
-                <div className="space-y-4 text-gray-100 glass-text-shadow leading-relaxed">
-                  <p>
-                    Nossos serviços destinam-se a empresas e empreendedores que buscam otimizar suas operações de marketing digital, tráfego pago e estruturação de funis de vendas.
-                  </p>
-                  <p>
-                    Ao contratar a Agência Lots, você concorda em fornecer informações precisas, atualizadas e completas sobre o seu negócio para que possamos executar as estratégias propostas de forma eficaz.
-                  </p>
-                </div>
-              </section>
-
-              <section className="glass-effect p-8 md:p-10">
-                <h2 className="text-2xl font-semibold mb-4 text-white glass-text-shadow">2. Responsabilidades do Usuário</h2>
-                <div className="space-y-4 text-gray-100 glass-text-shadow leading-relaxed">
-                  <p>
-                    Como cliente ou usuário de nossos serviços, você é responsável por:
-                  </p>
-                  <ul className="list-disc pl-6 space-y-2">
-                    <li>Garantir que os produtos ou serviços promovidos estejam em conformidade com as leis locais e as políticas das plataformas de anúncios (Google Ads, Meta Ads, etc.).</li>
-                    <li>Fornecer os acessos necessários às contas de anúncios, gerenciadores de negócios e ferramentas de análise.</li>
-                    <li>Efetuar os pagamentos dos investimentos em mídia diretamente às plataformas de anúncios, bem como os honorários da agência conforme acordado em contrato.</li>
-                  </ul>
-                </div>
-              </section>
-
-              <section className="glass-effect p-8 md:p-10">
-                <h2 className="text-2xl font-semibold mb-4 text-white glass-text-shadow">3. Propriedade Intelectual</h2>
-                <div className="space-y-4 text-gray-100 glass-text-shadow leading-relaxed">
-                  <p>
-                    Todo o material estratégico, metodologias, relatórios e estruturas de funil desenvolvidos pela Agência Lots durante a prestação do serviço são de propriedade intelectual da agência, a menos que especificado o contrário em contrato.
-                  </p>
-                  <p>
-                    Os criativos, textos e ativos de marca fornecidos por você continuam sendo de sua propriedade exclusiva.
-                  </p>
-                </div>
-              </section>
-
-              <section className="glass-effect p-8 md:p-10">
-                <h2 className="text-2xl font-semibold mb-4 text-white glass-text-shadow">4. Limitação de Responsabilidade</h2>
-                <div className="space-y-4 text-gray-100 glass-text-shadow leading-relaxed">
-                  <p>
-                    Embora utilizemos metodologias validadas e baseadas em dados para maximizar o Retorno Sobre o Investimento (ROI), o marketing digital está sujeito a variáveis externas (mudanças de algoritmos, comportamento do mercado, etc.).
-                  </p>
-                  <p>
-                    A Agência Lots não garante resultados financeiros exatos ou lucros específicos, mas compromete-se a aplicar as melhores práticas do mercado para buscar a previsibilidade e a escala do seu negócio.
-                  </p>
-                </div>
-              </section>
-
-              <section className="glass-effect p-8 md:p-10">
-                <h2 className="text-2xl font-semibold mb-4 text-white glass-text-shadow">5. Rescisão</h2>
-                <div className="space-y-4 text-gray-100 glass-text-shadow leading-relaxed">
-                  <p>
-                    Trabalhamos com transparência e sem multas abusivas de fidelidade. Qualquer uma das partes pode solicitar a rescisão do contrato de prestação de serviços mediante aviso prévio, conforme os prazos estipulados no acordo comercial firmado entre as partes.
-                  </p>
-                </div>
-              </section>
-
-              <section className="glass-effect p-8 md:p-10">
-                <h2 className="text-2xl font-semibold mb-4 text-white glass-text-shadow">6. Alterações nos Termos</h2>
-                <div className="space-y-4 text-gray-100 glass-text-shadow leading-relaxed">
-                  <p>
-                    Reservamo-nos o direito de modificar ou substituir estes Termos de Serviço a qualquer momento. Alterações significativas serão comunicadas através de nossos canais oficiais ou diretamente aos clientes ativos. O uso contínuo de nossos serviços após tais alterações constitui a aceitação dos novos termos.
-                  </p>
-                </div>
-              </section>
-
-              <section className="glass-effect p-8 md:p-10">
-                <h2 className="text-2xl font-semibold mb-4 text-white glass-text-shadow">7. Informações de Contato</h2>
-                <div className="space-y-4 text-gray-100 glass-text-shadow leading-relaxed">
-                  <p>
-                    Se você tiver alguma dúvida sobre estes Termos de Serviço, entre em contato conosco:
-                  </p>
-                  <ul className="space-y-2 mt-4">
-                    <li><strong>Email:</strong> contato@agencia.lots</li>
-                    <li><strong>WhatsApp:</strong> +55 (11) 97329-0438</li>
-                  </ul>
-                </div>
-              </section>
-
-            </div>
+      <div className="dark min-h-screen bg-background text-foreground py-12 md:py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+          <div className="mb-8">
+            <Button asChild variant="ghost" className="mb-6 -ml-4 text-muted-foreground hover:text-foreground">
+              <Link to="/">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Voltar para o início
+              </Link>
+            </Button>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
+              Termos de Serviço
+            </h1>
+            <p className="text-muted-foreground">
+              Última atualização: 7 de agosto de 2026
+            </p>
           </div>
-        </main>
 
-        <Footer />
+          <div className="prose prose-invert prose-lg max-w-none space-y-10">
+            <section>
+              <h2 className="text-2xl font-semibold mb-4 text-foreground">1. Uso do serviço</h2>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                Nossos serviços destinam-se a empresas e profissionais que buscam estruturar e operar marketing
+                digital, tráfego pago e funis de vendas. Ao usar o site ou contratar a Agência Lots, você concorda
+                com estes termos.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-4 text-foreground">2. Responsabilidades do usuário</h2>
+              <ul className="list-disc pl-6 text-muted-foreground space-y-2">
+                <li>
+                  Garantir que produtos e serviços promovidos estejam em conformidade com a lei e com as políticas
+                  das plataformas (Google Ads, Meta Ads etc.).
+                </li>
+                <li>Fornecer acessos e informações necessárias à execução do trabalho.</li>
+                <li>
+                  Pagar o investimento de mídia diretamente às plataformas e os honorários da agência conforme
+                  acordo comercial.
+                </li>
+              </ul>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-4 text-foreground">3. Propriedade intelectual</h2>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                Metodologias, estruturas e materiais estratégicos desenvolvidos pela Agência Lots permanecem de
+                nossa propriedade intelectual, salvo disposição contratual em contrário. Criativos e ativos de marca
+                fornecidos por você continuam seus.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-4 text-foreground">4. Limitação de responsabilidade</h2>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                Marketing digital depende de variáveis externas. Não garantimos resultados financeiros específicos.
+                Comprometemo-nos a aplicar boas práticas para buscar previsibilidade e escala.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-4 text-foreground">5. Rescisão</h2>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                A rescisão segue o aviso prévio e condições do acordo comercial firmado entre as partes.
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-4 text-foreground">6. Privacidade</h2>
+              <p className="text-muted-foreground leading-relaxed mb-4">
+                O tratamento de dados pessoais segue nossa{' '}
+                <Link to="/privacy-policy" className="text-primary hover:underline">
+                  Política de Privacidade
+                </Link>
+                .
+              </p>
+            </section>
+
+            <section>
+              <h2 className="text-2xl font-semibold mb-4 text-foreground">7. Contato</h2>
+              <ul className="text-muted-foreground space-y-2">
+                <li>
+                  <strong className="text-foreground">E-mail:</strong> contato@agencia.lots
+                </li>
+                <li>
+                  <strong className="text-foreground">WhatsApp:</strong> +55 (11) 97329-0438
+                </li>
+                <li>
+                  <strong className="text-foreground">CNPJ:</strong> 65.225.964/0001-83
+                </li>
+              </ul>
+            </section>
+          </div>
+        </div>
       </div>
     </>
   );
