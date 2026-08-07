@@ -2,13 +2,33 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils.js';
 import { MessageCircle } from 'lucide-react';
+import { ORCAMENTO_PATH } from '@/lib/orcamentoConversion.js';
 
-export const ORCAMENTO_PATH = '/orcamento';
+export { ORCAMENTO_PATH, ORCAMENTO_OBRIGADO_PATH } from '@/lib/orcamentoConversion.js';
+export {
+  saveOrcamentoConversion,
+  readOrcamentoConversion,
+  clearOrcamentoConversion,
+} from '@/lib/orcamentoConversion.js';
 
-/** Navega para a página dedicada de orçamento / briefing. */
-export function goToOrcamento(navigate) {
+/**
+ * Navega para a página dedicada de orçamento / briefing.
+ * @param {Function} navigate - react-router navigate
+ * @param {{ returnToId?: string | null, returnScrollY?: number | null }} [options]
+ */
+export function goToOrcamento(navigate, options = {}) {
+  const state = {
+    returnToId: options.returnToId || null,
+    returnScrollY:
+      typeof options.returnScrollY === 'number'
+        ? options.returnScrollY
+        : typeof window !== 'undefined'
+          ? window.scrollY
+          : 0,
+  };
+
   if (typeof navigate === 'function') {
-    navigate(ORCAMENTO_PATH);
+    navigate(ORCAMENTO_PATH, { state });
     return;
   }
   window.location.assign(ORCAMENTO_PATH);
@@ -26,11 +46,25 @@ export function PlanosCtaButton({
 }) {
   const navigate = useNavigate();
 
+  const handleClick = (event) => {
+    const button = event.currentTarget;
+    const returnToId =
+      id ||
+      button.id ||
+      button.closest('section[id], [id^="cta-"]')?.id ||
+      null;
+
+    goToOrcamento(navigate, {
+      returnToId,
+      returnScrollY: window.scrollY,
+    });
+  };
+
   return (
     <button
       type="button"
       id={id}
-      onClick={() => goToOrcamento(navigate)}
+      onClick={handleClick}
       className={cn(
         'inline-flex items-center justify-center gap-2 bg-green-800 hover:bg-green-700 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-green-800/30 active:scale-[0.98]',
         className,

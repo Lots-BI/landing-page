@@ -2,9 +2,10 @@
  * GTM / Google Ads — lead conversion helpers.
  *
  * GTM setup (recomendado):
- * 1. Acionador → Evento personalizado → Nome do evento: lead_form_submit
+ * 1. Acionador → Página visualizada → Página contém: /orcamento/obrigado
  * 2. Tag Google Ads Conversion → esse acionador
- * 3. (Opcional) Acionador Visibilidade de elemento → CSS: #conversion-thank-you
+ * 3. (Opcional) Evento personalizado → Nome do evento: lead_form_submit
+ * 4. (Opcional) Visibilidade de elemento → CSS: #conversion-thank-you
  *
  * Variáveis de camada de dados úteis: form_id, form_name
  */

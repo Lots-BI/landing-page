@@ -1,4 +1,5 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import SEO from '@/components/SEO.jsx';
 import { useEditableContent } from '@/contexts/EditableContent.jsx';
 import { useUTMs } from '@/hooks/useUTMs.js';
@@ -41,9 +42,62 @@ function LazyBlock({ children, height = 400, id }) {
 
 export default function HomePage() {
   const { content } = useEditableContent();
+  const location = useLocation();
+  const navigate = useNavigate();
   useUTMs();
 
   const CTA_BTN_CLASSES = "text-lg px-10 py-5 shadow-[0_0_30px_hsla(142,71%,25%,0.35)] hover:shadow-[0_0_40px_hsla(142,71%,25%,0.5)]";
+
+  // Restore the CTA viewport after returning from /orcamento
+  useEffect(() => {
+    const returnToId = location.state?.returnToId;
+    const returnScrollY = location.state?.returnScrollY;
+    if (!returnToId && typeof returnScrollY !== 'number') return;
+
+    let cancelled = false;
+    let attempts = 0;
+
+    const clearReturnState = () => {
+      navigate('.', { replace: true, state: {} });
+    };
+
+    const restore = () => {
+      if (cancelled) return true;
+
+      if (returnToId) {
+        const el = document.getElementById(returnToId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'instant', block: 'center' });
+          clearReturnState();
+          return true;
+        }
+      }
+
+      if (typeof returnScrollY === 'number') {
+        window.scrollTo({ top: returnScrollY, left: 0, behavior: 'instant' });
+      }
+
+      attempts += 1;
+      if (attempts >= 8) {
+        clearReturnState();
+        return true;
+      }
+      return false;
+    };
+
+    if (restore()) return undefined;
+
+    const timers = [50, 150, 350, 700, 1200, 2000, 3200].map((ms) =>
+      window.setTimeout(() => {
+        if (!restore() && ms === 3200) clearReturnState();
+      }, ms),
+    );
+
+    return () => {
+      cancelled = true;
+      timers.forEach((id) => window.clearTimeout(id));
+    };
+  }, [location.state, navigate]);
 
   return (
     <div className="min-h-screen relative bg-transparent">
@@ -89,7 +143,7 @@ export default function HomePage() {
 
       <LazyBlock height={160}>
         <CTAContainer id="cta-whatsapp-servicos">
-          <PlanosCtaButton className={CTA_BTN_CLASSES}>
+          <PlanosCtaButton id="cta-btn-servicos" className={CTA_BTN_CLASSES}>
             Falar com a Lots
           </PlanosCtaButton>
         </CTAContainer>
@@ -101,7 +155,7 @@ export default function HomePage() {
 
       <LazyBlock height={160}>
         <CTAContainer id="cta-whatsapp-conteudo">
-          <PlanosCtaButton className={CTA_BTN_CLASSES}>
+          <PlanosCtaButton id="cta-btn-conteudo" className={CTA_BTN_CLASSES}>
             Quero conteúdo que vende
           </PlanosCtaButton>
         </CTAContainer>
@@ -121,7 +175,7 @@ export default function HomePage() {
 
       <LazyBlock height={160}>
         <CTAContainer id="cta-whatsapp-roadmap">
-          <PlanosCtaButton className={CTA_BTN_CLASSES}>
+          <PlanosCtaButton id="cta-btn-roadmap" className={CTA_BTN_CLASSES}>
             Começar meu projeto
           </PlanosCtaButton>
         </CTAContainer>

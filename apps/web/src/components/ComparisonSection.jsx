@@ -79,7 +79,10 @@ export function ComparisonSection() {
               Se o que você lê à esquerda parece familiar, o problema não é “falta de esforço” —
               é falta de sistema.
             </p>
-            <PlanosCtaButton className="text-base md:text-lg px-8 md:px-10 py-4 shadow-[0_0_30px_hsla(142,71%,25%,0.35)] hover:shadow-[0_0_40px_hsla(142,71%,25%,0.5)]">
+            <PlanosCtaButton
+              id="cta-btn-comparacao"
+              className="text-base md:text-lg px-8 md:px-10 py-4 shadow-[0_0_30px_hsla(142,71%,25%,0.35)] hover:shadow-[0_0_40px_hsla(142,71%,25%,0.5)]"
+            >
               Quero a operação Lots
             </PlanosCtaButton>
           </AnimatedSection>

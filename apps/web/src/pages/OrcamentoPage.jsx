@@ -1,13 +1,32 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import SEO from '@/components/SEO.jsx';
 import { LotsBIWordmark } from '@/components/LotsBIWordmark.jsx';
 import ServicesPricing from '@/components/ServicesPricing.jsx';
 import { useUTMs } from '@/hooks/useUTMs.js';
 
+function buildHomeReturnState(locationState) {
+  const returnToId = locationState?.returnToId || null;
+  const returnScrollY =
+    typeof locationState?.returnScrollY === 'number'
+      ? locationState.returnScrollY
+      : null;
+
+  if (!returnToId && returnScrollY == null) return undefined;
+  return { returnToId, returnScrollY };
+}
+
 export default function OrcamentoPage() {
   useUTMs();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const homeState = buildHomeReturnState(location.state);
+
+  const goHome = (event) => {
+    event.preventDefault();
+    navigate('/', { state: homeState });
+  };
 
   return (
     <div className="min-h-screen relative bg-transparent">
@@ -22,6 +41,8 @@ export default function OrcamentoPage() {
           <div className="flex items-center justify-between gap-4 mb-6 md:mb-8">
             <Link
               to="/"
+              state={homeState}
+              onClick={goHome}
               className="inline-flex items-center gap-2 rounded-xl border border-border/80 bg-background/40 px-3.5 py-2 text-sm font-medium text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
             >
               <ArrowLeft className="w-4 h-4 shrink-0" aria-hidden="true" />
@@ -32,6 +53,8 @@ export default function OrcamentoPage() {
           <div className="flex flex-col items-center gap-3 text-center">
             <Link
               to="/"
+              state={homeState}
+              onClick={goHome}
               className="inline-flex touch-target"
               aria-label="Voltar para a página inicial"
             >

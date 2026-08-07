@@ -12,14 +12,18 @@ import {
   ArrowLeft,
   ArrowRight,
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { AnimatedSection } from '@/components/AnimatedSection.jsx';
-import { ConversionThankYouDialog } from '@/components/ConversionThankYouDialog.jsx';
 import { ServiceSelectionCards } from './ServiceSelectionCards.jsx';
 import { useEditableContent } from '@/contexts/EditableContent.jsx';
 import { useUTMs } from '@/hooks/useUTMs.js';
 import { Input } from '@/components/ui/input.jsx';
 import { Textarea } from '@/components/ui/textarea.jsx';
 import { cn } from '@/lib/utils';
+import {
+  ORCAMENTO_OBRIGADO_PATH,
+  saveOrcamentoConversion,
+} from '@/lib/orcamentoConversion.js';
 
 const WHATSAPP_PHONE = '5511973290438';
 
@@ -157,6 +161,7 @@ const ServicesPricing = ({
 } = {}) => {
   const standalone = variant === 'standalone';
   const anchorId = sectionId || undefined;
+  const navigate = useNavigate();
   const { content } = useEditableContent();
   const { appendUtmsToMessage } = useUTMs();
   const s = content.serviceSelection || {};
@@ -168,8 +173,6 @@ const ServicesPricing = ({
   const [error, setError] = useState('');
   const [animKey, setAnimKey] = useState(0);
   const [isAdvancing, setIsAdvancing] = useState(false);
-  const [conversionOpen, setConversionOpen] = useState(false);
-  const [whatsappUrl, setWhatsappUrl] = useState('');
 
   const servicesList = useMemo(
     () => [
@@ -380,8 +383,12 @@ const ServicesPricing = ({
   const openWhatsApp = () => {
     const message = appendUtmsToMessage(buildWhatsAppMessage(selectedServices, form));
     const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
-    setWhatsappUrl(url);
-    setConversionOpen(true);
+
+    // Página de obrigado: URL rastreável no GTM; o WhatsApp abre depois do pageview.
+    saveOrcamentoConversion({ whatsappUrl: url, formId, formName });
+    navigate(ORCAMENTO_OBRIGADO_PATH, {
+      state: { whatsappUrl: url, formId, formName },
+    });
   };
 
   const openWhatsAppSkipForm = () => {
@@ -612,14 +619,6 @@ const ServicesPricing = ({
           </div>
         )}
       </div>
-
-      <ConversionThankYouDialog
-        open={conversionOpen}
-        onOpenChange={setConversionOpen}
-        formId={formId}
-        formName={formName}
-        whatsappUrl={whatsappUrl}
-      />
     </section>
   );
 };

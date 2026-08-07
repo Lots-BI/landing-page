@@ -86,7 +86,10 @@ export default function NossoMetodoSection() {
             Sem custo adicional de plataforma para o cliente. Sem curva de ferramenta complexa:
             basta autenticar e acompanhar a operação com a mesma clareza da equipe Lots.
           </p>
-          <PlanosCtaButton className="text-base md:text-lg px-8 md:px-10 py-4 shadow-[0_0_30px_hsla(142,71%,25%,0.35)] hover:shadow-[0_0_40px_hsla(142,71%,25%,0.5)]">
+          <PlanosCtaButton
+            id="cta-btn-metodo"
+            className="text-base md:text-lg px-8 md:px-10 py-4 shadow-[0_0_30px_hsla(142,71%,25%,0.35)] hover:shadow-[0_0_40px_hsla(142,71%,25%,0.5)]"
+          >
             Quero meu painel Lots BI
           </PlanosCtaButton>
         </AnimatedSection>

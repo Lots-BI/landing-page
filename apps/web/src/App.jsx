@@ -6,7 +6,7 @@ import ScrollToTop from './components/ScrollToTop.jsx';
 import Header from './components/Header.jsx';
 import { LightCosmicBackground } from './components/LightCosmicBackground.jsx';
 import HomePage from './pages/HomePage.jsx';
-import { ORCAMENTO_PATH } from './components/PlanosCtaButton.jsx';
+import { ORCAMENTO_PATH, ORCAMENTO_OBRIGADO_PATH } from './components/PlanosCtaButton.jsx';
 
 const ServicesPage = lazy(() => import('./pages/ServicesPage.jsx'));
 const PortfolioPage = lazy(() => import('./pages/PortfolioPage.jsx'));
@@ -15,6 +15,7 @@ const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy.jsx'));
 const TermsOfService = lazy(() => import('./pages/TermsOfService.jsx'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage.jsx'));
 const OrcamentoPage = lazy(() => import('./pages/OrcamentoPage.jsx'));
+const OrcamentoObrigadoPage = lazy(() => import('./pages/OrcamentoObrigadoPage.jsx'));
 const Footer = lazy(() => import('./components/Footer.jsx'));
 const CookieBanner = lazy(() => import('./components/CookieBanner.jsx'));
 
@@ -59,7 +60,8 @@ function DeferredChrome() {
 
 function AppShell() {
   const { pathname } = useLocation();
-  const isOrcamento = pathname === ORCAMENTO_PATH;
+  const isOrcamentoFlow =
+    pathname === ORCAMENTO_PATH || pathname === ORCAMENTO_OBRIGADO_PATH;
 
   return (
     <>
@@ -67,7 +69,7 @@ function AppShell() {
       <LightCosmicBackground />
 
       <div className="relative z-0 flex flex-col min-h-screen">
-        {!isOrcamento ? <Header /> : null}
+        {!isOrcamentoFlow ? <Header /> : null}
         <main className="flex-1">
           <Routes>
             {/* Home is eager — never wrap it in Suspense (avoids full-page "Carregando...") */}
@@ -77,6 +79,14 @@ function AppShell() {
               element={
                 <Suspense fallback={null}>
                   <OrcamentoPage />
+                </Suspense>
+              }
+            />
+            <Route
+              path={ORCAMENTO_OBRIGADO_PATH}
+              element={
+                <Suspense fallback={null}>
+                  <OrcamentoObrigadoPage />
                 </Suspense>
               }
             />
@@ -170,7 +180,7 @@ function AppShell() {
             />
           </Routes>
         </main>
-        {!isOrcamento ? <DeferredChrome /> : (
+        {!isOrcamentoFlow ? <DeferredChrome /> : (
           <Suspense fallback={null}>
             <CookieBanner />
           </Suspense>
