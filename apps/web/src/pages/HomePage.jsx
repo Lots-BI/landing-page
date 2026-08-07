@@ -27,9 +27,13 @@ const SectionFallback = () => (
   <div className="py-16" aria-hidden="true" />
 );
 
-function LazyBlock({ children, height = 400 }) {
+function LazyBlock({ children, height = 400, id }) {
   return (
-    <DeferredMount placeholderHeight={height}>
+    <DeferredMount
+      id={id}
+      placeholderHeight={height}
+      className={id ? 'scroll-mt-24 md:scroll-mt-28' : undefined}
+    >
       <Suspense fallback={<SectionFallback />}>{children}</Suspense>
     </DeferredMount>
   );
@@ -75,11 +79,11 @@ export default function HomePage() {
       </section>
 
       {/* Below-fold: one Suspense per block, only when near viewport */}
-      <LazyBlock height={520}>
-        <ServicesPricing />
+      <LazyBlock id="planos" height={520}>
+        <ServicesPricing sectionId={null} />
       </LazyBlock>
 
-      <LazyBlock>
+      <LazyBlock id="solucao-section">
         <EcosistemaSection />
       </LazyBlock>
 
@@ -111,7 +115,7 @@ export default function HomePage() {
         <ComparisonSection />
       </LazyBlock>
 
-      <LazyBlock>
+      <LazyBlock id="metodologia-section">
         <RoadmapSection />
       </LazyBlock>
 
@@ -131,7 +135,7 @@ export default function HomePage() {
         <ResultadosDiretosSection />
       </LazyBlock>
 
-      <LazyBlock height={560}>
+      <LazyBlock id="equipe" height={560}>
         <TeamSection />
       </LazyBlock>
 

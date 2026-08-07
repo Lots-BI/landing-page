@@ -17,7 +17,6 @@ export function RoadmapSection() {
 
   return (
     <section
-      id="metodologia-section"
       className="py-16 md:py-24 relative bg-transparent border-y border-border overflow-hidden"
     >
       <div className="container mx-auto px-4 md:px-6 relative z-10">

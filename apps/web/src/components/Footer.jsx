@@ -1,19 +1,20 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LotsBIWordmark } from './LotsBIWordmark.jsx';
 import { useEditableContent } from '@/contexts/EditableContent.jsx';
 import { BRAND_NAME } from '@/lib/brand';
-import { scrollToPlanos } from './PlanosCtaButton.jsx';
+import { goToOrcamento } from './PlanosCtaButton.jsx';
 
 const NAV = [
+  { nameKey: 'nav4', id: 'planos' },
   { nameKey: 'nav1', id: 'solucao-section' },
   { nameKey: 'nav2', id: 'metodologia-section' },
   { nameKey: 'nav3', id: 'equipe' },
-  { nameKey: 'nav4', id: 'planos' },
 ];
 
 export default function Footer() {
   const { content } = useEditableContent();
+  const navigate = useNavigate();
 
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -49,7 +50,7 @@ export default function Footer() {
               ))}
               <button
                 type="button"
-                onClick={scrollToPlanos}
+                onClick={() => goToOrcamento(navigate)}
                 className="hover:text-foreground transition-colors"
               >
                 Orçamento

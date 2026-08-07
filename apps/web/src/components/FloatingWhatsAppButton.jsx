@@ -1,12 +1,15 @@
 import React from 'react';
 import { MessageCircle } from 'lucide-react';
-import { scrollToPlanos } from './PlanosCtaButton.jsx';
+import { useNavigate } from 'react-router-dom';
+import { goToOrcamento } from './PlanosCtaButton.jsx';
 
 const FloatingWhatsAppButton = () => {
+  const navigate = useNavigate();
+
   return (
     <button
       type="button"
-      onClick={scrollToPlanos}
+      onClick={() => goToOrcamento(navigate)}
       aria-label="Ir para o formulário de orçamento"
       className="fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full bg-green-800 px-4 py-3 text-white shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl hover:bg-green-700 active:scale-95 md:bottom-8 md:right-8"
     >

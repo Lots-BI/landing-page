@@ -21,16 +21,18 @@ export default function Header() {
 
   const scrollTo = (id) => {
     setIsOpen(false);
-    const el = document.getElementById(id);
-    if (el) {
+    // rAF: sheet close / layout settle before measuring
+    requestAnimationFrame(() => {
+      const el = document.getElementById(id);
+      if (!el) return;
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    });
   };
 
   const navLinks = [
+    { name: content.navigation.nav4, id: 'planos' },
     { name: content.navigation.nav1, id: 'solucao-section' },
     { name: content.navigation.nav2, id: 'metodologia-section' },
-    { name: content.navigation.nav4, id: 'planos' },
     { name: content.navigation.nav3, id: 'equipe' },
   ];
 

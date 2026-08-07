@@ -1,16 +1,21 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { cn } from '@/lib/utils.js';
 import { MessageCircle } from 'lucide-react';
 
-export function scrollToPlanos() {
-  const el = document.getElementById('planos');
-  if (!el) return;
-  el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+export const ORCAMENTO_PATH = '/orcamento';
+
+/** Navega para a página dedicada de orçamento / briefing. */
+export function goToOrcamento(navigate) {
+  if (typeof navigate === 'function') {
+    navigate(ORCAMENTO_PATH);
+    return;
+  }
+  window.location.assign(ORCAMENTO_PATH);
 }
 
 /**
- * CTA de marketing: leva ao início do formulário
- * "Qual Atividade Está Buscando?" (#planos).
+ * CTA de marketing: abre a página de orçamento em etapas (/orcamento).
  */
 export function PlanosCtaButton({
   className,
@@ -19,11 +24,13 @@ export function PlanosCtaButton({
   id,
   ...props
 }) {
+  const navigate = useNavigate();
+
   return (
     <button
       type="button"
       id={id}
-      onClick={scrollToPlanos}
+      onClick={() => goToOrcamento(navigate)}
       className={cn(
         'inline-flex items-center justify-center gap-2 bg-green-800 hover:bg-green-700 text-white font-bold rounded-xl transition-all duration-300 shadow-lg hover:shadow-green-800/30 active:scale-[0.98]',
         className,

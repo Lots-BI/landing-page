@@ -2,8 +2,15 @@ import React, { useEffect, useRef, useState } from 'react';
 
 /**
  * Renders children only when near/in viewport — keeps below-fold JS off the LCP path.
+ * Optional `id` stays on the wrapper so header/footer anchors work before the section mounts.
  */
-export function DeferredMount({ children, rootMargin = '200px', placeholderHeight = 320 }) {
+export function DeferredMount({
+  children,
+  rootMargin = '200px',
+  placeholderHeight = 320,
+  id,
+  className,
+}) {
   const ref = useRef(null);
   const [show, setShow] = useState(false);
 
@@ -23,14 +30,14 @@ export function DeferredMount({ children, rootMargin = '200px', placeholderHeigh
           io.disconnect();
         }
       },
-      { rootMargin, threshold: 0.01 }
+      { rootMargin, threshold: 0.01 },
     );
     io.observe(el);
     return () => io.disconnect();
   }, [rootMargin]);
 
   return (
-    <div ref={ref}>
+    <div ref={ref} id={id} className={className}>
       {show ? children : <div style={{ minHeight: placeholderHeight }} aria-hidden="true" />}
     </div>
   );

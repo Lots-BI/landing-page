@@ -149,7 +149,14 @@ function ChoiceGrid({ options, value, onPick, columns = 1 }) {
   );
 }
 
-const ServicesPricing = () => {
+const ServicesPricing = ({
+  variant = 'embedded',
+  sectionId = 'planos',
+  formId = 'planos_quiz',
+  formName = 'Planos briefing completo',
+} = {}) => {
+  const standalone = variant === 'standalone';
+  const anchorId = sectionId || undefined;
   const { content } = useEditableContent();
   const { appendUtmsToMessage } = useUTMs();
   const s = content.serviceSelection || {};
@@ -300,10 +307,10 @@ const ServicesPricing = () => {
   const progress = phase === 'services' ? 8 : Math.round(((quizIndex + 1) / totalQuiz) * 100);
 
   useEffect(() => {
-    if (phase === 'quiz') {
-      document.getElementById('planos')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }, [phase, quizIndex]);
+    if (standalone || phase !== 'quiz') return;
+    const target = anchorId || 'planos';
+    document.getElementById(target)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [phase, quizIndex, anchorId, standalone]);
 
   const handleToggleService = (service) => {
     setSelectedServices((prev) => {
@@ -422,7 +429,15 @@ const ServicesPricing = () => {
       : currentStep?.hint || '';
 
   return (
-    <section id="planos" className="py-12 md:py-16 relative bg-transparent overflow-hidden scroll-mt-24 md:scroll-mt-28">
+    <section
+      id={anchorId}
+      className={cn(
+        'relative bg-transparent overflow-hidden',
+        standalone
+          ? 'py-6 md:py-10'
+          : 'py-12 md:py-16 scroll-mt-24 md:scroll-mt-28',
+      )}
+    >
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-[400px] bg-primary/10 blur-[120px] rounded-full pointer-events-none z-0" />
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8">
@@ -601,8 +616,8 @@ const ServicesPricing = () => {
       <ConversionThankYouDialog
         open={conversionOpen}
         onOpenChange={setConversionOpen}
-        formId="planos_quiz"
-        formName="Planos briefing completo"
+        formId={formId}
+        formName={formName}
         whatsappUrl={whatsappUrl}
       />
     </section>

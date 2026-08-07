@@ -27,7 +27,6 @@ export default function TeamSection() {
 
   return (
     <section
-      id="equipe"
       className="py-20 md:py-28 relative z-10 border-y border-border bg-transparent"
     >
       <div className="container mx-auto px-4 md:px-6 relative z-10">
