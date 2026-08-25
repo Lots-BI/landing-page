@@ -1,0 +1,1 @@
+function e({formId:n,formName:a}={}){typeof window>"u"||(window.dataLayer=window.dataLayer||[],window.dataLayer.push({event:"lead_form_submit",form_id:n||"unknown",form_name:a||n||"unknown"}))}export{e as t};
