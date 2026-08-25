@@ -1,5 +1,9 @@
 # Landing Page - Lots-BI
 
+DEPLOY VERCEL (Apenas commit push já realiza deploy)
+
+# Landing Page - Lots-BI
+
 Site em produção: **https://leandromajr.com**
 
 ## Pré-requisitos
