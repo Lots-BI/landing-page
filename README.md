@@ -140,7 +140,7 @@ Se o hash no ar for diferente do `dist` local, o `scp` não concluiu.
 |--------------|---------|
 | `/privacy-policy` | `/privacy`, `/privacypolicy` |
 | `/terms-of-service` | `/terms`, `/termsofservice` |
-| `/contato` | `/contact` |
+| `/contato` | `/contact` | `/apresentacao` |
 
 O `.htaccess` em `apps/web/public` (copiado no build) redireciona rotas da SPA para `index.html`.
 
