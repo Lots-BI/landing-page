@@ -1,6 +1,6 @@
 import React from 'react';
 import { AnimatedSection } from './AnimatedSection.jsx';
-import { PlanosCtaButton } from './PlanosCtaButton.jsx';
+import { FlowCtaButton } from './FlowCtaButton.jsx';
 import { useEditableContent } from '@/contexts/EditableContent.jsx';
 
 const MEMBERS = [
@@ -26,7 +26,7 @@ export default function TeamSection() {
 
   return (
     <section
-      className="py-20 md:py-28 relative z-10 border-y border-border bg-transparent"
+      className="relative z-10 border-t border-white/10 bg-transparent py-20 md:py-28"
     >
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <AnimatedSection className="max-w-2xl mx-auto text-center mb-14 md:mb-16">
@@ -84,12 +84,9 @@ export default function TeamSection() {
         ) : null}
 
         <AnimatedSection className="flex justify-center mt-12 md:mt-14">
-          <PlanosCtaButton
-            id="cta-btn-equipe"
-            className="text-base md:text-lg px-8 md:px-10 py-4 shadow-md hover:shadow-lg"
-          >
-            Quero estruturar meu marketing
-          </PlanosCtaButton>
+          <FlowCtaButton id="cta-btn-equipe">
+            Quero minha operação Lots
+          </FlowCtaButton>
         </AnimatedSection>
       </div>
     </section>

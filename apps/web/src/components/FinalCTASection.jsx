@@ -184,7 +184,7 @@ export default function FinalCTASection() {
             <button
               type="submit"
               id="cta-whatsapp-footer"
-              className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-green-800 hover:bg-green-700 text-white font-bold h-12 px-6 transition-all duration-300 shadow-lg hover:shadow-green-800/30 active:scale-[0.98]"
+              className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-brand-gradient px-6 font-bold text-white shadow-lg transition-all duration-300 hover:brightness-110 active:scale-[0.98]"
             >
               <MessageCircle className="w-5 h-5 shrink-0" aria-hidden="true" />
               {m.cta || 'Quero um orçamento'}

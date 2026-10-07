@@ -1,48 +1,47 @@
 import React from 'react';
 import { AnimatedSection } from './AnimatedSection.jsx';
-import { LotsBIIcon } from './LotsBIWordmark.jsx';
-import { PlanosCtaButton } from './PlanosCtaButton.jsx';
-import { LotsBIDashboardMock } from './LotsBIDashboardMock.jsx';
+import { FlowCtaButton } from './FlowCtaButton.jsx';
 
 export default function NossoMetodoSection() {
   return (
     <section
       id="nosso-metodo"
-      className="py-16 md:py-24 relative bg-transparent border-t border-border z-10 overflow-hidden"
+      className="relative z-10 overflow-hidden border-t border-white/10 py-16 md:py-24"
     >
-      <div className="container mx-auto px-4 md:px-6 relative z-10">
-        <AnimatedSection className="max-w-2xl mx-auto text-center mb-10 md:mb-14">
-          <div className="flex justify-center mb-4">
-            <LotsBIIcon size="lg" className="!h-10 !w-10" aria-hidden="true" />
-          </div>
-          <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground mb-3">
-            Lots BI · Conta do cliente
+      <div className="container relative z-10 mx-auto px-4 md:px-6">
+        <AnimatedSection className="mx-auto mb-8 max-w-2xl text-center md:mb-10">
+          <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+            Operação
           </p>
-          <h2 className="text-3xl md:text-5xl font-black text-foreground mb-5 font-display text-balance">
-            Dashboard automático —{' '}
-            <span className="text-primary">claro e sem custo extra</span>
+          <h2 className="mb-4 font-display text-3xl font-black text-foreground text-balance md:text-5xl">
+            Tráfego, redes e página no mesmo time.
           </h2>
-          <p className="text-base md:text-lg text-muted-foreground text-balance leading-relaxed">
-            Enquanto operamos mídia, conteúdo e dados, você entra no Lots BI e vê a operação
-            consolidada: métricas, estratégia e aprovações — em tempo real.
+          <p className="text-base leading-relaxed text-muted-foreground text-balance md:text-lg">
+            Você contrata a gestão. A Lots BI entra junto, sem custo extra no contrato.
           </p>
         </AnimatedSection>
 
-        <AnimatedSection className="max-w-6xl mx-auto">
-          <LotsBIDashboardMock />
+        <AnimatedSection className="mx-auto max-w-6xl">
+          <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/40 shadow-lg">
+            <picture>
+              <source srcSet="/results/agencia-visao-geral.webp" type="image/webp" />
+              <img
+                src="/results/agencia-visao-geral.png"
+                alt="Visão geral do tráfego gerido pela Lots nos últimos 90 dias"
+                width={1024}
+                height={665}
+                loading="lazy"
+                decoding="async"
+                className="h-auto w-full"
+              />
+            </picture>
+          </div>
         </AnimatedSection>
 
-        <AnimatedSection className="max-w-2xl mx-auto mt-10 text-center">
-          <p className="text-sm text-muted-foreground/90 text-balance mb-8">
-            Sem custo adicional de plataforma para o cliente. Sem curva de ferramenta complexa:
-            basta autenticar e acompanhar a operação com a mesma clareza da equipe Lots.
-          </p>
-          <PlanosCtaButton
-            id="cta-btn-metodo"
-            className="text-base md:text-lg px-8 md:px-10 py-4 shadow-md hover:shadow-lg"
-          >
-            Quero meu painel Lots BI
-          </PlanosCtaButton>
+        <AnimatedSection className="mt-8 text-center">
+          <FlowCtaButton id="cta-btn-metodo">
+            Quero meu painel Lots
+          </FlowCtaButton>
         </AnimatedSection>
       </div>
     </section>

@@ -3,10 +3,11 @@ import { cn } from '@/lib/utils';
 import { BRAND_ASSETS, BRAND_NAME, BRAND_PRODUCT } from '@/lib/brand';
 
 const lockup = {
-  sm: { icon: 'h-6 w-6', lots: 'text-[13px]', bi: 'h-[13px]', gap: 'gap-1.5' },
-  md: { icon: 'h-7 w-7', lots: 'text-[15px]', bi: 'h-[15px]', gap: 'gap-2' },
-  lg: { icon: 'h-9 w-9', lots: 'text-[17px]', bi: 'h-[17px]', gap: 'gap-2.5' },
-  xl: { icon: 'h-11 w-11', lots: 'text-[22px]', bi: 'h-[22px]', gap: 'gap-2.5' },
+  sm: { icon: 'h-6 w-6', lots: 'text-[13px]', bi: 'h-[9px]', gap: 'gap-1.5' },
+  md: { icon: 'h-7 w-7', lots: 'text-[15px]', bi: 'h-[11px]', gap: 'gap-2' },
+  lg: { icon: 'h-9 w-9', lots: 'text-[17px]', bi: 'h-[12px]', gap: 'gap-2.5' },
+  xl: { icon: 'h-11 w-11', lots: 'text-[22px]', bi: 'h-[16px]', gap: 'gap-2.5' },
+  hero: { icon: 'h-60 w-[9.4rem]', lots: 'text-[40px]', bi: 'h-7', gap: 'gap-3' },
 };
 
 /** Símbolo Lots BI (pétala com gradiente roxo → azul). */
@@ -48,6 +49,7 @@ export function LotsBIWordmark({
   className,
   size = 'md',
   variant = 'composed',
+  layout = 'row',
 }) {
   const s = lockup[size];
   const [biFailed, setBiFailed] = useState(false);
@@ -81,40 +83,46 @@ export function LotsBIWordmark({
 
   return (
     <div
-      className={cn('flex items-center', s.gap, className)}
+      className={cn(
+        layout === 'stack' ? 'flex flex-col items-center gap-3' : 'flex items-center',
+        layout === 'row' && s.gap,
+        className,
+      )}
       aria-label={BRAND_NAME}
       role="img"
     >
       <LotsBIIcon size={size} />
-      <span
-        className={cn(
-          'font-display font-semibold leading-none tracking-[-0.02em]',
-          'text-[color:var(--lots-wordmark-text)]',
-          s.lots,
-        )}
-      >
-        Lots
-      </span>
-      <img
-        src={BRAND_ASSETS.logoBi}
-        alt=""
-        aria-hidden
-        referrerPolicy="no-referrer"
-        decoding="async"
-        className={cn('w-auto shrink-0 object-contain', s.bi, biFailed && 'hidden')}
-        onError={() => setBiFailed(true)}
-      />
-      {biFailed && (
+      <span className="inline-flex items-baseline gap-1.5">
         <span
           className={cn(
-            'font-display font-semibold leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#A855F7] to-[#60A5FA]',
+            'font-display font-semibold leading-none tracking-[-0.02em]',
+            'text-[color:var(--lots-wordmark-text)]',
             s.lots,
           )}
-          aria-hidden
         >
-          BI
+          Lots
         </span>
-      )}
+        <img
+          src={BRAND_ASSETS.logoBi}
+          alt=""
+          aria-hidden
+          referrerPolicy="no-referrer"
+          decoding="async"
+          className={cn('w-auto shrink-0 object-contain', s.bi, biFailed && 'hidden')}
+          onError={() => setBiFailed(true)}
+        />
+        {biFailed && (
+          <span
+            className={cn(
+              'font-display font-semibold leading-none tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#A855F7] to-[#60A5FA]',
+              s.lots,
+            )}
+            aria-hidden
+          >
+            BI
+          </span>
+        )}
+      </span>
     </div>
   );
 }

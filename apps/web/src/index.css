@@ -12,7 +12,12 @@
     --cosmic-purple: var(--lots-purple);
     --cosmic-lilac: var(--lots-lilac);
     --cosmic-overlay-opacity: 0.2;
+    --primary-500: #A855F7;
+    --secondary-400: #60A5FA;
     --lots-wordmark-text: #e4e0ec;
+    --mint-100: #E2EEEB;
+    --lilac-100: #DFCBE4;
+    --success: #22C55E;
 
     --background: var(--cosmic-black);
     --foreground: 0 0% 98%;
@@ -106,7 +111,7 @@
   }
 
   body {
-    font-family: 'Epilogue', ui-sans-serif, system-ui, sans-serif;
+    font-family: 'Epilogue Variable', ui-sans-serif, system-ui, sans-serif;
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     line-height: 1.5;
@@ -118,7 +123,7 @@
   }
 
   h1, h2, h3, h4, h5, h6, .font-display {
-    font-family: 'Urbanist', ui-sans-serif, system-ui, sans-serif;
+    font-family: 'Urbanist Variable', ui-sans-serif, system-ui, sans-serif;
   }
 
   /* Soft static wash — motion handled by LightCosmicBackground */
@@ -223,6 +228,10 @@
       @apply transition-all duration-300 hover:shadow-md hover:border-primary/30;
       will-change: box-shadow, border-color;
     }
+  }
+
+  .bg-brand-gradient {
+    background-image: linear-gradient(135deg, var(--primary-500) 0%, var(--secondary-400) 100%);
   }
 
   .rgb-gradient-text {
