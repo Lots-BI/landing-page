@@ -17,8 +17,9 @@ export const BRAND_COLORS = {
 
 export const BRAND_ASSETS = {
   logoFull: '/brand/lockup.png',
-  icon: '/brand/petala.png',
-  logoBi: '/brand/bi.png',
+  icon: '/brand/petala-120.webp',
+  iconLarge: '/brand/petala-320.webp',
+  logoBi: '/brand/bi.webp',
   logoLots: '/brand/lots.png',
   favicon: '/favicon.png',
   ogImage: 'https://lotsbi.leandromajr.com/og-image.png',

@@ -171,7 +171,8 @@ window.fetch = function(...args) {
 				contentType.includes('text/html') ||
 				contentType.includes('application/xhtml+xml');
 
-			if (!response.ok && !isDocumentResponse) {
+			// no-cors beacons (GTM/GA) resolve as opaque responses with ok === false
+			if (!response.ok && !isDocumentResponse && response.type !== 'opaque') {
 					const responseClone = response.clone();
 					const errorFromRes = await responseClone.text();
 					const requestUrl = response.url;
@@ -318,6 +319,10 @@ export default defineConfig({
 			'@': path.resolve(__dirname, './src'),
 		},
 	},
+	ssr: {
+		// CommonJS without named ESM exports; tools/build.mjs imports the SSR bundle in Node.
+		noExternal: ['react-helmet-async'],
+	},
 	build: {
 		target: 'es2020',
 		cssCodeSplit: true,
@@ -330,16 +335,8 @@ export default defineConfig({
 				'@babel/generator',
 				'@babel/types'
 			],
-			output: {
-				// Keep React + router in the same vendor graph.
-				// Aggressive react/router splitting caused TDZ: "Cannot access '$' before initialization"
-				manualChunks(id) {
-					if (!id.includes('node_modules')) return;
-					if (id.includes('framer-motion')) return 'motion';
-					if (id.includes('lucide-react')) return 'icons';
-					return undefined;
-				}
-			}
+			// No manualChunks: aggressive react/router splitting caused TDZ ("Cannot access '$' before initialization"),
+			// and forced vendor chunks become an extra request chain now that the entry loads after first paint.
 		}
 	}
 });

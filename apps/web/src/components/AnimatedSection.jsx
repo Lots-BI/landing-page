@@ -1,42 +1,69 @@
-import React from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import React, { useEffect, useRef, useState } from 'react';
 import { cn } from '@/lib/utils';
 
-export function AnimatedSection({ 
-  children, 
-  className, 
-  delay = 0, 
+const OFFSETS = {
+  up: 'translate3d(0, 30px, 0)',
+  down: 'translate3d(0, -30px, 0)',
+  left: 'translate3d(30px, 0, 0)',
+  right: 'translate3d(-30px, 0, 0)',
+  none: 'none',
+};
+
+function prefersReducedMotion() {
+  return typeof window !== 'undefined'
+    && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+}
+
+export function AnimatedSection({
+  children,
+  className,
+  delay = 0,
   direction = 'up',
   once = true,
   /** Skip fade/slide so LCP text is visible on first paint */
   immediate = false,
 }) {
-  const prefersReducedMotion = useReducedMotion();
-  const directions = {
-    up: { y: 30, x: 0 },
-    down: { y: -30, x: 0 },
-    left: { x: 30, y: 0 },
-    right: { x: -30, y: 0 },
-    none: { x: 0, y: 0 }
-  };
+  const ref = useRef(null);
+  const [skip] = useState(() => immediate || prefersReducedMotion());
+  const [visible, setVisible] = useState(skip);
 
-  if (immediate || prefersReducedMotion) {
+  useEffect(() => {
+    if (skip) return undefined;
+    const node = ref.current;
+    if (!node || typeof IntersectionObserver === 'undefined') {
+      setVisible(true);
+      return undefined;
+    }
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          if (once) observer.disconnect();
+        } else if (!once) {
+          setVisible(false);
+        }
+      },
+      { rootMargin: '-50px 0px' },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [skip, once]);
+
+  if (skip) {
     return <div className={cn(className)}>{children}</div>;
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0, ...directions[direction] }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once, margin: "-50px" }}
-      transition={{ 
-        duration: 0.6, 
-        delay: delay, 
-        ease: [0.21, 0.47, 0.32, 0.98] 
-      }}
+    <div
+      ref={ref}
       className={cn(className)}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'none' : OFFSETS[direction],
+        transition: `opacity 0.6s cubic-bezier(0.21, 0.47, 0.32, 0.98) ${delay}s, transform 0.6s cubic-bezier(0.21, 0.47, 0.32, 0.98) ${delay}s`,
+      }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

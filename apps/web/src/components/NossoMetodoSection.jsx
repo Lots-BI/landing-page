@@ -1,6 +1,9 @@
 import React from 'react';
 import { AnimatedSection } from './AnimatedSection.jsx';
 import { FlowCtaButton } from './FlowCtaButton.jsx';
+import { ZoomablePrint, printSources } from './ZoomablePrint.jsx';
+
+const PRINT = printSources('/results/agencia-visao-geral');
 
 export default function NossoMetodoSection() {
   return (
@@ -10,9 +13,6 @@ export default function NossoMetodoSection() {
     >
       <div className="container relative z-10 mx-auto px-4 md:px-6">
         <AnimatedSection className="mx-auto mb-8 max-w-2xl text-center md:mb-10">
-          <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-            Operação
-          </p>
           <h2 className="mb-4 font-display text-3xl font-black text-foreground text-balance md:text-5xl">
             Tráfego, redes e página no mesmo time.
           </h2>
@@ -23,18 +23,19 @@ export default function NossoMetodoSection() {
 
         <AnimatedSection className="mx-auto max-w-6xl">
           <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/40 shadow-lg">
-            <picture>
-              <source srcSet="/results/agencia-visao-geral.webp" type="image/webp" />
+            <ZoomablePrint src={PRINT.zoomSrc} alt="Visão geral do tráfego gerido pela Lots nos últimos 90 dias">
               <img
-                src="/results/agencia-visao-geral.png"
-                alt="Visão geral do tráfego gerido pela Lots nos últimos 90 dias"
-                width={1024}
-                height={665}
+                src={PRINT.src}
+                srcSet={PRINT.srcSet}
+                sizes="(min-width: 1200px) 1152px, 100vw"
+                alt=""
+                width={4000}
+                height={2600}
                 loading="lazy"
                 decoding="async"
                 className="h-auto w-full"
               />
-            </picture>
+            </ZoomablePrint>
           </div>
         </AnimatedSection>
 

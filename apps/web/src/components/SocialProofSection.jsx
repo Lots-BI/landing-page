@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Dialog, DialogContent } from '@/components/ui/dialog.jsx';
 import { FlowCtaButton } from '@/components/FlowCtaButton.jsx';
+import { ZoomablePrint, printSources } from '@/components/ZoomablePrint.jsx';
 
 const RAFA = {
   name: 'Rafa Teo Ferreira',
   subtitle: 'Corretor',
   text: 'O grande diferencial no meu caso é a estratégia que estamos aplicando, sempre que necessário reavaliamos e reimplementamos uma nova abordagem.',
-  image: '/testimonials/rafa-teo.png',
+  image: '/testimonials/rafa-teo.webp',
 };
 
 const PRINTS = {
@@ -14,8 +14,7 @@ const PRINTS = {
     name: 'Meta Ads',
     label: 'Meta Ads do Rafa Teo na Lots BI, últimos 90 dias',
     caption: 'Meta Ads · últimos 90 dias · na Lots BI',
-    src: '/results/rafa-meta-ads.webp',
-    fallback: '/results/rafa-meta-ads.png',
+    ...printSources('/results/rafa-meta-ads'),
     width: 4000,
     height: 2600,
   },
@@ -23,8 +22,7 @@ const PRINTS = {
     name: 'Instagram',
     label: 'Instagram do Rafa Teo na Lots BI, últimos 90 dias',
     caption: 'Instagram · últimos 90 dias · na Lots BI',
-    src: '/results/rafa-instagram.webp',
-    fallback: '/results/rafa-instagram.png',
+    ...printSources('/results/rafa-instagram'),
     width: 4000,
     height: 2600,
   },
@@ -32,14 +30,11 @@ const PRINTS = {
 
 export function SocialProofSection() {
   const [channel, setChannel] = useState('meta');
-  const [open, setOpen] = useState(false);
   const print = PRINTS[channel];
 
   return (
-    <section id="resultados" className="relative z-10 scroll-mt-24 border-t border-white/10 py-16 md:scroll-mt-28 md:py-24">
+    <section id="resultados" className="cv-auto relative z-10 scroll-mt-24 border-t border-white/10 py-16 md:scroll-mt-28 md:py-24">
       <div className="container mx-auto px-4 md:px-6">
-        <p className="mb-8 text-[11px] uppercase tracking-[0.22em] text-muted-foreground">Resultados</p>
-
         <figure className="max-w-3xl">
           <blockquote className="font-display text-2xl font-medium leading-snug text-foreground text-balance md:text-4xl">
             “{RAFA.text}”
@@ -78,38 +73,32 @@ export function SocialProofSection() {
           ))}
         </div>
 
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          className="mt-4 block w-full overflow-hidden rounded-2xl border border-white/10 bg-black/40 text-left shadow-lg"
-        >
-          <picture>
-            <source srcSet={print.src} type="image/webp" />
+        <div className="mt-4 overflow-hidden rounded-2xl border border-white/10 bg-black/40 shadow-lg">
+          <ZoomablePrint src={print.zoomSrc} alt={print.label}>
             <img
-              src={print.fallback}
-              alt={print.label}
+              src={print.src}
+              srcSet={print.srcSet}
+              sizes="(min-width: 1400px) 1352px, (min-width: 1280px) 1232px, 100vw"
+              alt=""
               width={print.width}
               height={print.height}
               loading="lazy"
               decoding="async"
               className="h-auto w-full"
             />
-          </picture>
-          <span className="block px-4 py-3 text-xs text-muted-foreground">
+          </ZoomablePrint>
+          <p className="px-4 py-3 text-xs text-muted-foreground">
             {print.caption}
-          </span>
-        </button>
+          </p>
+        </div>
 
-        <FlowCtaButton id="cta-btn-resultados" className="mt-8">
-          Quero resultados assim
-        </FlowCtaButton>
+        <div className="mt-8 flex justify-center">
+          <FlowCtaButton id="cta-btn-resultados">
+            Quero resultados assim
+          </FlowCtaButton>
+        </div>
       </div>
 
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="max-w-5xl bg-background p-3">
-          <img src={print.fallback} alt={print.label} className="h-auto w-full rounded-lg" />
-        </DialogContent>
-      </Dialog>
     </section>
   );
 }

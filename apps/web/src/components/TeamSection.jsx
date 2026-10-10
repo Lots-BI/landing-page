@@ -7,14 +7,14 @@ const MEMBERS = [
   {
     name: 'Leandro',
     roleKey: 'founder1Role',
-    image: '/team/leandro-majr.png',
+    image: '/team/leandro-majr.webp',
     imageAlt: 'Leandro',
     objectPosition: 'object-[center_40%]',
   },
   {
     name: 'Rafaela',
     roleKey: 'founder2Role',
-    image: '/team/rafaela.png',
+    image: '/team/rafaela.webp',
     imageAlt: 'Rafaela',
     objectPosition: 'object-[center_42%]',
   },
@@ -30,9 +30,6 @@ export default function TeamSection() {
     >
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <AnimatedSection className="max-w-2xl mx-auto text-center mb-14 md:mb-16">
-          <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground mb-4">
-            Equipe
-          </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-foreground font-display tracking-tight text-balance">
             {team.title}
           </h2>

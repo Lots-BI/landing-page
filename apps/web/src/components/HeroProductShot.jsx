@@ -1,3 +1,7 @@
+import { ZoomablePrint, printSources } from '@/components/ZoomablePrint.jsx';
+
+const PRINT = printSources('/lots-bi/hero-dashboards');
+
 export function HeroProductShot() {
   return (
     <div className="relative mx-auto w-full max-w-xl lg:max-w-none">
@@ -14,18 +18,19 @@ export function HeroProductShot() {
             lotsbi.leandromajr.com
           </span>
         </div>
-        <picture>
-          <source srcSet="/lots-bi/hero-dashboards.webp" type="image/webp" />
+        <ZoomablePrint src={PRINT.zoomSrc} alt="Dashboards da plataforma Lots BI">
           <img
-            src="/lots-bi/hero-dashboards.png"
-            alt="Dashboards da plataforma Lots BI"
-            width={1024}
-            height={563}
-            fetchPriority="high"
+            src={PRINT.src}
+            srcSet={PRINT.srcSet}
+            sizes="(min-width: 1024px) 640px, (min-width: 640px) 576px, 100vw"
+            alt=""
+            width={4002}
+            height={2201}
+            loading="lazy"
             decoding="async"
             className="h-auto w-full"
           />
-        </picture>
+        </ZoomablePrint>
       </div>
     </div>
   );

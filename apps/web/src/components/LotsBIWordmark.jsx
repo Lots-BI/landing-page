@@ -7,7 +7,8 @@ const lockup = {
   md: { icon: 'h-7 w-7', lots: 'text-[15px]', bi: 'h-[11px]', gap: 'gap-2' },
   lg: { icon: 'h-9 w-9', lots: 'text-[17px]', bi: 'h-[12px]', gap: 'gap-2.5' },
   xl: { icon: 'h-11 w-11', lots: 'text-[22px]', bi: 'h-[16px]', gap: 'gap-2.5' },
-  hero: { icon: 'h-60 w-[9.4rem]', lots: 'text-[40px]', bi: 'h-7', gap: 'gap-3' },
+  hero: { icon: 'h-36 w-[5.65rem]', lots: 'text-[40px]', bi: 'h-7', gap: 'gap-3' },
+  inline: { icon: 'h-6 w-6', lots: 'text-2xl font-black', bi: 'h-[0.72em]', gap: 'gap-1' },
 };
 
 /** Símbolo Lots BI (pétala com gradiente roxo → azul). */
@@ -29,9 +30,11 @@ export function LotsBIIcon({ className, size = 'md', ...props }) {
 
   return (
     <img
-      src={BRAND_ASSETS.icon}
+      src={size === 'hero' ? BRAND_ASSETS.iconLarge : BRAND_ASSETS.icon}
       alt=""
       aria-hidden
+      width={size === 'hero' ? 200 : 75}
+      height={size === 'hero' ? 320 : 120}
       referrerPolicy="no-referrer"
       decoding="async"
       className={cn('shrink-0 object-contain', lockup[size].icon, className)}
@@ -50,6 +53,8 @@ export function LotsBIWordmark({
   size = 'md',
   variant = 'composed',
   layout = 'row',
+  showIcon = true,
+  label = BRAND_NAME,
 }) {
   const s = lockup[size];
   const [biFailed, setBiFailed] = useState(false);
@@ -88,10 +93,10 @@ export function LotsBIWordmark({
         layout === 'row' && s.gap,
         className,
       )}
-      aria-label={BRAND_NAME}
+      aria-label={label}
       role="img"
     >
-      <LotsBIIcon size={size} />
+      {showIcon ? <LotsBIIcon size={size} /> : null}
       <span className="inline-flex items-baseline gap-1.5">
         <span
           className={cn(
@@ -106,6 +111,8 @@ export function LotsBIWordmark({
           src={BRAND_ASSETS.logoBi}
           alt=""
           aria-hidden
+          width={99}
+          height={96}
           referrerPolicy="no-referrer"
           decoding="async"
           className={cn('w-auto shrink-0 object-contain', s.bi, biFailed && 'hidden')}

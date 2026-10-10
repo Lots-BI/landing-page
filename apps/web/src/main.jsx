@@ -61,6 +61,14 @@ console.error = function(...args) {
   originalConsoleError.apply(console, args);
 };
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <App />
-);
+const container = document.getElementById('root');
+
+// tools/build.mjs prerenders "/" (src/entry-prerender.jsx); index.html empties #root on other routes.
+if (container.hasChildNodes()) {
+  // Transition lane lets React yield during hydration instead of one long main-thread task.
+  React.startTransition(() => {
+    ReactDOM.hydrateRoot(container, <App />);
+  });
+} else {
+  ReactDOM.createRoot(container).render(<App />);
+}

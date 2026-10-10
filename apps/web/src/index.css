@@ -272,6 +272,12 @@
   }
 }
 
+/* Below-the-form sections: skip layout/paint until near the viewport. Never use above #formulario (CTA scroll targets). */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
 @keyframes cosmicDrift {
   0% { transform: translate(0, 0) scale(1); }
   50% { transform: translate(-2%, 3%) scale(1.05); }

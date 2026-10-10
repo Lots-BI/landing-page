@@ -5,7 +5,7 @@ import { DeferredMount } from '@/components/DeferredMount.jsx';
 import { HeroProductShot } from '@/components/HeroProductShot.jsx';
 import { SalesLeadForm } from '@/components/SalesLeadForm.jsx';
 import { SocialProofSection } from '@/components/SocialProofSection.jsx';
-import { DownsellModal } from '@/components/DownsellModal.jsx';
+import { HeroSection } from '@/components/HeroSection.jsx';
 import { FlowCtaButton } from '@/components/FlowCtaButton.jsx';
 import { useUTMs } from '@/hooks/useUTMs.js';
 import { canShowDownsell } from '@/lib/downsellSession.js';
@@ -18,6 +18,8 @@ const EXIT_INTENT_COOLDOWN_MS = 30000;
 const ClientAreaSection = lazy(() => import('@/components/ClientAreaSection.jsx').then(module => ({ default: module.ClientAreaSection })));
 const NossoMetodoSection = lazy(() => import('@/components/NossoMetodoSection.jsx'));
 const TeamSection = lazy(() => import('@/components/TeamSection.jsx'));
+const loadDownsellModal = () => import('@/components/DownsellModal.jsx');
+const DownsellModal = lazy(() => loadDownsellModal().then(module => ({ default: module.DownsellModal })));
 
 const SectionFallback = () => (
   <div className="py-16" aria-hidden="true" />
@@ -68,13 +70,30 @@ export default function HomePage() {
   const location = useLocation();
   const navigate = useNavigate();
   const [downsellOpen, setDownsellOpen] = useState(false);
+  const [downsellMounted, setDownsellMounted] = useState(false);
   useUTMs();
 
   const lastClosedAtRef = useRef(0);
 
   const openDownsell = useCallback(() => {
     if (!canShowDownsell()) return;
+    setDownsellMounted(true);
     setDownsellOpen(true);
+  }, []);
+
+  useEffect(() => {
+    let idleId;
+    const timer = window.setTimeout(() => {
+      if ('requestIdleCallback' in window) {
+        idleId = window.requestIdleCallback(() => loadDownsellModal(), { timeout: 5000 });
+      } else {
+        loadDownsellModal();
+      }
+    }, 10000);
+    return () => {
+      window.clearTimeout(timer);
+      if (idleId != null) window.cancelIdleCallback?.(idleId);
+    };
   }, []);
 
   const handleDownsellOpenChange = useCallback((next) => {
@@ -209,35 +228,22 @@ export default function HomePage() {
         url="/"
       />
 
-      {/* Hero only — paints with the main bundle, never waits on lazy chunks */}
-      <section id="hero" className="relative z-10 flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden bg-transparent px-4 pb-16 pt-24 text-center">
-        <p className="mb-5 text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-          Atendemos um número limitado de clientes
-        </p>
-        <h1 className="max-w-5xl font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-foreground text-balance sm:text-6xl md:text-7xl lg:text-8xl">
-          Agência de Marketing <span className="rgb-gradient-text">digital</span>
-        </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground text-balance sm:text-lg md:text-2xl">
-          A Lots opera a mídia, as redes e a página. Você acompanha cada real no painel Lots BI.
-        </p>
-        <FlowCtaButton id="hero-cta" className="mt-10 text-lg px-10">
-          Quero minha operação Lots
-        </FlowCtaButton>
-      </section>
+      <HeroSection />
 
       <section id="plataforma" className="relative z-10 scroll-mt-24 border-t border-white/10 bg-white/[0.025] py-16 md:scroll-mt-28 md:py-24">
         <div className="container mx-auto grid items-center gap-10 px-4 md:px-6 lg:grid-cols-2 lg:gap-14">
-          <div className="max-w-xl">
-            <p className="mb-4 text-[11px] uppercase tracking-[0.22em] text-muted-foreground">A plataforma</p>
+          <div className="mx-auto max-w-xl text-center">
             <h2 className="mb-5 font-display text-4xl font-extrabold leading-[1.12] tracking-tight text-foreground text-balance sm:text-5xl">
               Seu marketing, com os números na mesa.
             </h2>
             <p className="mb-8 text-base leading-relaxed text-muted-foreground text-balance sm:text-lg">
               O gestor não manda um PDF no fim do mês. O painel Lots BI mostra investimento, conversas e custo por resultado.
             </p>
-            <FlowCtaButton id="plataforma-cta">
-              Quero meu painel Lots
-            </FlowCtaButton>
+            <div className="flex justify-center">
+              <FlowCtaButton id="plataforma-cta">
+                Quero meu painel Lots
+              </FlowCtaButton>
+            </div>
           </div>
           <HeroProductShot />
         </div>
@@ -246,7 +252,6 @@ export default function HomePage() {
       <section id="formulario" className="relative z-10 scroll-mt-24 border-t border-white/10 py-16 md:scroll-mt-28 md:py-24">
         <div className="container mx-auto grid items-start gap-10 px-4 md:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-stretch lg:gap-16">
           <div className="flex flex-col lg:h-full">
-            <p className="mb-4 text-[11px] uppercase tracking-[0.22em] text-muted-foreground">Benefícios</p>
             <ul className="flex flex-1 flex-col justify-between gap-4">
               {[
                 'Investimento, conversas e custo por resultado no mesmo painel.',
@@ -270,9 +275,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="oferta" className="relative z-10 scroll-mt-24 border-t border-white/10 bg-white/[0.025] py-16 md:py-24">
+      <section id="oferta" className="cv-auto relative z-10 scroll-mt-24 border-t border-white/10 bg-white/[0.025] py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
-          <p className="mb-8 text-center text-[11px] uppercase tracking-[0.22em] text-muted-foreground">Oferta</p>
           <div className="grid gap-4 md:grid-cols-2 md:gap-5">
             <article className="relative overflow-hidden rounded-3xl bg-brand-gradient p-px">
               <div className="flex h-full flex-col justify-between rounded-[23px] bg-background px-7 py-8 md:min-h-[320px] md:px-10 md:py-10">
@@ -323,7 +327,7 @@ export default function HomePage() {
         <NossoMetodoSection />
       </LazyBlock>
 
-      <section className="relative z-10 border-t border-white/10 bg-white/[0.025] py-16 md:py-24">
+      <section className="cv-auto relative z-10 border-t border-white/10 bg-white/[0.025] py-16 md:py-24">
         <div className="container mx-auto px-4 md:px-6">
           <div className="relative overflow-hidden rounded-3xl border border-white/10 px-6 py-14 text-center md:px-16 md:py-20">
             <div className="pointer-events-none absolute inset-0 bg-brand-gradient opacity-[0.12]" aria-hidden="true" />
@@ -351,7 +355,11 @@ export default function HomePage() {
       </LazyBlock>
 
       <MobileCtaBar />
-      <DownsellModal open={downsellOpen} onOpenChange={handleDownsellOpenChange} />
+      {downsellMounted ? (
+        <Suspense fallback={null}>
+          <DownsellModal open={downsellOpen} onOpenChange={handleDownsellOpenChange} />
+        </Suspense>
+      ) : null}
     </div>
   );
 }

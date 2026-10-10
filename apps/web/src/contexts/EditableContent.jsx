@@ -190,6 +190,7 @@ const EditableContentContext = createContext();
 
 export function EditableContentProvider({ children }) {
   const [content, setContent] = useState(() => {
+    if (typeof window === 'undefined') return defaultContent;
     const saved = localStorage.getItem('siteContent');
     if (saved) {
       try {

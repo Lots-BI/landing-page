@@ -58,7 +58,7 @@ function DeferredChrome() {
   );
 }
 
-function AppShell() {
+export function AppShell() {
   const { pathname } = useLocation();
   const isOrcamentoFlow =
     pathname === ORCAMENTO_PATH || pathname === ORCAMENTO_OBRIGADO_PATH;
@@ -190,15 +190,23 @@ function AppShell() {
   );
 }
 
-function App() {
+export function AppProviders({ children, helmetContext }) {
   return (
-    <HelmetProvider>
+    <HelmetProvider context={helmetContext}>
       <EditableContentProvider>
-        <Router>
-          <AppShell />
-        </Router>
+        {children}
       </EditableContentProvider>
     </HelmetProvider>
+  );
+}
+
+function App() {
+  return (
+    <AppProviders>
+      <Router>
+        <AppShell />
+      </Router>
+    </AppProviders>
   );
 }
 
