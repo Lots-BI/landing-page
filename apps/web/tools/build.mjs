@@ -82,7 +82,9 @@ async function prerenderHome() {
 	const entryTag = html.match(/<script type="module" crossorigin src="(\/assets\/index-[^"]+\.js)"><\/script>\s*/);
 	if (entryTag) {
 		html = html.replace(entryTag[0], '').replace(/<link rel="modulepreload"[^>]*>\s*/g, '');
+		// Other routes have an emptied #root, so no first paint would come; load immediately there.
 		const loader = `<script>(function(){var done=false;function go(){if(done)return;done=true;var s=document.createElement('script');s.type='module';s.crossOrigin='';s.src='${entryTag[1]}';document.body.appendChild(s);}
+if(location.pathname!=='/'){go();return;}
 try{new PerformanceObserver(function(list,obs){if(list.getEntriesByName('first-contentful-paint').length){obs.disconnect();setTimeout(go,0);}}).observe({type:'paint',buffered:true});}
 catch(e){requestAnimationFrame(function(){setTimeout(go,0);});}
 setTimeout(go,3000);})();</script>`;
