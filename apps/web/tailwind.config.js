@@ -17,10 +17,16 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ['"Epilogue"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        display: ['"Urbanist"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['"Epilogue Variable"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['"Urbanist Variable"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['"JetBrains Mono Variable"', 'ui-monospace', 'monospace'],
       },
       colors: {
+        mint: '#E2EEEB',
+        lilac: '#DFCBE4',
+        success: '#22C55E',
+        'slate-brand': '#334155',
+        'lots-text': '#2C2E3B',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

@@ -6,9 +6,9 @@ import ScrollToTop from './components/ScrollToTop.jsx';
 import Header from './components/Header.jsx';
 import { LightCosmicBackground } from './components/LightCosmicBackground.jsx';
 import HomePage from './pages/HomePage.jsx';
-import ProspeccaoPage from './pages/ProspeccaoPage.jsx';
 import { ORCAMENTO_PATH, ORCAMENTO_OBRIGADO_PATH } from './components/PlanosCtaButton.jsx';
 
+const ProspeccaoPage = lazy(() => import('./pages/ProspeccaoPage.jsx'));
 const ServicesPage = lazy(() => import('./pages/ServicesPage.jsx'));
 const PortfolioPage = lazy(() => import('./pages/PortfolioPage.jsx'));
 const ContactPage = lazy(() => import('./pages/ContactPage.jsx'));
@@ -59,7 +59,7 @@ function DeferredChrome() {
   );
 }
 
-function AppShell() {
+export function AppShell() {
   const { pathname } = useLocation();
   const isOrcamentoFlow =
     pathname === ORCAMENTO_PATH || pathname === ORCAMENTO_OBRIGADO_PATH;
@@ -76,7 +76,14 @@ function AppShell() {
           <Routes>
             {/* Home is eager — never wrap it in Suspense (avoids full-page "Carregando...") */}
             <Route path="/" element={<HomePage />} />
-            <Route path="/apresentacao" element={<ProspeccaoPage />} />
+            <Route
+              path="/apresentacao"
+              element={
+                <Suspense fallback={null}>
+                  <ProspeccaoPage />
+                </Suspense>
+              }
+            />
             <Route
               path={ORCAMENTO_PATH}
               element={
@@ -193,15 +200,23 @@ function AppShell() {
   );
 }
 
-function App() {
+export function AppProviders({ children, helmetContext }) {
   return (
-    <HelmetProvider>
+    <HelmetProvider context={helmetContext}>
       <EditableContentProvider>
-        <Router>
-          <AppShell />
-        </Router>
+        {children}
       </EditableContentProvider>
     </HelmetProvider>
+  );
+}
+
+function App() {
+  return (
+    <AppProviders>
+      <Router>
+        <AppShell />
+      </Router>
+    </AppProviders>
   );
 }
 

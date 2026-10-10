@@ -92,7 +92,7 @@ const CookieBanner = () => {
           </Button>
           <Button 
             onClick={handleAccept} 
-            className="w-full sm:w-auto bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg hover:shadow-xl transition-all active:scale-[0.98] text-xs sm:text-sm h-9 sm:h-10"
+            className="w-full sm:w-auto bg-purple-700 text-white hover:bg-purple-600 shadow-lg hover:shadow-xl transition-all active:scale-[0.98] text-xs sm:text-sm h-9 sm:h-10"
           >
             Aceitar Tudo
           </Button>

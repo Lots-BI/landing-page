@@ -1,20 +1,20 @@
 import React from 'react';
 import { AnimatedSection } from './AnimatedSection.jsx';
-import { PlanosCtaButton } from './PlanosCtaButton.jsx';
+import { FlowCtaButton } from './FlowCtaButton.jsx';
 import { useEditableContent } from '@/contexts/EditableContent.jsx';
 
 const MEMBERS = [
   {
     name: 'Leandro',
     roleKey: 'founder1Role',
-    image: '/team/leandro-majr.png',
+    image: '/team/leandro-majr.webp',
     imageAlt: 'Leandro',
     objectPosition: 'object-[center_40%]',
   },
   {
     name: 'Rafaela',
     roleKey: 'founder2Role',
-    image: '/team/rafaela.png',
+    image: '/team/rafaela.webp',
     imageAlt: 'Rafaela',
     objectPosition: 'object-[center_42%]',
   },
@@ -26,13 +26,10 @@ export default function TeamSection() {
 
   return (
     <section
-      className="py-20 md:py-28 relative z-10 border-y border-border bg-transparent"
+      className="relative z-10 border-t border-white/10 bg-transparent py-20 md:py-28"
     >
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <AnimatedSection className="max-w-2xl mx-auto text-center mb-14 md:mb-16">
-          <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground mb-4">
-            Equipe
-          </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-foreground font-display tracking-tight text-balance">
             {team.title}
           </h2>
@@ -84,12 +81,9 @@ export default function TeamSection() {
         ) : null}
 
         <AnimatedSection className="flex justify-center mt-12 md:mt-14">
-          <PlanosCtaButton
-            id="cta-btn-equipe"
-            className="text-base md:text-lg px-8 md:px-10 py-4 shadow-md hover:shadow-lg"
-          >
-            Quero estruturar meu marketing
-          </PlanosCtaButton>
+          <FlowCtaButton id="cta-btn-equipe">
+            Quero minha operação Lots
+          </FlowCtaButton>
         </AnimatedSection>
       </div>
     </section>

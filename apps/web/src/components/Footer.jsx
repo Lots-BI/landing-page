@@ -1,20 +1,19 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { LotsBIWordmark } from './LotsBIWordmark.jsx';
 import { useEditableContent } from '@/contexts/EditableContent.jsx';
 import { BRAND_NAME } from '@/lib/brand';
-import { goToOrcamento } from './PlanosCtaButton.jsx';
+import { scrollToFormulario } from './FlowCtaButton.jsx';
 
 const NAV = [
-  { nameKey: 'nav4', id: 'planos' },
-  { nameKey: 'nav1', id: 'solucao-section' },
-  { nameKey: 'nav2', id: 'metodologia-section' },
-  { nameKey: 'nav3', id: 'equipe' },
+  { name: 'Plataforma', id: 'plataforma' },
+  { name: 'Benefícios', id: 'formulario' },
+  { name: 'Resultados', id: 'resultados' },
+  { name: 'Equipe', id: 'equipe' },
 ];
 
 export default function Footer() {
   const { content } = useEditableContent();
-  const navigate = useNavigate();
 
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -45,15 +44,15 @@ export default function Footer() {
                   onClick={() => scrollTo(item.id)}
                   className="hover:text-foreground transition-colors"
                 >
-                  {content.navigation[item.nameKey]}
+                  {item.name}
                 </button>
               ))}
               <button
                 type="button"
-                onClick={() => goToOrcamento(navigate)}
+                onClick={scrollToFormulario}
                 className="hover:text-foreground transition-colors"
               >
-                Orçamento
+                Falar com a Lots
               </button>
             </nav>
           </div>
