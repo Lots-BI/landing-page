@@ -100,9 +100,16 @@ export default async function handler(req, res) {
 
   let body;
   try {
-    body = typeof req.body === 'object' && req.body != null
-      ? req.body
-      : await readBody(req);
+    if (typeof req.body === 'string') {
+      body = req.body ? JSON.parse(req.body) : {};
+    } else if (Buffer.isBuffer(req.body)) {
+      const raw = req.body.toString('utf8');
+      body = raw ? JSON.parse(raw) : {};
+    } else if (typeof req.body === 'object' && req.body != null) {
+      body = req.body;
+    } else {
+      body = await readBody(req);
+    }
   } catch {
     json(res, 400, { ok: false, error: 'JSON inválido.' });
     return;
