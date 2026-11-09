@@ -1,7 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /adm
-Disallow: /adm/
 
 User-agent: AdsBot-Google
 Allow: /

@@ -1,106 +1,51 @@
 /**
- * Leads da landing → tabela `forms` no Supabase (Lots BI).
- * Frontend usa apenas a anon key + RLS (INSERT). Leitura admin só via sessão opaca.
+ * Client → POST /api/lead (server da landing) → CRM Lots BI.
+ * Sem chave Supabase e sem token no browser.
  */
 
-function getSupabaseConfig() {
-  const url = import.meta.env.VITE_SUPABASE_URL;
-  const key = import.meta.env.VITE_SUPABASE_ANON_KEY;
-  if (!url || !key) {
-    throw new Error('Supabase não configurado (VITE_SUPABASE_URL / VITE_SUPABASE_ANON_KEY).');
+function readStoredUtms() {
+  try {
+    const raw = localStorage.getItem('utm_data');
+    return raw ? JSON.parse(raw) : {};
+  } catch {
+    return {};
   }
-  return { url, key };
 }
 
-function supabaseHeaders(key, extra = {}) {
-  return {
-    apikey: key,
-    Authorization: `Bearer ${key}`,
-    'Content-Type': 'application/json',
-    ...extra,
-  };
-}
+export async function saveLandingLead({ nome, email, instagram, telefone, mensagem }) {
+  const utms = readStoredUtms();
 
-async function readErrorMessage(response, fallback) {
-  const detail = await response.text().catch(() => '');
-  if (/too_many_attempts/i.test(detail)) {
-    return 'Muitas tentativas. Aguarde alguns minutos e tente de novo.';
-  }
-  if (response.status === 401 || /unauthorized|42501/i.test(detail)) {
-    return 'Não autorizado.';
-  }
-  return fallback;
-}
-
-/** Grava lead público. Não lança detalhes internos. */
-export async function saveLandingLead({ nome, email, instagram }) {
-  const { url, key } = getSupabaseConfig();
-
-  const response = await fetch(`${url}/rest/v1/forms`, {
+  const response = await fetch('/api/lead', {
     method: 'POST',
-    headers: supabaseHeaders(key, { Prefer: 'return=minimal' }),
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
     body: JSON.stringify({
       nome,
       email,
       instagram,
-      source: 'landing',
-      page_url: typeof window !== 'undefined' ? window.location.href : null,
+      telefone,
+      mensagem,
+      page_url: typeof window !== 'undefined' ? window.location.href : undefined,
+      utm_source: utms.utm_source,
+      utm_campaign: utms.utm_campaign,
+      utm_medium: utms.utm_medium,
+      utm_content: utms.utm_content,
+      utm_term: utms.utm_term,
     }),
   });
 
-  if (!response.ok) {
-    throw new Error('Não foi possível enviar o formulário. Tente novamente.');
-  }
-}
-
-/** Login admin: valida senha no banco e devolve token opaco (a senha não é persistida no browser). */
-export async function adminLogin(password) {
-  const { url, key } = getSupabaseConfig();
-
-  const response = await fetch(`${url}/rest/v1/rpc/admin_login`, {
-    method: 'POST',
-    headers: supabaseHeaders(key),
-    body: JSON.stringify({ p_password: password }),
-  });
-
-  if (!response.ok) {
-    throw new Error(await readErrorMessage(response, 'Falha ao entrar.'));
-  }
-
-  const data = await response.json();
-  if (!data?.token) {
-    throw new Error('Resposta de login inválida.');
-  }
-  return data;
-}
-
-/** Lista envios com token de sessão (nunca com a senha). */
-export async function listFormsAsAdmin(token) {
-  const { url, key } = getSupabaseConfig();
-
-  const response = await fetch(`${url}/rest/v1/rpc/admin_list_forms`, {
-    method: 'POST',
-    headers: supabaseHeaders(key),
-    body: JSON.stringify({ p_token: token }),
-  });
-
-  if (!response.ok) {
-    throw new Error(await readErrorMessage(response, 'Falha ao carregar formulários.'));
-  }
-
-  return response.json();
-}
-
-export async function adminLogout(token) {
-  if (!token) return;
-  const { url, key } = getSupabaseConfig();
+  let data = null;
   try {
-    await fetch(`${url}/rest/v1/rpc/admin_logout`, {
-      method: 'POST',
-      headers: supabaseHeaders(key),
-      body: JSON.stringify({ p_token: token }),
-    });
+    data = await response.json();
   } catch {
-    // best-effort
+    data = null;
   }
+
+  if (!response.ok || !data?.ok) {
+    throw new Error(data?.error || 'Não foi possível enviar o formulário. Tente novamente.');
+  }
+
+  return data;
 }

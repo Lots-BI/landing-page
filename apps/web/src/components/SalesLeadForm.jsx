@@ -18,9 +18,13 @@ export function SalesLeadForm() {
   };
 
   const validate = () => {
-    if (!form.nome.trim()) return 'Informe seu nome';
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) return 'Informe um e-mail válido';
-    if (!form.instagram.trim()) return 'Informe seu Instagram';
+    const nome = form.nome.trim();
+    const email = form.email.trim();
+    const instagram = form.instagram.trim();
+
+    if (!nome) return 'Informe seu nome';
+    if (!email && !instagram) return 'Informe e-mail ou Instagram';
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return 'Informe um e-mail válido';
     return '';
   };
 
@@ -38,8 +42,8 @@ export function SalesLeadForm() {
     try {
       await saveLandingLead({
         nome: form.nome.trim(),
-        email: form.email.trim(),
-        instagram: form.instagram.trim(),
+        email: form.email.trim() || undefined,
+        instagram: form.instagram.trim() || undefined,
       });
       trackLeadFormSubmit({ formId: FORM_ID, formName: FORM_NAME });
       setDone(true);

@@ -305,6 +305,12 @@ export default defineConfig({
 			'.app-preview.com',
 			'.app-preview.io',
 		],
+		proxy: {
+			'/api': {
+				target: 'http://localhost:3001',
+				changeOrigin: true,
+			},
+		},
 		fs: {
 			strict: true,
 			allow: [
