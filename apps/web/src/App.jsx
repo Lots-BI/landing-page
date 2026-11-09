@@ -8,7 +8,6 @@ import { LightCosmicBackground } from './components/LightCosmicBackground.jsx';
 import HomePage from './pages/HomePage.jsx';
 import { ORCAMENTO_PATH, ORCAMENTO_OBRIGADO_PATH } from './components/PlanosCtaButton.jsx';
 
-const ProspeccaoPage = lazy(() => import('./pages/ProspeccaoPage.jsx'));
 const ServicesPage = lazy(() => import('./pages/ServicesPage.jsx'));
 const PortfolioPage = lazy(() => import('./pages/PortfolioPage.jsx'));
 const ContactPage = lazy(() => import('./pages/ContactPage.jsx'));
@@ -59,28 +58,31 @@ function DeferredChrome() {
   );
 }
 
+const AdmPage = lazy(() => import('./pages/AdmPage.jsx'));
+
 export function AppShell() {
   const { pathname } = useLocation();
   const isOrcamentoFlow =
     pathname === ORCAMENTO_PATH || pathname === ORCAMENTO_OBRIGADO_PATH;
-  const isProspectionFlow = pathname === '/apresentacao';
+  const isAdm = pathname === '/adm';
+  const hideChrome = isOrcamentoFlow || isAdm;
 
   return (
     <>
       <ScrollToTop />
-      {!isProspectionFlow ? <LightCosmicBackground /> : null}
+      <LightCosmicBackground />
 
       <div className="relative z-0 flex flex-col min-h-screen">
-        {!isOrcamentoFlow && !isProspectionFlow ? <Header /> : null}
+        {!hideChrome ? <Header /> : null}
         <main className="flex-1">
           <Routes>
             {/* Home is eager — never wrap it in Suspense (avoids full-page "Carregando...") */}
             <Route path="/" element={<HomePage />} />
             <Route
-              path="/apresentacao"
+              path="/adm"
               element={
                 <Suspense fallback={null}>
-                  <ProspeccaoPage />
+                  <AdmPage />
                 </Suspense>
               }
             />
@@ -190,10 +192,14 @@ export function AppShell() {
             />
           </Routes>
         </main>
-        {!isOrcamentoFlow && !isProspectionFlow ? <DeferredChrome /> : isProspectionFlow ? null : (
-          <Suspense fallback={null}>
-            <CookieBanner />
-          </Suspense>
+        {hideChrome ? (
+          isAdm ? null : (
+            <Suspense fallback={null}>
+              <CookieBanner />
+            </Suspense>
+          )
+        ) : (
+          <DeferredChrome />
         )}
       </div>
     </>
