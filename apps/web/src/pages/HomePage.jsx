@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useCallback, useEffect, useRef, useState } from 'react';
+import React, { Suspense, lazy, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import SEO from '@/components/SEO.jsx';
 import { DeferredMount } from '@/components/DeferredMount.jsx';
@@ -8,18 +8,10 @@ import { SocialProofSection } from '@/components/SocialProofSection.jsx';
 import { HeroSection } from '@/components/HeroSection.jsx';
 import { FlowCtaButton } from '@/components/FlowCtaButton.jsx';
 import { useUTMs } from '@/hooks/useUTMs.js';
-import { canShowDownsell } from '@/lib/downsellSession.js';
-
-const DOWNSELL_INTERVAL_MS = 90000;
-const DOWNSELL_RETRY_MS = 5000;
-const ABANDON_DELAY_MS = 10000;
-const EXIT_INTENT_COOLDOWN_MS = 30000;
 
 const ClientAreaSection = lazy(() => import('@/components/ClientAreaSection.jsx').then(module => ({ default: module.ClientAreaSection })));
 const NossoMetodoSection = lazy(() => import('@/components/NossoMetodoSection.jsx'));
 const TeamSection = lazy(() => import('@/components/TeamSection.jsx'));
-const loadDownsellModal = () => import('@/components/DownsellModal.jsx');
-const DownsellModal = lazy(() => loadDownsellModal().then(module => ({ default: module.DownsellModal })));
 
 const SectionFallback = () => (
   <div className="py-16" aria-hidden="true" />
@@ -69,105 +61,7 @@ function LazyBlock({ children, height = 400, id }) {
 export default function HomePage() {
   const location = useLocation();
   const navigate = useNavigate();
-  const [downsellOpen, setDownsellOpen] = useState(false);
-  const [downsellMounted, setDownsellMounted] = useState(false);
   useUTMs();
-
-  const lastClosedAtRef = useRef(0);
-
-  const openDownsell = useCallback(() => {
-    if (!canShowDownsell()) return;
-    setDownsellMounted(true);
-    setDownsellOpen(true);
-  }, []);
-
-  useEffect(() => {
-    let idleId;
-    const timer = window.setTimeout(() => {
-      if ('requestIdleCallback' in window) {
-        idleId = window.requestIdleCallback(() => loadDownsellModal(), { timeout: 5000 });
-      } else {
-        loadDownsellModal();
-      }
-    }, 10000);
-    return () => {
-      window.clearTimeout(timer);
-      if (idleId != null) window.cancelIdleCallback?.(idleId);
-    };
-  }, []);
-
-  const handleDownsellOpenChange = useCallback((next) => {
-    setDownsellOpen(next);
-    if (!next) lastClosedAtRef.current = Date.now();
-  }, []);
-
-  // Counts 1 min 30 s from page load and from each close; never interrupts typing in the form.
-  useEffect(() => {
-    if (downsellOpen) return undefined;
-    let timer;
-    const schedule = (delay) => {
-      timer = window.setTimeout(() => {
-        const form = document.getElementById('cta-lead-form');
-        if (document.hidden || form?.contains(document.activeElement)) {
-          schedule(DOWNSELL_RETRY_MS);
-          return;
-        }
-        openDownsell();
-      }, delay);
-    };
-    schedule(DOWNSELL_INTERVAL_MS);
-    return () => window.clearTimeout(timer);
-  }, [downsellOpen, openDownsell]);
-
-  useEffect(() => {
-    const desktop = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    if (!desktop) return undefined;
-    const onLeave = (event) => {
-      if (event.relatedTarget || event.clientY > 0) return;
-      if (Date.now() - lastClosedAtRef.current < EXIT_INTENT_COOLDOWN_MS) return;
-      openDownsell();
-    };
-    document.documentElement.addEventListener('mouseout', onLeave);
-    return () => document.documentElement.removeEventListener('mouseout', onLeave);
-  }, [openDownsell]);
-
-  useEffect(() => {
-    const form = document.getElementById('cta-lead-form');
-    if (!form) return undefined;
-    let started = false;
-    let timer;
-    const abandon = () => {
-      if (!started) return;
-      started = false;
-      openDownsell();
-    };
-    const onInput = () => {
-      started = true;
-      window.clearTimeout(timer);
-    };
-    const onFocusIn = () => window.clearTimeout(timer);
-    const onFocusOut = (event) => {
-      if (!started || form.contains(event.relatedTarget)) return;
-      window.clearTimeout(timer);
-      timer = window.setTimeout(() => {
-        if (!form.contains(document.activeElement)) abandon();
-      }, ABANDON_DELAY_MS);
-    };
-    form.addEventListener('input', onInput);
-    form.addEventListener('focusin', onFocusIn);
-    form.addEventListener('focusout', onFocusOut);
-    const observer = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) abandon();
-    }, { threshold: 0.15 });
-    observer.observe(form);
-    return () => {
-      window.clearTimeout(timer);
-      form.removeEventListener('input', onInput);
-      form.removeEventListener('focusin', onFocusIn);
-      form.removeEventListener('focusout', onFocusOut);
-      observer.disconnect();
-    };
-  }, [openDownsell]);
 
   // Restore the CTA viewport after returning from /orcamento
   useEffect(() => {
@@ -234,7 +128,7 @@ export default function HomePage() {
         <div className="container mx-auto grid items-center gap-10 px-4 md:px-6 lg:grid-cols-2 lg:gap-14">
           <div className="mx-auto max-w-xl text-center">
             <h2 className="mb-5 font-display text-4xl font-extrabold leading-[1.12] tracking-tight text-foreground text-balance sm:text-5xl">
-              Seu marketing, com os números na mesa.
+              Seu marketing, baseado em dados
             </h2>
             <p className="mb-8 text-base leading-relaxed text-muted-foreground text-balance sm:text-lg">
               O gestor não manda um PDF no fim do mês. O painel Lots BI mostra investimento, conversas e custo por resultado.
@@ -259,7 +153,6 @@ export default function HomePage() {
                 'Gestão de Tráfego, Social Media, Desenvolvimento Web e Gestão de Redes Sociais.',
                 'Reunião por Google Meet, sem compromisso.',
                 'Fechou: Lots BI grátis durante todo o contrato.',
-                'Não fechou, mas veio à reunião: 3 meses de acesso ao beta da Lots BI.',
               ].map((item) => (
                 <li key={item} className="flex gap-3 text-base leading-relaxed text-foreground md:text-lg">
                   <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-gradient" aria-hidden="true" />
@@ -270,50 +163,8 @@ export default function HomePage() {
           </div>
           <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-5 shadow-[0_20px_60px_rgba(0,0,0,0.25)] md:p-7 lg:sticky lg:top-24">
             <div className="absolute inset-x-0 top-0 h-px bg-brand-gradient" aria-hidden="true" />
-            <SalesLeadForm onDecline={openDownsell} />
+            <SalesLeadForm />
           </div>
-        </div>
-      </section>
-
-      <section id="oferta" className="cv-auto relative z-10 scroll-mt-24 border-t border-white/10 bg-white/[0.025] py-16 md:py-24">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="grid gap-4 md:grid-cols-2 md:gap-5">
-            <article className="relative overflow-hidden rounded-3xl bg-brand-gradient p-px">
-              <div className="flex h-full flex-col justify-between rounded-[23px] bg-background px-7 py-8 md:min-h-[320px] md:px-10 md:py-10">
-                <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">Virou cliente</p>
-                <div>
-                  <p className="font-display text-5xl font-black leading-none tracking-tight text-foreground md:text-7xl">
-                    <span className="rgb-gradient-text">Grátis</span>
-                  </p>
-                  <p className="mt-4 max-w-sm font-display text-xl font-semibold leading-snug text-foreground md:text-2xl">
-                    Lots BI durante todo o contrato.
-                  </p>
-                </div>
-              </div>
-            </article>
-            <article className="flex flex-col justify-between rounded-3xl border border-white/10 bg-white/[0.03] px-7 py-8 md:min-h-[320px] md:px-10 md:py-10">
-              <p className="text-[11px] uppercase tracking-[0.22em] text-muted-foreground">Não fechou</p>
-              <div>
-                <p className="font-display text-5xl font-black leading-none tracking-tight text-foreground md:text-7xl">
-                  3 meses
-                </p>
-                <p className="mt-4 max-w-sm text-base leading-relaxed text-muted-foreground md:text-lg">
-                  Compareça à reunião no Google Meet. O acesso ao beta é liberado depois do cadastro em{' '}
-                  <a href="https://lotsbi.leandromajr.com/criar-conta" className="text-foreground underline decoration-white/30 underline-offset-4 hover:decoration-white">
-                    lotsbi.leandromajr.com/criar-conta
-                  </a>
-                  {' '}e da aprovação interna.
-                </p>
-              </div>
-            </article>
-          </div>
-          <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
-            {['Gestão de Tráfego', 'Social Media', 'Desenvolvimento Web', 'Gestão de Redes Sociais'].map((service) => (
-              <li key={service} className="font-display font-semibold tracking-tight text-foreground/80">
-                {service}
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 
@@ -355,11 +206,6 @@ export default function HomePage() {
       </LazyBlock>
 
       <MobileCtaBar />
-      {downsellMounted ? (
-        <Suspense fallback={null}>
-          <DownsellModal open={downsellOpen} onOpenChange={handleDownsellOpenChange} />
-        </Suspense>
-      ) : null}
     </div>
   );
 }

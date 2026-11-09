@@ -5,7 +5,7 @@ import { ZoomablePrint, printSources } from '@/components/ZoomablePrint.jsx';
 const RAFA = {
   name: 'Rafa Teo Ferreira',
   subtitle: 'Corretor',
-  text: 'O grande diferencial no meu caso é a estratégia que estamos aplicando, sempre que necessário reavaliamos e reimplementamos uma nova abordagem.',
+  text: 'O grande diferencial é a qualidade dos leads que começaram a chegar no meu direct.',
   image: '/testimonials/rafa-teo.webp',
 };
 

@@ -9,7 +9,6 @@ const POINTS = [
   'Acesso grátis no contrato.',
   'Todas as informações em um lugar.',
   'Meta, Google e Instagram na sua conta.',
-  'Se não fechar após a reunião, 3 meses de Lots BI grátis.',
 ];
 
 export function ClientAreaSection() {

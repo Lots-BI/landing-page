@@ -1,32 +1,16 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Input } from '@/components/ui/input.jsx';
-import {
-  ORCAMENTO_OBRIGADO_PATH,
-  saveOrcamentoConversion,
-} from '@/lib/orcamentoConversion.js';
 import { saveLandingLead } from '@/lib/landingLeads.js';
-import { markLandingSubmitted } from '@/lib/downsellSession.js';
+import { trackLeadFormSubmit } from '@/lib/analytics.js';
 
-const WHATSAPP_PHONE = '5511973290438';
 const FORM_ID = 'cta-lead-form';
 const FORM_NAME = 'Landing vendas';
 
-function buildMessage(form) {
-  return [
-    'Olá! Quero falar com a Lots.',
-    '',
-    `Nome: ${form.nome.trim()}`,
-    `E-mail: ${form.email.trim()}`,
-    `Instagram: ${form.instagram.trim()}`,
-  ].join('\n');
-}
-
-export function SalesLeadForm({ onDecline }) {
-  const navigate = useNavigate();
+export function SalesLeadForm() {
   const [form, setForm] = useState({ nome: '', email: '', instagram: '' });
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [done, setDone] = useState(false);
 
   const setField = (key, value) => {
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -49,24 +33,32 @@ export function SalesLeadForm({ onDecline }) {
     }
     if (submitting) return;
     setSubmitting(true);
-    markLandingSubmitted();
+    setError('');
 
-    await saveLandingLead({
-      nome: form.nome.trim(),
-      email: form.email.trim(),
-      instagram: form.instagram.trim(),
-    });
-
-    const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(buildMessage(form))}`;
-    saveOrcamentoConversion({
-      whatsappUrl: url,
-      formId: FORM_ID,
-      formName: FORM_NAME,
-    });
-    navigate(ORCAMENTO_OBRIGADO_PATH, {
-      state: { whatsappUrl: url, formId: FORM_ID, formName: FORM_NAME },
-    });
+    try {
+      await saveLandingLead({
+        nome: form.nome.trim(),
+        email: form.email.trim(),
+        instagram: form.instagram.trim(),
+      });
+      trackLeadFormSubmit({ formId: FORM_ID, formName: FORM_NAME });
+      setDone(true);
+    } catch (err) {
+      setError(err?.message || 'Não foi possível enviar. Tente novamente.');
+      setSubmitting(false);
+    }
   };
+
+  if (done) {
+    return (
+      <div className="space-y-3 py-6 text-center" role="status">
+        <p className="font-display text-2xl font-bold text-foreground">Recebemos seu contato.</p>
+        <p className="text-sm leading-relaxed text-muted-foreground">
+          Em breve a Lots fala com você para agendar a reunião.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <form id={FORM_ID} onSubmit={handleSubmit} className="space-y-4" noValidate>
@@ -124,20 +116,13 @@ export function SalesLeadForm({ onDecline }) {
         disabled={submitting}
         className="inline-flex min-h-[52px] w-full items-center justify-center rounded-xl bg-brand-gradient px-6 text-base font-bold text-white shadow-md disabled:opacity-70"
       >
-        Falar com a Lots
+        {submitting ? 'Enviando…' : 'Falar com a Lots'}
       </button>
       <div className="flex flex-wrap justify-center gap-3 pt-1 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
         <span>Dados protegidos</span>
         <span aria-hidden="true">·</span>
         <span>Reunião sem compromisso</span>
       </div>
-      <button
-        type="button"
-        onClick={() => onDecline?.()}
-        className="inline-flex min-h-12 w-full items-center justify-center rounded-xl border border-white/25 bg-white/[0.06] px-6 text-sm font-semibold text-foreground transition hover:border-white/45 hover:bg-white/[0.1]"
-      >
-        Não quero preencher agora
-      </button>
     </form>
   );
 }

@@ -58,10 +58,14 @@ function DeferredChrome() {
   );
 }
 
+const AdmPage = lazy(() => import('./pages/AdmPage.jsx'));
+
 export function AppShell() {
   const { pathname } = useLocation();
   const isOrcamentoFlow =
     pathname === ORCAMENTO_PATH || pathname === ORCAMENTO_OBRIGADO_PATH;
+  const isAdm = pathname === '/adm';
+  const hideChrome = isOrcamentoFlow || isAdm;
 
   return (
     <>
@@ -69,11 +73,19 @@ export function AppShell() {
       <LightCosmicBackground />
 
       <div className="relative z-0 flex flex-col min-h-screen">
-        {!isOrcamentoFlow ? <Header /> : null}
+        {!hideChrome ? <Header /> : null}
         <main className="flex-1">
           <Routes>
             {/* Home is eager — never wrap it in Suspense (avoids full-page "Carregando...") */}
             <Route path="/" element={<HomePage />} />
+            <Route
+              path="/adm"
+              element={
+                <Suspense fallback={null}>
+                  <AdmPage />
+                </Suspense>
+              }
+            />
             <Route
               path={ORCAMENTO_PATH}
               element={
@@ -180,10 +192,14 @@ export function AppShell() {
             />
           </Routes>
         </main>
-        {!isOrcamentoFlow ? <DeferredChrome /> : (
-          <Suspense fallback={null}>
-            <CookieBanner />
-          </Suspense>
+        {hideChrome ? (
+          isAdm ? null : (
+            <Suspense fallback={null}>
+              <CookieBanner />
+            </Suspense>
+          )
+        ) : (
+          <DeferredChrome />
         )}
       </div>
     </>

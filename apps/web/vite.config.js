@@ -315,6 +315,7 @@ export default defineConfig({
 	},
 	resolve: {
 		extensions: ['.jsx', '.js', '.tsx', '.ts', '.json',],
+		dedupe: ['react', 'react-dom'],
 		alias: {
 			'@': path.resolve(__dirname, './src'),
 		},
