@@ -80,7 +80,9 @@ export default function TeamSection() {
                     backgroundAttachment: 'fixed',
                   }}
                 />
-                <div className="relative aspect-[3/4] max-h-[480px]">
+                <div
+                  className={`relative aspect-[3/4] max-h-[480px] ${index % 2 === 1 ? 'ml-auto' : ''}`}
+                >
                   <img
                     src={member.image}
                     alt={member.imageAlt}
