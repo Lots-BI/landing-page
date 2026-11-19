@@ -13,7 +13,7 @@ export function SocialProofSection() {
   return (
     <section
       id="resultados"
-      className="cv-auto relative z-10 scroll-mt-24 border-t border-border py-16 md:scroll-mt-28 md:py-24"
+      className="cv-auto relative z-10 scroll-mt-24 py-16 md:scroll-mt-28 md:py-24"
     >
       <div className="container mx-auto px-4 md:px-6">
         <AnimatedSection>

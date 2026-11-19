@@ -122,39 +122,17 @@ export default function HomePage() {
       <HeroSection />
 
       <div className="theme-light relative z-10 bg-white text-foreground">
-        <LazyBlock id="metodo">
-          <NossoMetodoSection />
-        </LazyBlock>
-
-        <section id="formulario" className="relative z-10 scroll-mt-24 border-t border-border py-16 md:scroll-mt-28 md:py-24">
-          <div className="container mx-auto grid items-start gap-10 px-4 md:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-stretch lg:gap-16">
-            <div className="flex flex-col lg:h-full">
-              <h2 className="mb-6 font-display text-3xl font-black text-foreground text-balance md:text-4xl">
-                Tráfego pago com operação de verdade.
-              </h2>
-              <ul className="flex flex-1 flex-col justify-between gap-4">
-                {[
-                  'Meta Ads e Google Ads no mesmo time.',
-                  'Otimização diária de campanha, criativo e público.',
-                  'Foco em lead qualificado e custo por resultado.',
-                  'Reunião por Google Meet, sem compromisso.',
-                  'Você acompanha a conta — a Lots opera.',
-                ].map((item) => (
-                  <li key={item} className="flex gap-3 text-base leading-relaxed text-foreground md:text-lg">
-                    <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-gradient" aria-hidden="true" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="relative overflow-hidden rounded-2xl border border-border bg-white p-5 shadow-[0_20px_60px_rgba(0,0,0,0.08)] md:p-7 lg:sticky lg:top-24">
-              <div className="absolute inset-x-0 top-0 h-px bg-brand-gradient" aria-hidden="true" />
-              <SalesLeadForm />
-            </div>
-          </div>
-        </section>
-
         <SocialProofSection />
+      </div>
+
+      <LazyBlock id="metodo" height={640}>
+        <NossoMetodoSection />
+      </LazyBlock>
+
+      <div className="theme-light relative z-10 bg-white text-foreground">
+        <LazyBlock id="equipe" height={560}>
+          <TeamSection />
+        </LazyBlock>
 
         <section className="cv-auto relative z-10 border-t border-border bg-muted/40 py-16 md:py-24">
           <div className="container mx-auto px-4 md:px-6">
@@ -175,11 +153,35 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-
-        <LazyBlock id="equipe" height={560}>
-          <TeamSection />
-        </LazyBlock>
       </div>
+
+      <section id="formulario" className="relative z-10 scroll-mt-24 bg-transparent py-16 md:scroll-mt-28 md:py-24">
+        <div className="container mx-auto grid items-start gap-10 px-4 md:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-stretch lg:gap-16">
+          <div className="flex flex-col lg:h-full">
+            <h2 className="mb-6 font-display text-3xl font-black text-foreground text-balance md:text-4xl">
+              Tráfego pago com operação de verdade.
+            </h2>
+            <ul className="flex flex-1 flex-col justify-between gap-4">
+              {[
+                'Meta Ads e Google Ads no mesmo time.',
+                'Otimização diária de campanha, criativo e público.',
+                'Foco em lead qualificado e custo por resultado.',
+                'Reunião por Google Meet, sem compromisso.',
+                'Você acompanha a conta — a Lots opera.',
+              ].map((item) => (
+                <li key={item} className="flex gap-3 text-base leading-relaxed text-foreground md:text-lg">
+                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-gradient" aria-hidden="true" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-5 shadow-[0_20px_60px_rgba(0,0,0,0.25)] md:p-7 lg:sticky lg:top-24">
+            <div className="absolute inset-x-0 top-0 h-px bg-brand-gradient" aria-hidden="true" />
+            <SalesLeadForm />
+          </div>
+        </div>
+      </section>
 
       <MobileCtaBar />
       <FloatingWhatsAppButton />
