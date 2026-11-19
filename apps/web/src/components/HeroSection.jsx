@@ -52,7 +52,7 @@ export function HeroSection() {
         </p>
 
         <h1 className="max-w-3xl font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-foreground text-balance sm:text-5xl md:text-6xl lg:text-[3.75rem]">
-          Tráfego pago com mentalidade de{' '}
+          Tráfego pago com mente de{' '}
           <span className="rgb-gradient-text">empresário</span>
         </h1>
 

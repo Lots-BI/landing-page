@@ -67,7 +67,7 @@ export function SalesLeadForm() {
   return (
     <form id={FORM_ID} onSubmit={handleSubmit} className="space-y-4" noValidate>
       <div>
-        <label htmlFor="lead-nome" className="mb-2 block text-xs uppercase tracking-[0.16em] text-muted-foreground">
+        <label htmlFor="lead-nome" className="mb-2 block text-xs uppercase tracking-[0.16em] text-foreground">
           Nome
         </label>
         <Input
@@ -81,7 +81,7 @@ export function SalesLeadForm() {
         />
       </div>
       <div>
-        <label htmlFor="lead-email" className="mb-2 block text-xs uppercase tracking-[0.16em] text-muted-foreground">
+        <label htmlFor="lead-email" className="mb-2 block text-xs uppercase tracking-[0.16em] text-foreground">
           E-mail
         </label>
         <Input
@@ -96,7 +96,7 @@ export function SalesLeadForm() {
         />
       </div>
       <div>
-        <label htmlFor="lead-instagram" className="mb-2 block text-xs uppercase tracking-[0.16em] text-muted-foreground">
+        <label htmlFor="lead-instagram" className="mb-2 block text-xs uppercase tracking-[0.16em] text-foreground">
           Instagram
         </label>
         <Input
@@ -122,11 +122,6 @@ export function SalesLeadForm() {
       >
         {submitting ? 'Enviando…' : 'Falar com a Lots'}
       </button>
-      <div className="flex flex-wrap justify-center gap-3 pt-1 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
-        <span>Dados protegidos</span>
-        <span aria-hidden="true">·</span>
-        <span>Reunião sem compromisso</span>
-      </div>
     </form>
   );
 }

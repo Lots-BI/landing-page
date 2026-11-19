@@ -4,6 +4,7 @@ import SEO from '@/components/SEO.jsx';
 import { DeferredMount } from '@/components/DeferredMount.jsx';
 import { SalesLeadForm } from '@/components/SalesLeadForm.jsx';
 import { SocialProofSection } from '@/components/SocialProofSection.jsx';
+import { ServicesGridSection } from '@/components/ServicesGridSection.jsx';
 import { HeroSection } from '@/components/HeroSection.jsx';
 import FloatingWhatsAppButton from '@/components/FloatingWhatsAppButton.jsx';
 import { useUTMs } from '@/hooks/useUTMs.js';
@@ -130,53 +131,22 @@ export default function HomePage() {
       </LazyBlock>
 
       <div className="theme-light relative z-10 bg-white text-foreground">
+        <ServicesGridSection />
+
         <LazyBlock id="equipe" height={560}>
           <TeamSection />
         </LazyBlock>
-
-        <section className="cv-auto relative z-10 border-t border-border bg-muted/40 py-16 md:py-24">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="relative overflow-hidden rounded-3xl border border-border px-6 py-14 text-center md:px-16 md:py-20">
-              <div className="pointer-events-none absolute inset-0 bg-brand-gradient opacity-[0.08]" aria-hidden="true" />
-              <div className="relative">
-                <p className="font-display text-3xl font-black leading-tight text-foreground text-balance md:text-5xl">
-                  Pronto para escalar seu tráfego pago com a Lots?
-                </p>
-                <button
-                  type="button"
-                  onClick={() => document.getElementById('formulario')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
-                  className="mt-8 inline-flex min-h-[52px] items-center justify-center rounded-lg bg-brand-gradient px-8 text-base font-semibold text-white shadow-md hover:brightness-110"
-                >
-                  Falar com a Lots
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
 
       <section id="formulario" className="relative z-10 scroll-mt-24 bg-transparent py-16 md:scroll-mt-28 md:py-24">
-        <div className="container mx-auto grid items-start gap-10 px-4 md:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-stretch lg:gap-16">
-          <div className="flex flex-col lg:h-full">
-            <h2 className="mb-6 font-display text-3xl font-black text-foreground text-balance md:text-4xl">
-              Tráfego pago com operação de verdade.
-            </h2>
-            <ul className="flex flex-1 flex-col justify-between gap-4">
-              {[
-                'Meta Ads e Google Ads no mesmo time.',
-                'Otimização diária de campanha, criativo e público.',
-                'Foco em lead qualificado e custo por resultado.',
-                'Reunião por Google Meet, sem compromisso.',
-                'Você acompanha a conta — a Lots opera.',
-              ].map((item) => (
-                <li key={item} className="flex gap-3 text-base leading-relaxed text-foreground md:text-lg">
-                  <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-gradient" aria-hidden="true" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-5 shadow-[0_20px_60px_rgba(0,0,0,0.25)] md:p-7 lg:sticky lg:top-24">
+        <div className="container mx-auto mb-10 max-w-2xl px-4 text-center md:mb-14 md:px-6">
+          <h2 className="font-display text-3xl font-black text-foreground text-balance md:text-5xl">
+            Pronto para escalar seu tráfego pago com a Lots?
+          </h2>
+        </div>
+
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="relative mx-auto max-w-xl overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-5 shadow-[0_20px_60px_rgba(0,0,0,0.25)] md:p-7">
             <div className="absolute inset-x-0 top-0 h-px bg-brand-gradient" aria-hidden="true" />
             <SalesLeadForm />
           </div>

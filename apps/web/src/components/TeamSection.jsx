@@ -26,7 +26,7 @@ export default function TeamSection() {
 
   return (
     <section
-      className="relative z-10 bg-transparent py-20 md:py-28"
+      className="relative z-10 border-t border-border bg-transparent py-20 md:py-28"
     >
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <AnimatedSection className="max-w-2xl mx-auto text-center mb-14 md:mb-16">

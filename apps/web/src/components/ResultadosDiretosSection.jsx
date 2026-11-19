@@ -3,11 +3,11 @@ import { AnimatedSection } from './AnimatedSection.jsx';
 import { PlanosCtaButton } from './PlanosCtaButton.jsx';
 
 const FEATURED = {
-  name: 'Rafa Teo Ferreira',
+  name: 'Rafa Teo',
   subtitle: 'Corretor',
   text: 'Funil e conteúdo mudaram o jogo. Fluxo constante de leads qualificados e autoridade real na região.',
   image: '/testimonials/rafa-teo.png',
-  imageAlt: 'Rafa Teo Ferreira',
+  imageAlt: 'Rafa Teo',
 };
 
 const SUPPORTING = [
