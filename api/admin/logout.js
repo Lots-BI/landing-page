@@ -1,8 +1,8 @@
 import {
-  callAdminRpc,
-  json,
-  readJsonBody,
-} from '../_lib/supabaseAdmin.js';
+  assertSameOrigin,
+  clearAdminSessionCookie,
+} from '../_lib/adminAuth.js';
+import { json } from '../_lib/supabaseAdmin.js';
 
 export default async function handler(req, res) {
   if (req.method === 'OPTIONS') {
@@ -16,21 +16,11 @@ export default async function handler(req, res) {
     return;
   }
 
-  let body = {};
-  try {
-    body = await readJsonBody(req);
-  } catch {
-    body = {};
+  if (!assertSameOrigin(req)) {
+    json(res, 403, { ok: false, error: 'Origem não permitida.' });
+    return;
   }
 
-  const token = typeof body?.token === 'string' ? body.token.trim() : '';
-  if (token) {
-    try {
-      await callAdminRpc('admin_logout', { p_token: token });
-    } catch (err) {
-      console.error('[api/admin/logout]', err);
-    }
-  }
-
+  clearAdminSessionCookie(res);
   json(res, 200, { ok: true });
 }

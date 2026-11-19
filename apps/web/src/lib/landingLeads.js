@@ -1,6 +1,6 @@
 /**
  * Client → POST /api/lead (server da landing) → CRM Lots BI.
- * Admin → POST /api/admin/* (server) → RPC admin_* (sem chave no browser).
+ * Admin → /api/admin/* com cookie httpOnly (sem chave e sem token no JS).
  */
 
 function readStoredUtms() {
@@ -64,29 +64,29 @@ export async function saveLandingLead({
 export async function adminLogin(password) {
   const response = await fetch('/api/admin/login', {
     method: 'POST',
+    credentials: 'include',
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
-    body: JSON.stringify({ password }),
+    body: JSON.stringify({ password: String(password || '').trim() }),
   });
 
   const data = await readJson(response);
-  if (!response.ok || !data?.ok || !data?.token) {
+  if (!response.ok || !data?.ok) {
     throw new Error(data?.error || 'Falha ao entrar.');
   }
 
-  return { token: data.token, expires_at: data.expires_at };
+  return { ok: true };
 }
 
-export async function listFormsAsAdmin(token) {
+export async function listFormsAsAdmin() {
   const response = await fetch('/api/admin/forms', {
-    method: 'POST',
+    method: 'GET',
+    credentials: 'include',
     headers: {
-      'Content-Type': 'application/json',
       Accept: 'application/json',
     },
-    body: JSON.stringify({ token }),
   });
 
   const data = await readJson(response);
@@ -97,16 +97,14 @@ export async function listFormsAsAdmin(token) {
   return data.rows || [];
 }
 
-export async function adminLogout(token) {
-  if (!token) return;
+export async function adminLogout() {
   try {
     await fetch('/api/admin/logout', {
       method: 'POST',
+      credentials: 'include',
       headers: {
-        'Content-Type': 'application/json',
         Accept: 'application/json',
       },
-      body: JSON.stringify({ token }),
     });
   } catch {
     // best-effort

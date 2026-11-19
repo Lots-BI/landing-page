@@ -3,8 +3,6 @@ import SEO from '@/components/SEO.jsx';
 import { Input } from '@/components/ui/input.jsx';
 import { adminLogin, adminLogout, listFormsAsAdmin } from '@/lib/landingLeads.js';
 
-const SESSION_KEY = 'lots_adm_session_token';
-
 function formatDate(value) {
   if (!value) return '—';
   try {
@@ -17,54 +15,31 @@ function formatDate(value) {
   }
 }
 
-function readStoredToken() {
-  try {
-    return sessionStorage.getItem(SESSION_KEY) || '';
-  } catch {
-    return '';
-  }
-}
-
-function writeStoredToken(token) {
-  try {
-    if (token) sessionStorage.setItem(SESSION_KEY, token);
-    else sessionStorage.removeItem(SESSION_KEY);
-  } catch {
-    // ignore storage failures
-  }
-}
-
 export default function AdmPage() {
   const [password, setPassword] = useState('');
-  const [token, setToken] = useState('');
   const [rows, setRows] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [authed, setAuthed] = useState(false);
 
-  const loadWithToken = async (sessionToken) => {
+  const loadForms = async ({ quiet = false } = {}) => {
     setLoading(true);
-    setError('');
+    if (!quiet) setError('');
     try {
-      const data = await listFormsAsAdmin(sessionToken);
+      const data = await listFormsAsAdmin();
       setRows(Array.isArray(data) ? data : []);
       setAuthed(true);
-      setToken(sessionToken);
-      writeStoredToken(sessionToken);
     } catch (err) {
       setAuthed(false);
       setRows([]);
-      setToken('');
-      writeStoredToken('');
-      setError(err?.message || 'Sessão inválida. Entre novamente.');
+      if (!quiet) setError(err?.message || 'Sessão inválida. Entre novamente.');
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    const saved = readStoredToken();
-    if (saved) loadWithToken(saved);
+    loadForms({ quiet: true });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -79,27 +54,26 @@ export default function AdmPage() {
     setLoading(true);
     setError('');
     try {
-      const session = await adminLogin(pwd);
+      await adminLogin(pwd);
       setPassword('');
-      await loadWithToken(session.token);
+      const data = await listFormsAsAdmin();
+      setRows(Array.isArray(data) ? data : []);
+      setAuthed(true);
     } catch (err) {
       setAuthed(false);
       setRows([]);
-      setToken('');
-      writeStoredToken('');
       setError(err?.message || 'Não foi possível entrar.');
+    } finally {
       setLoading(false);
     }
   };
 
   const handleLogout = async () => {
-    const current = token || readStoredToken();
-    await adminLogout(current);
+    await adminLogout();
     setAuthed(false);
     setRows([]);
-    setToken('');
     setPassword('');
-    writeStoredToken('');
+    setError('');
   };
 
   return (
@@ -123,7 +97,7 @@ export default function AdmPage() {
             <div className="flex gap-2">
               <button
                 type="button"
-                onClick={() => loadWithToken(token || readStoredToken())}
+                onClick={loadForms}
                 className="min-h-11 rounded-lg border border-white/15 px-4 text-sm font-medium hover:bg-white/5"
               >
                 Atualizar
