@@ -24,6 +24,7 @@ import {
   ORCAMENTO_OBRIGADO_PATH,
   saveOrcamentoConversion,
 } from '@/lib/orcamentoConversion.js';
+import { saveLandingLead } from '@/lib/landingLeads.js';
 
 const WHATSAPP_PHONE = '5511973290438';
 
@@ -380,9 +381,22 @@ const ServicesPricing = ({
     setPhase('quiz');
   };
 
-  const openWhatsApp = () => {
+  const openWhatsApp = async () => {
     const message = appendUtmsToMessage(buildWhatsAppMessage(selectedServices, form));
     const url = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
+
+    try {
+      await saveLandingLead({
+        nome: form.name.trim(),
+        email: form.contactChannel === 'email' ? form.email.trim() || undefined : undefined,
+        telefone: form.contactChannel === 'whatsapp' ? form.phone.trim() || undefined : undefined,
+        mensagem: message,
+        source: 'orcamento',
+      });
+    } catch (err) {
+      setError(err?.message || 'Não foi possível salvar o orçamento. Tente novamente.');
+      return;
+    }
 
     // Página de obrigado: URL rastreável no GTM; o WhatsApp abre depois do pageview.
     saveOrcamentoConversion({ whatsappUrl: url, formId, formName });
@@ -415,11 +429,11 @@ const ServicesPricing = ({
     </button>
   );
 
-  const submitCurrent = (event) => {
+  const submitCurrent = async (event) => {
     event?.preventDefault?.();
     if (!validateCurrent()) return;
     if (quizIndex >= totalQuiz - 1) {
-      openWhatsApp();
+      await openWhatsApp();
       return;
     }
     goNext();

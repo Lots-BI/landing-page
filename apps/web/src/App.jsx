@@ -16,6 +16,7 @@ const TermsOfService = lazy(() => import('./pages/TermsOfService.jsx'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage.jsx'));
 const OrcamentoPage = lazy(() => import('./pages/OrcamentoPage.jsx'));
 const OrcamentoObrigadoPage = lazy(() => import('./pages/OrcamentoObrigadoPage.jsx'));
+const AdmPage = lazy(() => import('./pages/AdmPage.jsx'));
 const Footer = lazy(() => import('./components/Footer.jsx'));
 const CookieBanner = lazy(() => import('./components/CookieBanner.jsx'));
 
@@ -62,7 +63,8 @@ export function AppShell() {
   const { pathname } = useLocation();
   const isOrcamentoFlow =
     pathname === ORCAMENTO_PATH || pathname === ORCAMENTO_OBRIGADO_PATH;
-  const hideChrome = isOrcamentoFlow;
+  const isAdm = pathname === '/adm';
+  const hideChrome = isOrcamentoFlow || isAdm;
 
   return (
     <>
@@ -75,6 +77,14 @@ export function AppShell() {
           <Routes>
             {/* Home is eager — never wrap it in Suspense (avoids full-page "Carregando...") */}
             <Route path="/" element={<HomePage />} />
+            <Route
+              path="/adm"
+              element={
+                <Suspense fallback={null}>
+                  <AdmPage />
+                </Suspense>
+              }
+            />
             <Route
               path={ORCAMENTO_PATH}
               element={

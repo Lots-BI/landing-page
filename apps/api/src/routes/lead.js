@@ -28,7 +28,8 @@ function validatePayload(body) {
     return { error: 'Informe um e-mail válido.' };
   }
 
-  const payload = { nome, form_key: FORM_KEY };
+  const source = trim(body?.source) || 'landing';
+  const payload = { nome, form_key: FORM_KEY, source };
   if (email) payload.email = email;
   if (instagram) payload.instagram = instagram;
   if (telefone) payload.telefone = telefone;
