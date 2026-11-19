@@ -41,8 +41,9 @@ export default function NossoMetodoSection() {
             <span className="h-2 w-2 shrink-0 bg-brand-gradient" aria-hidden="true" />
             Método Lots
           </p>
-          <h2 className="mb-4 font-display text-3xl font-black text-foreground text-balance md:text-5xl">
-            Quatro passos, nesta ordem.
+          <h2 className="mb-4 flex items-baseline gap-3 font-display font-black text-foreground text-balance">
+            <span className="bg-brand-gradient bg-clip-text text-6xl text-transparent md:text-8xl">4</span>
+            <span className="text-3xl md:text-5xl">passos, nesta ordem.</span>
           </h2>
           <p className="text-base leading-relaxed text-muted-foreground text-balance md:text-lg">
             Cada etapa depende da anterior. Por isso nenhuma campanha entra no ar antes de a estrutura

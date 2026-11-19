@@ -3,6 +3,7 @@ import { AnimatedSection } from './AnimatedSection.jsx';
 import { FlowCtaButton } from './FlowCtaButton.jsx';
 import { useEditableContent } from '@/contexts/EditableContent.jsx';
 
+// TODO: substituir as bios (lorem ipsum) pelo texto real do Leandro e da Rafaela.
 const MEMBERS = [
   {
     name: 'Leandro',
@@ -10,6 +11,7 @@ const MEMBERS = [
     image: '/team/leandro-majr.webp',
     imageAlt: 'Leandro',
     objectPosition: 'object-[center_40%]',
+    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
   },
   {
     name: 'Rafaela',
@@ -17,6 +19,7 @@ const MEMBERS = [
     image: '/team/rafaela.webp',
     imageAlt: 'Rafaela',
     objectPosition: 'object-[center_42%]',
+    bio: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.',
   },
 ];
 
@@ -40,45 +43,42 @@ export default function TeamSection() {
           ) : null}
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 md:gap-14 max-w-4xl mx-auto">
+        <div className="space-y-14 md:space-y-20 max-w-5xl mx-auto">
           {MEMBERS.map((member, index) => (
             <AnimatedSection
               key={member.name}
               delay={index * 0.08}
-              className="flex flex-col items-center text-center"
+              className={`flex flex-col items-center gap-8 text-center md:gap-14 md:text-left ${
+                index % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'
+              }`}
             >
-              <div className="w-full aspect-[3/4] max-h-[480px] overflow-hidden bg-black/5">
-                <img
-                  src={member.image}
-                  alt={member.imageAlt}
-                  width={480}
-                  height={640}
-                  loading="lazy"
-                  decoding="async"
-                  className={`h-full w-full object-cover ${member.objectPosition || 'object-center'}`}
-                />
+              <div className="w-full shrink-0 overflow-hidden rounded-2xl md:w-2/5">
+                <div className="aspect-[3/4]">
+                  <img
+                    src={member.image}
+                    alt={member.imageAlt}
+                    width={480}
+                    height={640}
+                    loading="lazy"
+                    decoding="async"
+                    className={`h-full w-full object-cover ${member.objectPosition || 'object-center'}`}
+                  />
+                </div>
               </div>
-              <p className="mt-6 text-xl md:text-2xl font-semibold text-foreground font-display">
-                {member.name}
-              </p>
-              <p className="mt-1 text-sm md:text-base text-muted-foreground">
-                {team[member.roleKey]}
-              </p>
+              <div className="flex-1">
+                <p className="text-xl md:text-2xl font-semibold text-foreground font-display">
+                  {member.name}
+                </p>
+                <p className="mt-1 text-sm md:text-base text-muted-foreground">
+                  {team[member.roleKey]}
+                </p>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+                  {member.bio}
+                </p>
+              </div>
             </AnimatedSection>
           ))}
         </div>
-
-        {team.together ? (
-          <AnimatedSection className="max-w-2xl mx-auto text-center mt-12 md:mt-16">
-            <div
-              className="mx-auto mb-6 h-px w-12 bg-gradient-to-r from-transparent via-white/35 to-transparent"
-              aria-hidden="true"
-            />
-            <blockquote className="text-base md:text-lg text-muted-foreground text-balance leading-relaxed italic">
-              {team.together}
-            </blockquote>
-          </AnimatedSection>
-        ) : null}
 
         <AnimatedSection className="flex justify-center mt-12 md:mt-14">
           <FlowCtaButton id="cta-btn-equipe">

@@ -58,7 +58,7 @@ const CookieBanner = () => {
         boxSizing: 'border-box'
       }}
     >
-      <div className="w-full max-w-full glass rounded-xl p-4 sm:p-5 md:p-6 shadow-2xl flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 sm:gap-5 border border-primary/20 bg-background/95 backdrop-blur-md dark:bg-background/95">
+      <div className="w-full max-w-full rounded-xl p-4 sm:p-5 md:p-6 shadow-2xl flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 sm:gap-5 border border-primary/20 bg-neutral-900/95 backdrop-blur-md">
         
         <div className="flex items-start gap-3 sm:gap-4 flex-1 w-full">
           <div className="hidden sm:flex mt-1 h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
@@ -66,15 +66,15 @@ const CookieBanner = () => {
           </div>
           
           <div className="flex-1 min-w-0">
-            <h3 className="text-sm sm:text-base font-semibold mb-1 sm:mb-1.5 text-foreground">
+            <h3 className="text-sm sm:text-base font-semibold mb-1 sm:mb-1.5 text-white">
               Sua privacidade é importante
             </h3>
-            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+            <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed">
               Nós usamos cookies para melhorar sua experiência, analisar o tráfego do site e personalizar o conteúdo. 
               Ao continuar navegando, você concorda com a nossa{' '}
               <Link 
                 to="/privacy-policy" 
-                className="text-primary hover:text-primary/80 hover:underline font-medium transition-colors whitespace-nowrap"
+                className="text-purple-300 hover:text-purple-200 hover:underline font-medium transition-colors whitespace-nowrap"
               >
                 Política de Privacidade
               </Link>.
@@ -86,7 +86,7 @@ const CookieBanner = () => {
           <Button 
             variant="outline" 
             onClick={handleReject} 
-            className="w-full sm:w-auto border-border hover:bg-muted transition-colors text-xs sm:text-sm h-9 sm:h-10"
+            className="w-full sm:w-auto border-white/20 text-white hover:bg-white/10 transition-colors text-xs sm:text-sm h-9 sm:h-10"
           >
             Rejeitar
           </Button>

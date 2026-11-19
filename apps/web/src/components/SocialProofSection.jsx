@@ -9,7 +9,7 @@ const TESTIMONIALS = [
     subtitle: 'Imobiliária',
     // TODO: substituir pelo depoimento real da Antena antes de subir para produção.
     text: 'Coletando...',
-    image: '/testimonials/antena.jpg',
+    image: '/testimonials/antena.webp',
   },
   {
     name: 'Rafa Teo',
@@ -24,21 +24,21 @@ const TESTIMONIALS = [
     subtitle: 'Corretor de Imóveis',
     // TODO: substituir pelo depoimento real do Leandro Mellado antes de subir para produção.
     text: 'Coletando...',
-    image: '/testimonials/leandro-mellado.jpg',
+    image: '/testimonials/leandro-mellado.webp',
   },
   {
     name: 'Edgar Haine',
     subtitle: 'Corretor de Imóveis',
     // TODO: substituir pelo depoimento real do Edgar antes de subir para produção.
     text: 'Coletando...',
-    image: '/testimonials/edgar-haine.jpg',
+    image: '/testimonials/edgar-haine.webp',
   },
   {
     name: 'Fernanda Teixeira',
     subtitle: 'Psicóloga',
     // TODO: substituir pelo depoimento real da Fernanda antes de subir para produção.
     text: 'Coletando...',
-    image: '/testimonials/fernanda-teixeira.jpg',
+    image: '/testimonials/fernanda-teixeira.webp',
   },
 ];
 
@@ -154,17 +154,23 @@ export function SocialProofSection() {
             </div>
 
             {TESTIMONIALS.length > 1 && (
-              <div className="mt-6 flex justify-center gap-2">
+              <div className="mt-6 flex justify-center">
                 {TESTIMONIALS.map((testimonial, index) => (
                   <button
                     key={testimonial.name}
                     type="button"
                     onClick={() => scrollToIndex(index)}
                     aria-label={`Ir para depoimento de ${testimonial.name}`}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
-                      index === activeIndex ? 'w-6 bg-brand-gradient' : 'w-1.5 bg-foreground/20'
-                    }`}
-                  />
+                    className="flex shrink-0 items-center justify-center"
+                    style={{ minWidth: 24, minHeight: 24 }}
+                  >
+                    <span
+                      aria-hidden="true"
+                      className={`h-1.5 rounded-full transition-all duration-300 ${
+                        index === activeIndex ? 'w-6 bg-brand-gradient' : 'w-1.5 bg-foreground/20'
+                      }`}
+                    />
+                  </button>
                 ))}
               </div>
             )}
