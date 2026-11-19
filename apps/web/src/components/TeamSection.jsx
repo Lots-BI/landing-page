@@ -52,8 +52,35 @@ export default function TeamSection() {
                 index % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'
               }`}
             >
-              <div className="w-full shrink-0 overflow-hidden rounded-2xl md:w-2/5">
-                <div className="aspect-[3/4]">
+              <div
+                className="relative w-full shrink-0 overflow-hidden rounded-2xl md:w-1/3 [contain:layout_paint]"
+                style={{
+                  background:
+                    'radial-gradient(circle at 25% 20%, rgba(168,85,247,0.35), transparent 55%), radial-gradient(circle at 80% 85%, rgba(96,165,250,0.28), transparent 55%), #050507',
+                }}
+              >
+                {/* Camada de estrelas fixa ao viewport — mesmo comportamento do fundo cósmico global: parada enquanto a página rola, como se fosse uma janela para um campo infinito. */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 opacity-80"
+                  style={{
+                    backgroundImage: `radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.95), transparent 50%),
+                      radial-gradient(1.5px 1.5px at 90px 70px, rgba(255,255,255,0.8), transparent 50%),
+                      radial-gradient(2px 2px at 160px 40px, rgba(255,255,255,0.9), transparent 50%),
+                      radial-gradient(1.5px 1.5px at 210px 120px, rgba(255,255,255,0.75), transparent 50%),
+                      radial-gradient(2.5px 2.5px at 60px 180px, rgba(255,255,255,0.9), transparent 50%),
+                      radial-gradient(1.5px 1.5px at 130px 210px, rgba(255,255,255,0.7), transparent 50%),
+                      radial-gradient(1.5px 1.5px at 20px 140px, rgba(255,255,255,0.75), transparent 50%),
+                      radial-gradient(2px 2px at 190px 190px, rgba(255,255,255,0.85), transparent 50%),
+                      radial-gradient(1.5px 1.5px at 230px 60px, rgba(255,255,255,0.7), transparent 50%),
+                      radial-gradient(1.5px 1.5px at 110px 140px, rgba(255,255,255,0.6), transparent 50%),
+                      radial-gradient(1px 1px at 150px 230px, rgba(255,255,255,0.55), transparent 50%),
+                      radial-gradient(1px 1px at 40px 90px, rgba(255,255,255,0.55), transparent 50%)`,
+                    backgroundSize: '240px 240px',
+                    backgroundAttachment: 'fixed',
+                  }}
+                />
+                <div className="relative aspect-[3/4] max-h-[480px]">
                   <img
                     src={member.image}
                     alt={member.imageAlt}

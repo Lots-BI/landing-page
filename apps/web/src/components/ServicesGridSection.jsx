@@ -1,5 +1,6 @@
 import React from 'react';
 import { AnimatedSection } from './AnimatedSection.jsx';
+import { LotsBIWordmark } from './LotsBIWordmark.jsx';
 
 const SERVICES = [
   {
@@ -21,16 +22,6 @@ const SERVICES = [
     title: 'Gestão de Redes',
     caption: 'Perfis cuidados e respondidos todos os dias.',
     photo: '/services/gestao-redes.webp',
-  },
-  {
-    title: 'Dashboards',
-    caption: 'Rastreio certo, dado certo, decisão certa.',
-    photo: '/services/dashboards.webp',
-  },
-  {
-    title: 'CRM',
-    caption: 'Seus leads organizados do primeiro contato à venda.',
-    photo: '/services/crm.webp',
   },
 ];
 
@@ -55,7 +46,7 @@ export function ServicesGridSection() {
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:gap-5 lg:grid-cols-6">
           {SERVICES.map((service, index) => (
             <AnimatedSection key={service.title} delay={index * 0.06} className="h-full">
-              <div className="group relative flex h-full aspect-[4/5] items-center justify-center overflow-hidden rounded-2xl border border-border">
+              <div className="group relative flex h-full aspect-[4/5] items-center justify-center overflow-hidden rounded-2xl border border-border [contain:layout_paint]">
                 <img
                   src={service.photo}
                   srcSet={`${service.photo.replace('.webp', '-320.webp')} 320w, ${service.photo} 480w`}
@@ -70,7 +61,7 @@ export function ServicesGridSection() {
                 />
 
                 <div
-                  className="absolute inset-0 bg-white/40 backdrop-blur-xl transition-all duration-300 group-hover:bg-white/15 group-hover:backdrop-blur-sm"
+                  className="absolute inset-0 bg-white/30 backdrop-blur-lg transition-all duration-300 group-hover:bg-white/15 group-hover:backdrop-blur-sm"
                   aria-hidden="true"
                 />
 
@@ -89,6 +80,18 @@ export function ServicesGridSection() {
               </div>
             </AnimatedSection>
           ))}
+
+          <AnimatedSection delay={SERVICES.length * 0.06} className="col-span-2 h-full">
+            <div className="group relative flex h-full min-h-[180px] items-center justify-center overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-[#A855F7]/15 via-background to-[#60A5FA]/15 [contain:layout_paint]">
+              <LotsBIWordmark size="lg" />
+
+              <div className="absolute inset-x-0 bottom-0 z-20 translate-y-full bg-white p-3 text-center shadow-[0_-8px_24px_rgba(0,0,0,0.15)] transition-transform duration-300 ease-out group-hover:translate-y-0 md:p-4">
+                <p className="text-xs leading-snug text-neutral-700 md:text-sm">
+                  A plataforma por trás dos seus dashboards e CRM — tudo incluso na mensalidade.
+                </p>
+              </div>
+            </div>
+          </AnimatedSection>
         </div>
       </div>
     </section>
