@@ -187,9 +187,6 @@ export default function HomePage() {
               <p className="font-display text-3xl font-black leading-tight text-foreground text-balance md:text-5xl">
                 Nossos clientes têm acesso gratuito à plataforma Lots BI.
               </p>
-              <p className="mx-auto mt-5 max-w-xl text-base text-muted-foreground md:text-lg">
-                Atendemos um número limitado de clientes.
-              </p>
               <button
                 type="button"
                 onClick={() => document.getElementById('formulario')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}

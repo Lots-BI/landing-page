@@ -5,7 +5,7 @@ import { ZoomablePrint, printSources } from '@/components/ZoomablePrint.jsx';
 const RAFA = {
   name: 'Rafa Teo Ferreira',
   subtitle: 'Corretor',
-  text: 'O grande diferencial é a qualidade dos leads que começaram a chegar no meu direct.',
+  text: 'O que mais me motiva a continuar com a Lots, é a qualidade dos leads que chegam ao meu CRM!',
   image: '/testimonials/rafa-teo.webp',
 };
 

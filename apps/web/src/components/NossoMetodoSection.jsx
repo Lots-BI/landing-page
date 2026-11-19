@@ -3,7 +3,7 @@ import { AnimatedSection } from './AnimatedSection.jsx';
 import { FlowCtaButton } from './FlowCtaButton.jsx';
 import { ZoomablePrint, printSources } from './ZoomablePrint.jsx';
 
-const PRINT = printSources('/results/agencia-visao-geral');
+const PRINT = printSources('/lots-bi/hero-dashboards');
 
 export default function NossoMetodoSection() {
   return (
@@ -23,14 +23,17 @@ export default function NossoMetodoSection() {
 
         <AnimatedSection className="mx-auto max-w-6xl">
           <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/40 shadow-lg">
-            <ZoomablePrint src={PRINT.zoomSrc} alt="Visão geral do tráfego gerido pela Lots nos últimos 90 dias">
+            <ZoomablePrint
+              src={PRINT.zoomSrc}
+              alt="Painel Lots BI com CRM, Meta Ads, Google Ads, Instagram e Analytics no mesmo lugar"
+            >
               <img
                 src={PRINT.src}
                 srcSet={PRINT.srcSet}
                 sizes="(min-width: 1200px) 1152px, 100vw"
                 alt=""
-                width={4000}
-                height={2600}
+                width={1920}
+                height={1080}
                 loading="lazy"
                 decoding="async"
                 className="h-auto w-full"
