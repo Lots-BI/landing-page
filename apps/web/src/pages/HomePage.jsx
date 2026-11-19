@@ -7,6 +7,7 @@ import { SalesLeadForm } from '@/components/SalesLeadForm.jsx';
 import { SocialProofSection } from '@/components/SocialProofSection.jsx';
 import { HeroSection } from '@/components/HeroSection.jsx';
 import { FlowCtaButton } from '@/components/FlowCtaButton.jsx';
+import FloatingWhatsAppButton from '@/components/FloatingWhatsAppButton.jsx';
 import { useUTMs } from '@/hooks/useUTMs.js';
 
 const ClientAreaSection = lazy(() => import('@/components/ClientAreaSection.jsx').then(module => ({ default: module.ClientAreaSection })));
@@ -206,6 +207,7 @@ export default function HomePage() {
       </LazyBlock>
 
       <MobileCtaBar />
+      <FloatingWhatsAppButton />
     </div>
   );
 }
