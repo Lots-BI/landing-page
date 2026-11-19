@@ -6,13 +6,13 @@ import { BRAND_NAME } from '@/lib/brand';
 import { scrollToFormulario } from './FlowCtaButton.jsx';
 
 const NAV = [
-  { name: 'Plataforma', id: 'plataforma' },
-  { name: 'Benefícios', id: 'formulario' },
+  { name: 'Método', id: 'metodo' },
+  { name: 'Contato', id: 'formulario' },
   { name: 'Resultados', id: 'resultados' },
   { name: 'Equipe', id: 'equipe' },
 ];
 
-export default function Footer() {
+export default function Footer({ isLight = false }) {
   const { content } = useEditableContent();
 
   const scrollTo = (id) => {
@@ -22,7 +22,11 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="relative z-10 border-t border-white/10 bg-transparent py-8 md:py-10">
+    <footer
+      className={`relative z-10 border-t py-8 md:py-10 ${
+        isLight ? 'theme-light border-border bg-white text-foreground' : 'border-white/10 bg-transparent'
+      }`}
+    >
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col gap-6 md:gap-5">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5">
@@ -57,10 +61,10 @@ export default function Footer() {
             </nav>
           </div>
 
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-5 border-t border-white/10 text-xs text-muted-foreground">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pt-5 border-t border-border text-xs text-muted-foreground">
             <p>
               © {year} {content.hero?.brand || BRAND_NAME}
-              <span className="mx-2 text-white/20" aria-hidden="true">
+              <span className={`mx-2 ${isLight ? 'text-black/20' : 'text-white/20'}`} aria-hidden="true">
                 ·
               </span>
               <span className="font-mono tracking-tight">65.225.964/0001-83</span>

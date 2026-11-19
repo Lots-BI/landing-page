@@ -87,6 +87,38 @@
     --lots-wordmark-text: #e4e0ec;
   }
 
+  /* Hard-cut light block used right after the starry hero on the home page */
+  .theme-light {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 8%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 8%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 8%;
+
+    --primary: var(--lots-purple);
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: var(--lots-blue);
+    --secondary-foreground: 0 0% 10%;
+
+    --muted: 240 20% 96%;
+    --muted-foreground: 240 6% 38%;
+
+    --accent: 271 60% 96%;
+    --accent-foreground: 271 50% 30%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 10% 88%;
+    --input: 240 10% 88%;
+    --ring: var(--lots-purple);
+    --lots-wordmark-text: #1a1625;
+  }
+
   * {
     @apply border-border;
     max-width: 100vw;

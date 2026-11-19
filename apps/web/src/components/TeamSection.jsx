@@ -26,7 +26,7 @@ export default function TeamSection() {
 
   return (
     <section
-      className="relative z-10 border-t border-white/10 bg-transparent py-20 md:py-28"
+      className="relative z-10 border-t border-border bg-transparent py-20 md:py-28"
     >
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <AnimatedSection className="max-w-2xl mx-auto text-center mb-14 md:mb-16">
@@ -47,7 +47,7 @@ export default function TeamSection() {
               delay={index * 0.08}
               className="flex flex-col items-center text-center"
             >
-              <div className="w-full aspect-[3/4] max-h-[480px] overflow-hidden bg-black/20">
+              <div className="w-full aspect-[3/4] max-h-[480px] overflow-hidden bg-black/5">
                 <img
                   src={member.image}
                   alt={member.imageAlt}

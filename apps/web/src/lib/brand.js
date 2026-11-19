@@ -2,9 +2,9 @@
 
 export const BRAND_NAME = 'Agência Lots';
 export const BRAND_PRODUCT = 'Lots BI';
-export const BRAND_TAGLINE = 'Business Intelligence para marketing digital';
+export const BRAND_TAGLINE = 'Gestão de tráfego pago';
 export const BRAND_DESCRIPTION =
-  'Agência Lots — marketing digital com operação, dados e previsibilidade.';
+  'Agência Lots — Meta Ads e Google Ads com operação diária para gerar leads e vendas.';
 
 export const BRAND_COLORS = {
   purple: '#A855F7',

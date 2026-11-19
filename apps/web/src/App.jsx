@@ -20,7 +20,7 @@ const AdmPage = lazy(() => import('./pages/AdmPage.jsx'));
 const Footer = lazy(() => import('./components/Footer.jsx'));
 const CookieBanner = lazy(() => import('./components/CookieBanner.jsx'));
 
-function DeferredChrome() {
+function DeferredChrome({ isHomeLight }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
@@ -53,7 +53,7 @@ function DeferredChrome() {
 
   return (
     <Suspense fallback={<div className="min-h-[80px]" aria-hidden="true" />}>
-      <Footer />
+      <Footer isLight={isHomeLight} />
       <CookieBanner />
     </Suspense>
   );
@@ -65,6 +65,7 @@ export function AppShell() {
     pathname === ORCAMENTO_PATH || pathname === ORCAMENTO_OBRIGADO_PATH;
   const isAdm = pathname === '/adm';
   const hideChrome = isOrcamentoFlow || isAdm;
+  const isHomeLight = pathname === '/';
 
   return (
     <>
@@ -196,7 +197,7 @@ export function AppShell() {
             <CookieBanner />
           </Suspense>
         ) : (
-          <DeferredChrome />
+          <DeferredChrome isHomeLight={isHomeLight} />
         )}
       </div>
     </>

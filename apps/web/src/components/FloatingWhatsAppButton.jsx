@@ -1,9 +1,6 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useUTMs } from '@/hooks/useUTMs.js';
-
-const WHATSAPP_PHONE = '5511973290438';
-const PRESET_MESSAGE =
-  'Vim direto do site, gostaria de conversar com o Leandro por favor!';
+import { buildWhatsAppHref, WHATSAPP_PRESET_MESSAGE } from '@/lib/whatsapp.js';
 
 function WhatsAppGlyph({ className }) {
   return (
@@ -24,10 +21,10 @@ function WhatsAppGlyph({ className }) {
  */
 export default function FloatingWhatsAppButton() {
   const { appendUtmsToMessage } = useUTMs();
+  const [href, setHref] = useState(buildWhatsAppHref());
 
-  const href = useMemo(() => {
-    const text = encodeURIComponent(appendUtmsToMessage(PRESET_MESSAGE));
-    return `https://wa.me/${WHATSAPP_PHONE}?text=${text}`;
+  useEffect(() => {
+    setHref(buildWhatsAppHref(appendUtmsToMessage(WHATSAPP_PRESET_MESSAGE)));
   }, [appendUtmsToMessage]);
 
   return (

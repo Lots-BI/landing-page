@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Input } from '@/components/ui/input.jsx';
 import { saveLandingLead } from '@/lib/landingLeads.js';
 import { trackLeadFormSubmit } from '@/lib/analytics.js';
 
 const FORM_ID = 'cta-lead-form';
-const FORM_NAME = 'Landing vendas';
+const FORM_NAME = 'Landing trÃ¡fego pago';
 
 export function SalesLeadForm() {
   const [form, setForm] = useState({ nome: '', email: '', instagram: '' });
@@ -24,7 +24,7 @@ export function SalesLeadForm() {
 
     if (!nome) return 'Informe seu nome';
     if (!email && !instagram) return 'Informe e-mail ou Instagram';
-    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return 'Informe um e-mail válido';
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return 'Informe um e-mail vÃ¡lido';
     return '';
   };
 
@@ -48,7 +48,7 @@ export function SalesLeadForm() {
       trackLeadFormSubmit({ formId: FORM_ID, formName: FORM_NAME });
       setDone(true);
     } catch (err) {
-      setError(err?.message || 'Não foi possível enviar. Tente novamente.');
+      setError(err?.message || 'NÃ£o foi possÃ­vel enviar. Tente novamente.');
       setSubmitting(false);
     }
   };
@@ -58,7 +58,7 @@ export function SalesLeadForm() {
       <div className="space-y-3 py-6 text-center" role="status">
         <p className="font-display text-2xl font-bold text-foreground">Recebemos seu contato.</p>
         <p className="text-sm leading-relaxed text-muted-foreground">
-          Em breve a Lots fala com você para agendar a reunião.
+          Em breve a Lots fala com vocÃª para agendar a reuniÃ£o.
         </p>
       </div>
     );
@@ -77,7 +77,7 @@ export function SalesLeadForm() {
           autoComplete="name"
           value={form.nome}
           onChange={(event) => setField('nome', event.target.value)}
-          className="h-12 rounded-xl border-white/10 bg-background/40"
+          className="h-12 rounded-xl border-border bg-background"
         />
       </div>
       <div>
@@ -92,7 +92,7 @@ export function SalesLeadForm() {
           inputMode="email"
           value={form.email}
           onChange={(event) => setField('email', event.target.value)}
-          className="h-12 rounded-xl border-white/10 bg-background/40"
+          className="h-12 rounded-xl border-border bg-background"
         />
       </div>
       <div>
@@ -106,7 +106,7 @@ export function SalesLeadForm() {
           autoComplete="off"
           value={form.instagram}
           onChange={(event) => setField('instagram', event.target.value)}
-          className="h-12 rounded-xl border-white/10 bg-background/40"
+          className="h-12 rounded-xl border-border bg-background"
         />
       </div>
       {error ? (
@@ -120,12 +120,12 @@ export function SalesLeadForm() {
         disabled={submitting}
         className="inline-flex min-h-[52px] w-full items-center justify-center rounded-xl bg-brand-gradient px-6 text-base font-bold text-white shadow-md disabled:opacity-70"
       >
-        {submitting ? 'Enviando…' : 'Falar com a Lots'}
+        {submitting ? 'Enviandoâ€¦' : 'Falar com a Lots'}
       </button>
       <div className="flex flex-wrap justify-center gap-3 pt-1 text-[11px] uppercase tracking-[0.14em] text-muted-foreground">
         <span>Dados protegidos</span>
-        <span aria-hidden="true">·</span>
-        <span>Reunião sem compromisso</span>
+        <span aria-hidden="true">Â·</span>
+        <span>ReuniÃ£o sem compromisso</span>
       </div>
     </form>
   );

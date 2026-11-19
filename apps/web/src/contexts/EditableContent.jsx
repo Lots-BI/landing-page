@@ -3,10 +3,10 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 const defaultContent = {
   hero: {
     brand: "Agência Lots",
-    badge: "Marketing digital com operação e dados",
-    title: "Agência de Marketing digital",
-    subtitle: "Estruturação e gestão completa",
-    cta: "Quero estruturar meu marketing"
+    badge: "Gestão de tráfego pago",
+    title: "Gestão de tráfego pago",
+    subtitle: "Meta Ads e Google Ads com operação diária",
+    cta: "Quero tráfego com a Lots"
   },
   ecosystem: {
     title: "Operação Digital Inteligente",
@@ -141,12 +141,12 @@ const defaultContent = {
   },
   team: {
     title: "Quem conduz",
-    subtitle: "Dados e criação no mesmo time — operação com identidade e critério.",
+    subtitle: "Gestão de tráfego com critério — campanha, criativo e conversão no mesmo time.",
     together:
-      "Um estrutura sistemas, dados e produto. O outro traduz a marca em visual e presença. Juntos, a operação escala sem perder clareza nem identidade.",
-    founder1Role: "Especialista em dados",
+      "Estratégia, mídia e criativo no mesmo ritmo. A conta sobe com operação diária, não com relatório no fim do mês.",
+    founder1Role: "Tráfego e dados",
     founder1Desc: "",
-    founder2Role: "Social Media",
+    founder2Role: "Criativos de mídia",
     founder2Desc: ""
   },
   faq: {
@@ -174,7 +174,7 @@ const defaultContent = {
     cta: "Enviar e abrir WhatsApp"
   },
   footer: {
-    description: "Marketing digital com operação, dados e escala.",
+    description: "Gestão de tráfego pago — Meta Ads e Google Ads.",
     contactTitle: "Contato",
     navTitle: "Navegação"
   },
